@@ -1,0 +1,27 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    font-family: $font-roboto;
+    font-size: 14px;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+h5 {
+    font-size: 14px;
+    margin: 1em 0 2em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}

@@ -1,0 +1,28 @@
+{
+  "name": "valenski",
+  "description": "A set of SASS mixins, classes and values that might be useful in addition to Bootstrap.",
+  "version": "0.2.0",
+  "keywords": [
+    "css",
+    "scss",
+    "sass",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "web"
+  ],
+  "homepage": "http://github.com/hay/valenski",
+  "main": [
+    "valenski.scss"
+  ],
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.0",
+    "commit": "458f2bb4436d04ab344e0afd25f6f91d2695ba83"
+  },
+  "_source": "git://github.com/hay/valenski.git",
+  "_target": "~0.2.0",
+  "_originalSource": "valenski",
+  "_direct": true
+}

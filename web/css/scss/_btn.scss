@@ -1,0 +1,117 @@
+.btn_nav {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 0px;
+    padding: 15px 40px;
+    float: left;
+    text-transform: uppercase;
+    line-height: 20px;
+    border-left: 1px solid #ddd;
+
+    span {
+        margin-right: 5px;
+    }
+}
+
+li.btn_nav:last-child{
+    border-right: 1px solid #ddd;
+}
+
+
+.btn_nav:hover:not(.btn_nav_active) {
+    @include background(
+        linear-gradient(rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%) repeat scroll 0 0 rgba(240,240,240,1)
+    );
+}
+
+.btn_nav.liefde:not(.btn_nav_active):hover {
+    color: #e53228;
+}
+
+.btn_nav.angst:not(.btn_nav_active):hover {
+    color: #19C0D1;
+}
+
+.btn_nav.lust:not(.btn_nav_active):hover {
+    color: #FFAA00;
+}
+
+.btn_nav_active {
+    color: #fff;
+
+    &.liefde {
+        @include background(
+            linear-gradient(to bottom,  rgba(195,33,24,1) 0%,rgba(229,50,40,1) 100%)
+        );
+    }
+
+    &.angst {
+        @include background(
+            linear-gradient(to bottom,  rgba(20,150,163,1) 0%,rgba(25,192,209,1) 100%)
+        );
+    }
+
+    &.lust {
+        @include background(
+            linear-gradient(to bottom,  rgba(204,136,0,1) 0%,rgba(255,170,0,1) 100%)
+        );
+    }
+}
+
+.btn_about {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 0px;
+    padding: 15px 40px;
+    float: right;
+    text-transform: uppercase;
+    line-height: 20px;
+    border-left: 1px solid #ddd;
+    color: #bbb;
+
+    span {
+        margin-right: 5px;
+    }
+
+    &:hover {
+        @include background(
+            linear-gradient(rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%) repeat scroll 0 0 rgba(240,240,240,1)
+        );
+        color: black;
+    }
+}
+
+.btn_share {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 0px;
+    padding: 15px 40px;
+    float: right;
+    text-transform: uppercase;
+    line-height: 20px;
+    border-left: 1px solid #ddd;
+    color: #bbb;
+
+    span {
+        margin-right: 5px;
+    }
+
+    &:hover {
+        @include background(
+            linear-gradient(rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%) repeat scroll 0 0 rgba(240,240,240,1)
+        );
+        color: black;
+    }
+}
