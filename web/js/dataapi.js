@@ -9,18 +9,18 @@ var postcodes;
 var gem_name = [];
 var usedgem_name = [];
 var gem_pc = [];
-var gem_longlat = []; 
-var awnsers_q = [];
-var awnsers_name = [];
+var gem_longlat = [];
+var answers_q = [];
+var answers_name = [];
 
-API.loadData = function(link_data, link_pc, link_awnsers, fn){
+API.loadData = function(link_data, link_pc, link_answers, fn){
     d3.csv(link_data, function(error, data){
         API.loadedData = data;
-        
+
         d3.csv(link_pc, function(error, data){
             API.postalCodes = data;
-            d3.csv(link_awnsers, function(error, data){
-                API.awnsers = data;
+            d3.csv(link_answers, function(error, data){
+                API.answers = data;
                 loadPostalCodes(fn);
             });
         });
@@ -30,7 +30,7 @@ API.loadData = function(link_data, link_pc, link_awnsers, fn){
 API.getData = function(questions){
     var newData = new Array();
     var questions = (typeof questions == "string")? [questions] : questions;
-    
+
     API.loadedData.forEach(function(d){
         questions.forEach(function(i){
             var question = i;
@@ -73,7 +73,7 @@ API.getData = function(questions){
             }
         });
     });
-    
+
     return (new API.data(newData, questions));
 }
 
@@ -85,35 +85,35 @@ API.data = function(data, questions){
 API.data.prototype = {
     data: function(){
         var final = new Array();
-        
+
         this.rawData.forEach(function(d){
             final.push(d[0]);
         });
-        
+
         return final;
     },
-    
+
     count: function(){
         var dd = new Array();
         var final = new Array();
-        
+
         this.rawData.forEach(function(d){
             dd.push(d[0]);
         });
-        
+
         final = countData(dd);
-        
+
         return final;
     },
-    
+
     countByPostalCode: function(){
         var final = new Array();
         var names = new Array();
         var values = new Array();
-        
+
         this.rawData.forEach(function(d){
             var pc = d[8];
-            
+
             if (names.indexOf(pc) == -1){
                 names.push(pc);
                 values[names.indexOf(pc)] = [d[0]];
@@ -121,22 +121,22 @@ API.data.prototype = {
                 values[names.indexOf(pc)].push(d[0]);
             }
         });
-        
+
         for (var i=0; i<names.length; i++){
             final.push([names[i], countData(values[i])]);
         }
-        
+
         return final;
     },
-    
+
     countByProvince: function(){
         var final = new Array();
         var names = new Array();
         var values = new Array();
-        
+
         this.rawData.forEach(function(d){
             var pv = d[7];
-            
+
             if (names.indexOf(pv) == -1){
                 names.push(pv);
                 values[names.indexOf(pv)] = [d[0]];
@@ -144,24 +144,24 @@ API.data.prototype = {
                 values[names.indexOf(pv)].push(d[0]);
             }
         });
-        
+
         for (var i=0; i<names.length; i++){
             final.push([names[i], countData(values[i])]);
         }
-        
+
         return final;
     },
-    
+
     countByGemeente: function(){
         var final = new Array();
         var names = new Array();
         var values = new Array();
-        
+
         this.rawData.forEach(function(d){
             var pc = d[8];
-            
+
             var pc_naam = PostalCodeToGemeente(parseInt(pc));
-            
+
             if (names.indexOf(pc_naam) == -1){
                 names.push(pc_naam);
                 values[names.indexOf(pc_naam)] = [d[0]];
@@ -169,19 +169,19 @@ API.data.prototype = {
                 values[names.indexOf(pc_naam)].push(d[0]);
             }
         });
-        
+
         for (var i=0; i<names.length; i++){
             final.push([names[i], countData(values[i])]);
         }
-        
+
         return final;
     },
-    
+
     filter: function(filter, values){
         var final = new Array();
         var v = (typeof values == 'number')? [values]:values;
         var f;
-        
+
         switch(filter.toLowerCase()){
             case "geslacht":
                 f = 1;
@@ -207,7 +207,7 @@ API.data.prototype = {
             default:
                 break;
         }
-        
+
         this.rawData.forEach(function(d){
             if (f){
                 if (v.indexOf(d[f]) != -1){
@@ -215,45 +215,45 @@ API.data.prototype = {
                 }
             }
         });
-        
+
         return (new API.data(final, this.questions));
     },
-    
+
     countobj: function(gemeenteID){
         if (!gemeenteID){
             var names;
-            
+
             if (this.questions){
                 this.questions.forEach(function(e){
-                    var index = awnsers_q.indexOf(e);
+                    var index = answers_q.indexOf(e);
                     if (index != -1){
-                        names = awnsers_name[index];
+                        names = answers_name[index];
                     }
                 });
             }
-            
+
             var count = this.count();
             var final = [];
-            
+
             for (var i=0; i<count.length; i++){
                 var name = (names)? names[count[i][0]-1] : count[i][0];
                 final.push({name: name, value: count[i][1]});
             }
-            
+
             return final;
         }
     },
-    
+
     countObjGemeente: function(){
         var gem_id = [];
         var data = [];
         var final = [];
-        
+
         for (var i=0; i<this.rawData.length; i++){
             var d = this.rawData[i][0];
             var g = this.rawData[i][9];
             var index = gem_id.indexOf(g);
-            
+
             if (index == -1){
                 gem_id.push(g);
                 data.push([d]);
@@ -261,14 +261,14 @@ API.data.prototype = {
                 data[index].push(d);
             }
         }
-        
+
         for (var i=0; i<gem_id.length; i++){
             final.push({gemeente: gem_id[i], data: data[i]});
         }
-        
+
         return final;
     },
-    
+
     getGemeentesWithData: function(){
         var final = [];
         this.rawData.forEach(function(d){
@@ -276,20 +276,20 @@ API.data.prototype = {
                 final.push(d[9]);
             }
         });
-        
+
         return final;
     },
-    
+
     countObjGemeenteLatLong: function(){
         var gem_id = [];
         var data = [];
         var final = [];
-        
+
         for (var i=0; i<this.rawData.length; i++){
             var d = this.rawData[i][0];
             var g = this.rawData[i][9];
             var index = gem_id.indexOf(g);
-            
+
             if (index == -1){
                 gem_id.push(g);
                 data.push([d]);
@@ -297,14 +297,14 @@ API.data.prototype = {
                 data[index].push(d);
             }
         }
-        
+
         for (var i=0; i<gem_id.length; i++){
             if (gem_id[i] != -1){
                 var longlat = gem_longlat[gem_id[i]];
                 final.push({gemeente: gem_id[i], data: data[i], amount: data[i].length, latlong: [parseFloat(longlat[1]), parseFloat(longlat[0])]});
             }
         }
-        
+
         return final;
     },
 }
@@ -326,7 +326,7 @@ function countData(data){
     for (var i=0; i<names.length; i++){
         final.push([parseInt(names[i]), parseInt(counts[i])]);
     }
-    
+
     final.sort(sortFunction);
 
     return final;
@@ -371,23 +371,22 @@ function loadPostalCodes(fn_done){
             gem_longlat.push([d["lon"], d["lat"]]);
         }
     });
-    console.log("klaar");
-    
-    loadAwnsers(fn_done);
+
+    loadAnswers(fn_done);
 }
-    
-function loadAwnsers(fn_done){
-    API.awnsers.forEach(function(d){
-        awnsers_q.push(d["Question"]);
+
+function loadAnswers(fn_done){
+    API.answers.forEach(function(d){
+        answers_q.push(d["Question"]);
         var names = [];
         names.push(d["Answer1"]);
         names.push(d["Answer2"]);
         names.push(d["Answer3"]);
         names.push(d["Answer4"]);
         names.push(d["Answer5"]);
-        awnsers_name.push(names);
+        answers_name.push(names);
     });
-    
+
     fn_done();
 }
 

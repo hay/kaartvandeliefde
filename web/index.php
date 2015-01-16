@@ -1,3 +1,6 @@
+<?php
+    require 'inc/data.php';
+?>
 <!doctype html>
 <html>
     <head>
@@ -50,6 +53,10 @@
 
             p = (typeof p == 'number')? p : 0;
             b = (typeof b == 'number')? b : 0;
+        </script>
+
+        <script>
+            $(document).ready( initApp );
         </script>
     </body>
 </html>

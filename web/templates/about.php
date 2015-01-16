@@ -2,6 +2,7 @@
     <div id="about_background">
         <div id="about_container">
             <a class="close">&times;</a>
+
             <h1>Over</h1>
             <p class="lead">Hebben we nog lief? Of trekt een beetje rondscharrelen ons meer aan? Kaart van de liefde laat de stand van zaken over de hedendaagse liefde, angsten en lusten in Nederland zien.</p>
 

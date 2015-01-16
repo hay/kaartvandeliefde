@@ -1,2 +1,2 @@
 #!/bin/bash
-rsync -avz ../web/* pris:/var/www/kaartvandeliefde.nl/htdocs/
+rsync --delete -avz ../web/* pris:/var/www/kaartvandeliefde.nl/htdocs/

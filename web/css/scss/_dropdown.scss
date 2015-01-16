@@ -1,0 +1,93 @@
+.container_dropdown {
+    position: absolute;
+    top: 300px;
+    right: 20px;
+    z-index: 100;
+}
+
+.container_dropdowns {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dropdown {
+    display: block;
+    position: relative;
+    float: left;
+}
+
+.dropdown:hover > .dropdown_menu {
+    display: block;
+}
+
+.dropdown:hover > a {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown_button {
+    padding: 10px 10px;
+    display: block;
+    position: relative;
+    cursor: default;
+}
+
+.dropdown_menu {
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    float: left;
+    font-size: 14px;
+    list-style: none;
+    margin: 4px 0px 0px;
+    min-width: 160px;
+    padding: 0px;
+    position: absolute;
+    top: 36px;
+    z-index: 200;
+    display: none;
+
+    &:not(.right) {
+        left: 0px;
+    }
+
+    &.right {
+        right: 0px;
+    }
+}
+
+.dropdown_menuButton {
+    clear: both;
+    display: block;
+    padding: 3px 20px;
+    white-space: nowrap;
+    color: #000;
+    cursor: pointer;
+
+    &:hover {
+        background-color: whiteSmoke;
+    }
+
+    &:not(.active):before{
+        font-weight: 100;
+        font-size: 14px;
+        color: #fff;
+        content: "√ ";
+        margin: 0 5px 0 0;
+
+    }
+
+    &.active:before {
+        font-weight: 100;
+        font-size: 14px;
+        content: "√ ";
+        margin: 0 5px 0 0;
+    }
+
+    &.disabled {
+        color: #ddd;
+    }
+
+    &.disabled:before {
+        color: #ddd;
+    }
+}

@@ -9,9 +9,9 @@ function BarChart(sourceData, q, g, side, container, color){
     this.side = side;
     this.sourceData = sourceData;
     this.svg;
-    
+
     var _this = this;
-    
+
     this.construct = function(){
         this.container.html("");
         if (this.data.length > 0){
@@ -22,6 +22,11 @@ function BarChart(sourceData, q, g, side, container, color){
             var margin = {top: 20, right: 30, bottom: 30, left: 40},
                 width = this.container.innerWidth() - margin.left - margin.right,
                 height = this.container.innerHeight() - margin.top - margin.bottom;
+
+            // FIXME: we get negative width/heights at times
+            // if (width < 0 || height < 0) {
+            //     return;
+            // }
 
             // range en assen bepalen
             var x = d3.scale.ordinal().rangeRoundBands([0, width], .1);
@@ -90,13 +95,13 @@ function BarChart(sourceData, q, g, side, container, color){
             nodatadiv.appendTo(this.container);
         }
     }
-    
+
     this.update = function(newData){
         this.data = newData;
         // TODO: animeren?
         this.construct();
     }
-    
+
     this.resize = function(){
         this.construct();
     }
@@ -111,47 +116,53 @@ function PieChart(sourceData, q, g, side, container, color){
     this.side = side;
     this.sourceData = sourceData;
     this.svg;
-    
+
     var _this = this;
-    
+
     this.construct = function(){
         this.container.html("");
+
         if (this.data.length > 0){
             var max = d3.max(this.data, function(d){return d["value"]});
             //var max = 300
             var margin = 20,
                 width = this.container.innerWidth() - margin*2,
                 height = this.container.innerHeight() - margin*2;
-            
+
             var outerRadius = Math.min(width, height)/2 - (margin*2);
+
+            // FIXME: we get negative width/heights at times
+            // if (width < 0 || height < 0) {
+            //     return;
+            // }
 
             // nieuw svg element
             var nsvg = $("<svg class='chart'></svg>")[0];
-            
+
             var chart = d3.select(nsvg)
                     .data([_this.data])
                     .attr("width", width)
                     .attr("height", height)
                     .append("g")
                     .attr("transform", "translate(" + (width)/2 + ", " + ((height/2)+margin) + ")");
-            
+
             var arc = d3.svg.arc()
                     .outerRadius(outerRadius);
-            
+
             var pie = d3.layout.pie()
                     .value(function(d) {return d.value;})
                     .sort(function(d) {return null;});
-            
+
             var arcs = chart.selectAll("g.slice")
                     .data(pie)
                     .enter()
                     .append("g")
                     .attr("class", "slice");
-            
+
             arcs.append("path")
                     .attr("fill", function(d, i){return getColor(_this.color, i, _this.data.length)})
                     .attr("d", arc);
-            
+
             arcs.append("text")
                     .attr("transform", function(d){
                             d.outerRadius = outerRadius + 50;
@@ -161,7 +172,7 @@ function PieChart(sourceData, q, g, side, container, color){
                     .attr("text-anchor", "middle")
                     .style("fill", function(d, i){return getColor(_this.color, i, _this.data.length)})
                     .text(function(d){return d.data.name});
-            
+
             arcs.filter(function(d){return d.endAngle - d.startAngle > .1;}).append("text")
                     .attr("dy", ".35em")
                     .attr("text-anchor", "middle")
@@ -171,7 +182,7 @@ function PieChart(sourceData, q, g, side, container, color){
                             return "translate("+arc.centroid(d)+")rotate("+angle(d)+")";
                         })
                     .style("fill", "white")
-                    .text(function(d){return d.value});            
+                    .text(function(d){return d.value});
 
             // diagram toevoegen aan container
             $(nsvg).appendTo(this.container);
@@ -182,17 +193,17 @@ function PieChart(sourceData, q, g, side, container, color){
             nodatadiv.appendTo(this.container);
         }
     }
-    
+
     this.update = function(newData){
         this.data = newData;
         // TODO: animeren?
         this.construct();
     }
-    
+
     this.resize = function(){
         this.construct();
     }
-    
+
     function angle(d){
         var a = (d.startAngle + d.endAngle)*90/Math.PI-90;
         return (a>90)? a-180 : a;
@@ -205,11 +216,11 @@ function mapChart(sourceData, container, color) {
     this.color = color;
     this.sourceData = sourceData;
     this.map;
-    
+
     this.markers = [];
-    
+
     var _this = this;
-    
+
     this.construct = function(){
         var southWest = L.latLng(54.0041711, 8.6904297),	//zuidWest (x,y)
 	   			northEast = L.latLng(49.72950155, 1.8674316),	//noordOost (x,y)
@@ -224,10 +235,10 @@ function mapChart(sourceData, container, color) {
             zoomControl: false,
             scrollWheelZoom: false,
             touchZoom: false
-        });	
+        });
         this.map.addControl(L.control.zoom({position: 'bottomright'}));
     }
-    
+
     this.addMarker = function(lat, long, val, amount, gemeenteID, color){
         var myIcon = L.divIcon({
             className: 	"marker",
@@ -238,14 +249,14 @@ function mapChart(sourceData, container, color) {
         var alpha = 0.5;
 
         marker = new L.marker([lat, long], {icon: myIcon})
-        .bindPopup(API.getGemeenteFromID(gemeenteID)) 
+        .bindPopup(API.getGemeenteFromID(gemeenteID))
         .addTo(this.map);
-        
+
         $(marker).data("gemeenteID", gemeenteID);
 
         $(marker._icon).css("backgroundColor", color);
-        
-        
+
+
         marker.on('mouseover', function () {
             this.openPopup();
         });
@@ -255,35 +266,35 @@ function mapChart(sourceData, container, color) {
         marker.on('click', function () {
             filterGemeente($(this).data("gemeenteID"));
         });
-        
+
         this.markers.push(marker);
     }
-    
+
     this.deleteMarkers = function(){
-    
+
     }
-    
+
     this.addMarkers = function(){
         this.data.forEach(function(e){
             var gemeente = e.gemeente;
             var amount = e.amount;
             var val = 0;
-            
+
             for (var i=0; i<amount; i++){
                 val += e.data[i];
             }
-            
+
             var latlong = e.latlong;
-            
+
             _this.addMarker(latlong[0], latlong[1], val, amount, gemeente, _this.color);
         });
     }
-    
+
     this.construct();
     this.addMarkers();
 }
 
-function hexToRgb(hex) {            // #rrggbb (no shorthand)   
+function hexToRgb(hex) {            // #rrggbb (no shorthand)
     var result = [hex.substr(1,2), hex.substr(3, 2), hex.substr(5,2)];
     return [parseInt(result[0], 16), parseInt(result[1], 16), parseInt(result[2], 16)];
 };

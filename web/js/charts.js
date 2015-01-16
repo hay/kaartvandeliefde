@@ -6,39 +6,36 @@ var chartqs = [[["pie", ["V028", "V054"]], ["bar", ["V085_3", "V084_3"]], ["bar"
                [["bar", "V053_3"], ["pie", "V053_1"], ["bar", "V053_2"], ["bar", ["V013_1", "V048_1"]], ["bar", ["V013_2", "V048_2"]], ["bar", "V027_5"], ["bar", "V027_4"], ["bar", "V027_1"], ["bar", "V027_2"]]
               ];
 
-function load(){
+function loadData() {
     API.loadData("data/data.csv", "data/postcodes.csv", "data/antwoorden.csv", function(){
         dataLoaded = true;
-
         createCharts();
-        
-        console.log(awnsers_name);
     });
 }
 
-function getFilterData(chart){ 
+function getFilterData(chart){
     if ((chart.side == "left" && chart.g != filters_gemeente.left) || (chart.side == "right" && chart.g != filters_gemeente.right)){
         chart.sourceData = getSourceData(chart.q, chart.side);
         chart.g = (chart.side == "left")? filters_gemeente.left : filters_gemeente.right;
     }
-        
+
     var fdata = chart.sourceData;
-    
+
     for (var i in filters){
         if (filters.hasOwnProperty(i)) {
             fdata = fdata.filter(i, filters[i]);
         }
-    }     
+    }
     return fdata.countobj();
 }
 
 function getSourceData(q, side){
     var sdata = API.getData(q);
-    
+
      if (filters_gemeente[side] != -1 && filters_gemeente[side] < gem_name.length){
         sdata = sdata.filter("gemeente", filters_gemeente[side]);
     }
-    
+
     return sdata;
 }
 
@@ -60,12 +57,12 @@ function createCharts(){
                     color = "#F21933";
                     break;
             };
-            
-            
+
+
             $(this).find(".chartcontainer").each(function(j){
                 $left = $(this).find(".chart_left").find(".chart_chart");
                 $right = $(this).find(".chart_right").find(".chart_chart");
-                
+
                 if (chartqs[i-1][j][0] == "pie"){
                     charts.push(new PieChart(getSourceData(chartqs[i-1][j][1], "left"), chartqs[i-1][j][1], filters_gemeente.left, "left", $left, color));
                     charts.push(new PieChart(getSourceData(chartqs[i-1][j][1], "right"), chartqs[i-1][j][1], filters_gemeente.right, "right", $right, color));
@@ -76,11 +73,11 @@ function createCharts(){
             });
         }
     });
-    
+
     var content = $(".container_dropdown");
     var gemeentes = API.getData("V003").getGemeentesWithData();
     var test_dat = API.getData("V028").countObjGemeenteLatLong();
-    
+
     maps = new mapChart(test_dat, $(".contentHeader").eq(1), "#F21933");
     maps = new mapChart(test_dat, $(".contentHeader").eq(2), "#FFAA00");
     maps = new mapChart(test_dat, $(".contentHeader").eq(3), "#19C0D1");
@@ -103,7 +100,7 @@ function createCharts(){
         //update();
         filterGemeente(parseInt(selected.attr("value")));
     });*/
-    
+
     update();
 
 }
