@@ -35,9 +35,7 @@
         <div id="mask_header" class="mask_header">
             <div class="container_header">
                 <?php require 'templates/splash.php'; ?>
-                <?php require 'templates/theme_liefde.php'; ?>
-                <?php require 'templates/theme_lust.php'; ?>
-                <?php require 'templates/theme_angst.php'; ?>
+                <?php require 'templates/themes.php'; ?>
             </div>
         </div>
 

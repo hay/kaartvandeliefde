@@ -34,6 +34,88 @@ class Data {
     ];
 
     public static $themes = [
+        "liefde" => [
+            "category" => "Liefde in kaart",
+            "title" => "Liefde in Nederland",
+            "charts" => [
+                [
+                    "category" => "Geloof in ware liefde",
+                    "single" => "Gelooft %s in één ware liefde?",
+                    "double" => "Gelooft men in  %s meer in één ware liefde dan in %s?"
+                ],
+                [
+                    "category" => "Carrière boven relatie",
+                    "single" => "Plaatst %s een carrière boven een relatie?",
+                    "double" => "Plaatst men in  %s vaker hun carrière boven een relatie dan in %s?"
+                ],
+                [
+                    "category" => "Huidige partner is ideaal",
+                    "single" => "Beschouwt %s hun huidige partner als ideaal?",
+                    "double" => "Beschouwt men in %s hun partner vaker als ideaal dan in %s?"
+                ],
+                [
+                    "category" => "Relatie gebaseerd op ware liefde",
+                    "single" => "Zijn de relaties in %s gebaseerd op ware liefde?",
+                    "double" => "Zijn relaties in %s vaker gebaseerd op ware liefde dan in %s?"
+                ],
+                [
+                    "category" => "Partner staat op één",
+                    "single" => "Zet %s hun partner op één?",
+                    "double" => "Zet men in %s hun partner vaker op nummer één dan in %s?"
+                ],
+                [
+                    "category" => "Relatie is voor het leven",
+                    "single" => "Denkt %s dat hun huidige relatie voor het leven is?",
+                    "double" => "Is men in %s meer zeker dat hun relatie voor het leven is dan in %s?"
+                ],
+                [
+                    "category" => "Partner hoort bij toekomst",
+                    "single" => "Durft %s hun partner te betrekken bij hun toekomstplannen?",
+                    "double" => "Betrekt men in %s hun partner meer bij hun toekomst dan in %s?"
+                ],
+                [
+                    "category" => "Geen kinderwens, geen relatie",
+                    "single" => "Beëindigt %s de relatie als hun partner geen kinderwens heeft?",
+                    "double" => "Beëindigt men in %s hun relatie zonder kindertoekomst sneller dan in %s?"
+                ],
+                [
+                    "category" => "Seksueel op gemak",
+                    "single" => "Is %s seksueel op gemak bij hun partner?",
+                    "double" => "Is men in %s meer seksueel op gemak bij hun partner dan in %s?"
+                ]
+            ]
+        ],
+        "lust" => [
+            "category" => "Lust in kaart",
+            "title" => "Lust in Nederland",
+            "charts" => [
+                [
+                    "category" => "Aantal bedpartners",
+                    "single" => "Hoeveel bedpartners heeft %s?",
+                    "double" => "Heeft men meer bedpartners in  %s dan in %s?"
+                ],
+                [
+                    "category" => "Liefde en seks zijn niet hetzelfde",
+                    "single" => "Ziet %s liefde en seks als één?",
+                    "double" => "Ziet men in %s liefde en seks sneller als één dan in %s?"
+                ],
+                [
+                    "category" => "Liever seks dan een relatie",
+                    "single" => "Heeft %s liever seks dan een relatie?",
+                    "double" => "Vindt men in %s seks belangrijker dan liefde, dan in %s?"
+                ],
+                [
+                    "category" => "Seksueel overspel gepleegd",
+                    "single" => "Heeft %s weleens seksueel overspel gepleegd?",
+                    "double" => "Wordt er in %s meer seksueel overspel gepleegd dan in %s?"
+                ],
+                [
+                    "category" => "Toestemming voor vreemdgaan",
+                    "single" => "Is %s weleens vreemdgegaan met toestemming?",
+                    "double" => "Is er in %s vaker vreemdgegaan met toestemming dan in %s?"
+                ]
+            ]
+        ],
         "angst" => [
             "category" => "Angst in kaart",
             "title" => "Angst in Nederland",
