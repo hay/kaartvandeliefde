@@ -28,9 +28,6 @@ function initApp() {
     changeSize()
 
     $(".container_page").each(function(e, i){
-        if (i != p){
-            $(this).scrollTop(0);
-        }
         $(this).on('scroll', function(e){
             if (!scrollingVer){
                 var currScroll = $(this).scrollTop();
@@ -196,10 +193,21 @@ function initApp() {
 
     updateGemeenteBars();
 
-    skipTo(p, b);
+    // If we have a hash, get page and block, and go there
+    if (!!window.location.hash) {
+        parseHash();
+    }
+
+    // Also set up an event handler for hashchange
+    $(window).on('hashchange', parseHash);
 
     bindEventHandlers();
 };
+
+function parseHash() {
+    var parts = window.location.hash.replace('#', '').split('-');
+    skipTo(parts[0], parts[1]);
+}
 
 function showPosition(position) {
     $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false', function( result ) {

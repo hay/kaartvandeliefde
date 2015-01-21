@@ -15,6 +15,7 @@
     "d3": "~3.5.3",
     "jquery-easing": "*",
     "leaflet": "~0.7.3",
-    "valenski": "~0.2.0"
+    "valenski": "~0.2.0",
+    "stapes": "~0.8.1"
   }
 }

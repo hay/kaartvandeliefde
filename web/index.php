@@ -10,18 +10,6 @@
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css">
-
-        <!-- Libraries -->
-        <script src="lib/leaflet/dist/leaflet.js"></script>
-        <script src="lib/jquery/dist/jquery.min.js"></script>
-        <script src="lib/jquery-easing/jquery.easing.min.js"></script>
-        <script src="lib/d3/d3.min.js"></script>
-
-        <!-- App code -->
-        <script src="js/chartapi.js"></script>
-        <script src="js/dataapi.js"></script>
-        <script src="js/charts.js"></script>
-        <script src="js/app.js"></script>
     </head>
     <body>
         <?php require 'templates/top.php'; ?>
@@ -44,14 +32,17 @@
 
         <?php require 'templates/about.php'; ?>
 
-        <?php /* FIXME: what is this? */ ?>
-        <script>
-            var p = <?php $p = 0; if(isset($_GET['p'])){$p = $_GET['p'];} echo $p; ?>;
-            var b = <?php $b = 0; if(isset($_GET['b'])){$b = $_GET['b'];} echo $b; ?>;
+        <!-- Libraries -->
+        <script src="lib/leaflet/dist/leaflet.js"></script>
+        <script src="lib/jquery/dist/jquery.min.js"></script>
+        <script src="lib/jquery-easing/jquery.easing.min.js"></script>
+        <script src="lib/d3/d3.min.js"></script>
 
-            p = (typeof p == 'number')? p : 0;
-            b = (typeof b == 'number')? b : 0;
-        </script>
+        <!-- App code -->
+        <script src="js/chartapi.js"></script>
+        <script src="js/dataapi.js"></script>
+        <script src="js/charts.js"></script>
+        <script src="js/app.js"></script>
 
         <script>
             $(document).ready( initApp );
