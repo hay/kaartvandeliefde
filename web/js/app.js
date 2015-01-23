@@ -13,6 +13,8 @@ var lastScroll = 0;
 var scrollingHor = false;
 var scrollingVer = false;
 
+var lastTouchY = 0;
+
 var filters = {geslacht: [0, 1], leeftijd: [0, 1, 2, 3, 4], status: [0, 1], geaardheid: [0, 1, 2], geloof: [0, 1, 2, 3, 4, 5], inkomen: [0, 1, 2]};
 var filter_gem1 = -1;
 var filters_gemeente = {left: -1, leftName: "Nederland", right: -1, rightName: "Nederland"};
@@ -31,17 +33,25 @@ function initApp() {
         if (i != p){
             $(this).scrollTop(0);
         }
-        $(this).on('scroll', function(e){
-            if (!scrollingVer){
-                var currScroll = $(this).scrollTop();
-                var scrollUp = (currScroll < lastScroll)? true:false;
-
-                if (scrollUp){
-                    changeBlock(currBlock-1);
-                } else {
-                    changeBlock(currBlock+1);
-                }
-
+        $(this).on("mousewheel DOMMouseScroll", function(e){
+            e.preventDefault();
+            
+            var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+            
+            if (delta > 0){
+                changeBlock(currBlock-1);
+            } else {
+                changeBlock(currBlock+1);
+            }
+        }).on("touchstart", function(e){
+            lastTouchY = e.originalEvent.touches[0].clientY;
+        }).on("touchmove", function(e){
+            e.preventDefault();
+            var currTouchY = e.originalEvent.touches[0].clientY;
+            if (currTouchY > lastTouchY){
+                changeBlock(currBlock-1);
+            } else {
+                changeBlock(currBlock+1);
             }
         });
     });
