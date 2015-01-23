@@ -36,16 +36,22 @@
         <script src="lib/leaflet/dist/leaflet.js"></script>
         <script src="lib/jquery/dist/jquery.min.js"></script>
         <script src="lib/jquery-easing/jquery.easing.min.js"></script>
+        <script src="lib/stapes/stapes.js"></script>
+        <script src="lib/underscore/underscore-min.js"></script>
         <script src="lib/d3/d3.min.js"></script>
 
         <!-- App code -->
+        <script src="js/datastore.js"></script>
         <script src="js/chartapi.js"></script>
         <script src="js/dataapi.js"></script>
         <script src="js/charts.js"></script>
         <script src="js/app.js"></script>
 
         <script>
-            $(document).ready( initApp );
+            $(document).ready(function() {
+                window.datastore = new DataStore('data/data.json');
+                window.datastore.load( initApp );
+            });
         </script>
     </body>
 </html>

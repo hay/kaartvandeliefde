@@ -16,6 +16,7 @@
     "jquery-easing": "*",
     "leaflet": "~0.7.3",
     "valenski": "~0.2.0",
-    "stapes": "~0.8.1"
+    "stapes": "~0.8.1",
+    "underscore": "~1.7.0"
   }
 }

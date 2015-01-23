@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src="../lib/d3/d3.js"></script>
+    <script>
+        var start = +new Date();
+
+        function loadCsv() {
+            d3.csv('../data/antwoorden.csv', function(err, data1) {
+                d3.csv('../data/data.csv', function(err, data2) {
+                    d3.csv('../data/postcodes.csv', function(err, data3) {
+                        var end = +new Date();
+                        console.log('csv', end - start);
+                    });
+                })
+            })
+        }
+
+        function loadJson() {
+            d3.json('../data/data.json', function(err, data) {
+                var end = +new Date();
+                console.log('json', end - start);
+            });
+        }
+
+        loadCsv();
+        loadJson();
+    </script>
+</body>
+</html>
