@@ -12,12 +12,24 @@ window.DataStore = Stapes.subclass({
             var zip = item.postcode;
 
             if (this.gemeentes[gemeente]) {
-                this.gemeentes[gemeente].push(zip);
+                this.gemeentes[gemeente].postcode.push(zip);
             } else {
-                this.gemeentes[gemeente] = [zip];
+                var gemeenteData = _.clone(item);
+                gemeenteData.postcode = [zip];
+                gemeenteData.respondents = 0;
+                this.gemeentes[gemeente] = gemeenteData;
             }
 
             this.zips[zip] = gemeente;
+        }, this);
+
+        // Add respondents as well
+        this.data.survey.forEach(function(survey) {
+            _.each(this.gemeentes, function(gemeente) {
+                if (gemeente.postcode.indexOf(survey.filters.zip) !== -1) {
+                    gemeente.respondents++;
+                }
+            });
         }, this);
     },
 

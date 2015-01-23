@@ -19,10 +19,6 @@ var filters_gemeente = {left: -1, leftName: "Nederland", right: -1, rightName: "
 
 // TODO: this stuff should obviously be refactored
 function initApp() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
-
     maxPages = $(".container_page").length;
 
     changeSize()
@@ -187,8 +183,6 @@ function initApp() {
 	  if (e.keyCode == 27) { $('#about.open').fadeOut(200); }   // esc
 	});
 
-    loadData();
-
     setCheckmarks();
 
     updateGemeenteBars();
@@ -202,34 +196,13 @@ function initApp() {
     $(window).on('hashchange', parseHash);
 
     bindEventHandlers();
+
+    createCharts();
 };
 
 function parseHash() {
     var parts = window.location.hash.replace('#', '').split('-');
     skipTo(parts[0], parts[1]);
-}
-
-function showPosition(position) {
-    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false', function( result ) {
-        if(result.status == 'OK'){
-            postalcode = result.results[0].address_components[6].short_name
-            postalcode = parseInt(postalcode.substring(0, 4));
-            if(postalcode){
-                /**
-
-                POSTCODE WORDT GEEN GEMEENTE ID, KRIJG -1 TERUG..
-
-                **/
-
-                gem_id = PostalCodeToGemeenteID(postalcode);
-                console.log(postalcode);
-                console.log(gem_id);
-                if(gem_id != -1){
-                    filterGemeente(gem_id);
-                }
-            }
-        }
-    });
 }
 
 function changePage(page, fn, bl){

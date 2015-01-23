@@ -42,6 +42,7 @@
 
         <!-- App code -->
         <script src="js/datastore.js"></script>
+        <script src="js/themes.js"></script>
         <script src="js/geomap.js"></script>
         <script src="js/chartapi.js"></script>
         <script src="js/dataapi.js"></script>

@@ -3,7 +3,6 @@ window.GeoMap = Stapes.subclass({
         this.data = data;
         this.container = container;
         this.color = color;
-        this.markers = [];
 
         var southWest = L.latLng(54.0041711, 8.6904297);    // zuidWest (x,y)
         var northEast = L.latLng(49.72950155, 1.8674316);   // noordOost (x,y)
@@ -21,26 +20,31 @@ window.GeoMap = Stapes.subclass({
         });
 
         this.map.addControl(L.control.zoom({position: 'bottomright'}));
+
+        _.each(this.data, this.addMarker, this);
     },
 
-    addMarker : function(lat, long, val, amount, gemeenteID, color){
-        var myIcon = L.divIcon({
-            className:  "marker",
-            iconSize:   [Math.round(7+val*0.4), Math.round(7+val*0.4)],
-            popupAnchor: [0, (-Math.round(20+amount*0.4)/2)]
+    addMarker : function(gemeente) {
+        var size = gemeente.respondents;
+
+        var icon = L.divIcon({
+            className   :  "marker",
+            iconSize    : [size, size]
+            // iconSize    : [Math.round(7+val*0.4), Math.round(7+val*0.4)],
+            // popupAnchor : [0, (-Math.round(20+amount*0.4)/2)]
         });
 
         var alpha = 0.5;
 
         var marker = new L.marker(
-            [lat, long],
-            {icon: myIcon}
+            [gemeente.lat, gemeente.lon],
+            {icon: icon}
         )
-        .bindPopup(API.getGemeenteFromID(gemeenteID))
+        .bindPopup(gemeente.gemeente)
         .addTo(this.map);
 
-        $(marker).data("gemeenteID", gemeenteID);
-        $(marker._icon).css("backgroundColor", color);
+        $(marker).data("gemeente", gemeente.gemeente);
+        $(marker._icon).css("backgroundColor", this.color);
 
         marker.on('mouseover', function () {
             this.openPopup();
@@ -51,27 +55,9 @@ window.GeoMap = Stapes.subclass({
         });
 
         marker.on('click', function () {
-            filterGemeente($(this).data("gemeenteID"));
-        });
-
-        this.markers.push(marker);
-    },
-
-    addMarkers : function() {
-        var self = this;
-
-        this.data.forEach(function(e){
-            var gemeente = e.gemeente;
-            var amount = e.amount;
-            var val = 0;
-
-            for (var i=0; i<amount; i++){
-                val += e.data[i];
-            }
-
-            var latlong = e.latlong;
-
-            self.addMarker(latlong[0], latlong[1], val, amount, gemeente, _this.color);
+            // TODO
+            console.log( gemeente.gemeente );
+            // filterGemeente($(this).data("gemeenteID"));
         });
     }
 });

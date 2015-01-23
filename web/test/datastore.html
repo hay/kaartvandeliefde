@@ -7,6 +7,7 @@
 <body>
     <script src="../lib/d3/d3.js"></script>
     <script src="../lib/stapes/stapes.js"></script>
+    <script src="../lib/underscore/underscore.js"></script>
     <script src="../js/datastore.js"></script>
     <script>
         var data = new DataStore('../data/data.json');
@@ -22,8 +23,6 @@
             var result = data.query( query );
             var end = (+new Date()) - start;
             console.log(end);
-            console.log(result.length);
-            console.log(result);
         });
     </script>
 </body>

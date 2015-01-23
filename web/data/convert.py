@@ -85,6 +85,7 @@ def get_zip():
     postcodes = []
 
     for row in read_csv("./postcodes.csv"):
+        row["postcode"] = int(row["postcode"])
         postcodes.append( row )
 
     return postcodes
@@ -133,11 +134,13 @@ def get_survey():
 
     return records
 
-
 def main():
+    zips = get_zip()
+    surveys = get_survey()
+
     data = {
-        "zip" : get_zip(),
-        "survey" : get_survey()
+        "zip" : zips,
+        "survey" : surveys
     }
 
     f = file("data.json", "w")

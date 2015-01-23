@@ -1,5 +1,5 @@
 <?php foreach (Data::$themes as $themeId => $theme): ?>
-<div class="theme_<?= $themeId; ?> container_page">
+<div class="themepage theme_<?= $themeId; ?> container_page" data-theme="<?= $themeId; ?>">
     <div class="contentHeader <?= $themeId; ?>" data-category="<?= $theme['category']; ?>">
         <div class="container_content">
             <h1><?= $theme['title']; ?></h1>
