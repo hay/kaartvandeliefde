@@ -25,13 +25,13 @@ window.GeoMap = Stapes.subclass({
     },
 
     addMarker : function(gemeente) {
+        var self = this;
         var size = gemeente.respondents;
 
         var icon = L.divIcon({
             className   :  "marker",
-            iconSize    : [size, size]
-            // iconSize    : [Math.round(7+val*0.4), Math.round(7+val*0.4)],
-            // popupAnchor : [0, (-Math.round(20+amount*0.4)/2)]
+            iconSize    : [Math.round(7 + size *0.4), Math.round(7 + size * 0.4)],
+            popupAnchor : [0, (-Math.round(20+size*0.4)/2)]
         });
 
         var alpha = 0.5;
@@ -55,9 +55,7 @@ window.GeoMap = Stapes.subclass({
         });
 
         marker.on('click', function () {
-            // TODO
-            console.log( gemeente.gemeente );
-            // filterGemeente($(this).data("gemeenteID"));
+            self.emit('gemeenteSelect', gemeente.gemeente);
         });
     }
 });

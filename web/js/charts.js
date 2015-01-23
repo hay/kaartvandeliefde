@@ -63,9 +63,17 @@ function createCharts() {
         });
     });
 
-    new GeoMap(datastore.gemeentes, $(".contentHeader").eq(1), "#F21933");
-    new GeoMap(datastore.gemeentes, $(".contentHeader").eq(2), "#FFAA00");
-    new GeoMap(datastore.gemeentes, $(".contentHeader").eq(3), "#19C0D1");
+    var maps = [
+        new GeoMap(datastore.gemeentes, $(".contentHeader").eq(1), "#F21933"),
+        new GeoMap(datastore.gemeentes, $(".contentHeader").eq(2), "#FFAA00"),
+        new GeoMap(datastore.gemeentes, $(".contentHeader").eq(3), "#19C0D1")
+    ];
+
+    maps.forEach(function(map) {
+        map.on('gemeenteSelect', function(gemeente) {
+            filterGemeente(gemeente);
+        });
+    });
 
     // update();
 

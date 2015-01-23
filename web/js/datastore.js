@@ -22,7 +22,9 @@ window.DataStore = Stapes.subclass({
 
             this.zips[zip] = gemeente;
         }, this);
+    },
 
+    _addRespondents : function() {
         // Add respondents as well
         this.data.survey.forEach(function(survey) {
             _.each(this.gemeentes, function(gemeente) {
@@ -31,6 +33,13 @@ window.DataStore = Stapes.subclass({
                 }
             });
         }, this);
+
+        // Lose the gemeentes without respondents
+        for (var gemeente in this.gemeentes) {
+            if (this.gemeentes[gemeente].respondents === 0) {
+                delete this.gemeentes[gemeente];
+            }
+        }
     },
 
     load : function(cb) {
@@ -39,6 +48,7 @@ window.DataStore = Stapes.subclass({
         d3.json(this.filename, function(data) {
             self.data = data;
             self._createZipIndexes();
+            self._addRespondents();
             cb();
         });
     },
