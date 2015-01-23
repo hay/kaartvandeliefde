@@ -75,12 +75,11 @@ function createCharts(){
     });
 
     var content = $(".container_dropdown");
-    var gemeentes = API.getData("V003").getGemeentesWithData();
     var test_dat = API.getData("V028").countObjGemeenteLatLong();
 
-    maps = new mapChart(test_dat, $(".contentHeader").eq(1), "#F21933");
-    maps = new mapChart(test_dat, $(".contentHeader").eq(2), "#FFAA00");
-    maps = new mapChart(test_dat, $(".contentHeader").eq(3), "#19C0D1");
+    maps = new GeoMap(datastore.gemeentes, $(".contentHeader").eq(1), "#F21933");
+    maps = new GeoMap(datastore.gemeentes, $(".contentHeader").eq(2), "#FFAA00");
+    maps = new GeoMap(datastore.gemeentes, $(".contentHeader").eq(3), "#19C0D1");
 
     /*var dd = $("<select></select");
     var noption = $("<option value='-1'>Nederland</option>");

@@ -3,8 +3,22 @@ window.DataStore = Stapes.subclass({
         this.filename = filename;
     },
 
-    getCities : function() {
-        return this.data.zip;
+    _createZipIndexes : function() {
+        this.gemeentes = {};
+        this.zips = {};
+
+        this.data.zip.forEach(function(item) {
+            var gemeente = item.gemeente;
+            var zip = item.postcode;
+
+            if (this.gemeentes[gemeente]) {
+                this.gemeentes[gemeente].push(zip);
+            } else {
+                this.gemeentes[gemeente] = [zip];
+            }
+
+            this.zips[zip] = gemeente;
+        }, this);
     },
 
     load : function(cb) {
@@ -12,6 +26,7 @@ window.DataStore = Stapes.subclass({
 
         d3.json(this.filename, function(data) {
             self.data = data;
+            self._createZipIndexes();
             cb();
         });
     },
