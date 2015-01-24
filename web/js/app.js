@@ -195,7 +195,7 @@ function initApp() {
 
     setCheckmarks();
 
-    updateGemeenteBars();
+    // updateGemeenteBars();
 
     // If we have a hash, get page and block, and go there
     if (!!window.location.hash) {
