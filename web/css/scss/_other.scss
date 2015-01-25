@@ -441,15 +441,16 @@
 }
 
 #quotes{
-    min-height:40px;
+    height: 66px;
+    overflow: hidden;
 }
 
 #quotes p {
-    font-family: 'Exo', sans-serif;
+	font-family: 'Exo', sans-serif;
     display:none;
-    opacity:0;
-    font-weight:200;
-    font-size: 20px;
+	opacity: 0;
+	font-weight: 200;
+	font-size: 20px;
     margin: 0px auto;
     padding: 0px;
 }
