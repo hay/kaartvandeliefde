@@ -145,7 +145,7 @@ window.THEMES = {
                 "type": "pie",
                 "questions": ["V024_1", "V051_1"],
                 "category" : "Vreemdgaan",
-                "text" : "Is men wel eens vreemdgegeaan in %s?"
+                "text" : "Is men wel eens vreemdgegaan in %s?"
             },
             {
                 "type": "pie",

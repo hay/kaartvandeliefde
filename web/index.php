@@ -1,6 +1,3 @@
-<?php
-    require 'inc/data.php';
-?>
 <!doctype html>
 <html>
     <head>
@@ -54,7 +51,6 @@
         <script src="js/filters.js"></script>
         <script src="js/barchart.js"></script>
         <script src="js/piechart.js"></script>
-        <script src="js/dataapi.js"></script>
         <script src="js/charts.js"></script>
         <script src="js/app.js"></script>
 
