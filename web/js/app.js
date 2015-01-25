@@ -19,14 +19,26 @@ var filters = {geslacht: [0, 1], leeftijd: [0, 1, 2, 3, 4], status: [0, 1], geaa
 var filter_gem1 = -1;
 var filters_gemeente = {left: -1, leftName: "Nederland", right: -1, rightName: "Nederland"};
 
+var charts;
+
 // TODO: this stuff should obviously be refactored
 function initApp() {
-    maxPages = $(".container_page").length;
+    charts = new Charts(".container_header", datastore, window.THEMES);
 
+    charts.on('gemeenteselect', function(gemeente) {
+        filterGemeente(gemeente);
+    });
+
+    charts.setup();
+
+    maxPages = $(".container_page").length;
     changeSize()
 
-    $(".container_page").each(function(e, i){
-        $(this).on("mousewheel DOMMouseScroll", function(e){
+    $(".container_page").each(function(e, i) {
+        var $el = $(this);
+
+        // Debounce to make sure the chart doesn't render every 5ms
+        $el.on("mousewheel DOMMouseScroll", _.debounce(function(e){
             e.preventDefault();
 
             var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
@@ -36,9 +48,13 @@ function initApp() {
             } else {
                 changeBlock(currBlock+1);
             }
-        }).on("touchstart", function(e){
+        }, 100, true));
+
+        $el.on("touchstart", function(e){
             lastTouchY = e.originalEvent.touches[0].clientY;
-        }).on("touchmove", function(e){
+        });
+
+        $el.on("touchmove", function(e){
             e.preventDefault();
             var currTouchY = e.originalEvent.touches[0].clientY;
             if (currTouchY > lastTouchY){
@@ -206,8 +222,6 @@ function initApp() {
     $(window).on('hashchange', parseHash);
 
     bindEventHandlers();
-
-    createCharts();
 };
 
 function parseHash() {
@@ -215,7 +229,7 @@ function parseHash() {
     skipTo(parts[0], parts[1]);
 }
 
-function changePage(page, fn, bl){
+function changePage(page, fn, bl) {
     if (!scrollingHor){
         $(".container_left").addClass("contracted");
         $(".container_filters").addClass("contracted");
@@ -228,6 +242,7 @@ function changePage(page, fn, bl){
         } else if (page > maxPages-1){
             page = maxPages-1;
         }
+
         currPage = page;
 
         if (page != 0){
@@ -240,7 +255,7 @@ function changePage(page, fn, bl){
         }
 
         $("#mask_header").animate(
-            {scrollLeft : width*(page)},
+            {scrollLeft : width * page},
             {duration: 600,
              easing: 'easeInOutQuart',
              complete: function(){
@@ -303,6 +318,10 @@ function changeBlock(block){
              complete: function(){
                 lastScroll = height*(block);
 
+                var $block = $(".container_page").eq(currPage).find(".contentBlock").eq(block);
+                var $chart = $block.find(".chartcontainer");
+                charts.renderChart($chart.get(0));
+
                 setTimeout(function(){
                     scrollingVer = false;
                 }, 100);
@@ -326,19 +345,27 @@ function changeSize(){
     skipTo(currPage, currBlock);
 }
 
-function drawBlockLegend(){
-    $("#legend").html("");
-    for (var i=0; i<$(".container_page").get(currPage).children.length; i++){
-        var name = $($(".container_page").get(currPage).children[i]).attr("data-category");
-        name = (name == undefined)? "fout: geen naam":name;
-        var item = $("<li class='legendItem' data-toBlock="+i+"></li>");
-        $("#legend").append(item);
-        item.text(name);
+function drawBlockLegend() {
+    var pageName = getCurrPageName();
 
-        item.on("click", function(){
-            changeBlock(parseInt($(this).attr('data-toBlock')));
-        });
-    }
+    if (!pageName) return;
+
+    var charts = window.THEMES[pageName].charts;
+    var $legend = $("#legend");
+
+    // Remove previous event handlers
+    $legend.off();
+
+    var html = charts.map(function(chart, index) {
+        return '<li class="legendItem" data-toblock="' + index + '">' + chart.category + '</li>';
+    }).join('');
+
+    $legend.html( html );
+
+    $legend.on('click', '.legendItem', function() {
+        var block = $(this).data('toblock');
+        changeBlock(block);
+    });
 }
 
 function skipTo(page, block){
@@ -535,6 +562,13 @@ function bounceGemeenteBars(){
     setTimeout(function(){
         $(".container_filterGemeente").removeClass("bounce");
     }, 100);
+}
+
+// TODO: fix of something better for this
+function getCurrPageName() {
+    if (currPage === 1) return 'liefde';
+    if (currPage === 2) return 'lust';
+    if (currPage === 3) return 'angst';
 }
 
 function updateCharts(){

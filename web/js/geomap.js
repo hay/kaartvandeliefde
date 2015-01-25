@@ -55,7 +55,7 @@ window.GeoMap = Stapes.subclass({
         });
 
         marker.on('click', function () {
-            self.emit('gemeenteSelect', gemeente.gemeente);
+            self.emit('gemeenteselect', gemeente.gemeente);
         });
     }
 });

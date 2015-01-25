@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kaart van de Liefde</title>
         <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="stylesheet" href="lib/c3/c3.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css">
     </head>
@@ -23,7 +24,6 @@
         <div id="mask_header" class="mask_header">
             <div class="container_header">
                 <?php require 'templates/splash.php'; ?>
-                <?php require 'templates/themes.php'; ?>
             </div>
         </div>
 
@@ -39,12 +39,19 @@
         <script src="lib/stapes/stapes.js"></script>
         <script src="lib/underscore/underscore-min.js"></script>
         <script src="lib/d3/d3.min.js"></script>
+        <script src="lib/c3/c3.js"></script>
+        <script src="lib/handlebars/handlebars.js"></script>
+
+        <!-- Templates -->
+        <script type="text/html" id="tmpl-theme">
+            <?php require 'templates/tmpl-theme.php'; ?>
+        </script>
 
         <!-- App code -->
         <script src="js/datastore.js"></script>
         <script src="js/themes.js"></script>
         <script src="js/geomap.js"></script>
-        <script src="js/chartapi.js"></script>
+        <script src="js/bartchart.js"></script>
         <script src="js/dataapi.js"></script>
         <script src="js/charts.js"></script>
         <script src="js/app.js"></script>
