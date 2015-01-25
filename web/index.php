@@ -15,7 +15,7 @@
     <body>
         <?php require 'templates/top.php'; ?>
         <?php require 'templates/legend.php'; ?>
-        <?php require 'templates/gemeenteselect.php'; ?>
+        <div class="container_filterGemeente"></div>
 
         <div class="container_dropdown"></div>
 
@@ -47,10 +47,15 @@
             <?php require 'templates/tmpl-theme.php'; ?>
         </script>
 
+        <script type="text/html" id="tmpl-gemeentes">
+            <?php require 'templates/tmpl-gemeentes.php'; ?>
+        </script>
+
         <!-- App code -->
         <script src="js/datastore.js"></script>
         <script src="js/themes.js"></script>
         <script src="js/geomap.js"></script>
+        <script src="js/gemeentes.js"></script>
         <script src="js/bartchart.js"></script>
         <script src="js/dataapi.js"></script>
         <script src="js/charts.js"></script>

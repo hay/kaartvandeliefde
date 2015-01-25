@@ -1,14 +1,13 @@
 window.GeoMap = Stapes.subclass({
-    constructor : function(data, container, color) {
+    constructor : function(data, el, color) {
         this.data = data;
-        this.container = container;
         this.color = color;
 
         var southWest = L.latLng(54.0041711, 8.6904297);    // zuidWest (x,y)
         var northEast = L.latLng(49.72950155, 1.8674316);   // noordOost (x,y)
         var bounds = L.latLngBounds(southWest, northEast);  // grenzen(zuidWest, noordOost)
 
-        this.map = L.map(this.container[0], {
+        this.map = L.map(el, {
             center: [52.1831949, 5.1525879],
             zoom: 7.5,
             maxZoom: 9,     //maximum inzoomen

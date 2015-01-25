@@ -1,7 +1,5 @@
 <div class="themepage theme_{{themeId}} container_page">
-    <div class="contentHeader {{themeId}}">
-        <div class="containter_content"></div>
-    </div>
+    <div class="contentHeader {{themeId}}" data-theme="{{themeId}}"></div>
 
     {{#each charts}}
         <div class="contentBlock">

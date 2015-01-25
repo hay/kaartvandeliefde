@@ -4,8 +4,30 @@ var width;
 var scrollTimerPage;
 var scrollTimerHeader;
 
-var currPage = 0;
-var currBlock = 0;
+// Might change this to something fancier later on
+var App = Stapes.subclass({
+    constructor : function() {
+        this.set('currPage', 0);
+        this.set('currBlock', 0);
+        this.pages = ['home', 'liefde', 'lust', 'angst'];
+    },
+
+    getCurrPageName : function() {
+        return this.pages[this.get('currPage')];
+    }
+});
+
+var app = new App();
+
+app.on({
+    'change:currPage' : function() {
+        var name = app.getCurrPageName();
+
+        drawBlockLegend();
+        gemeentes.render();
+        charts.renderMap('.themepage .contentHeader.' + name);
+    }
+});
 
 var maxPages = 0;
 
@@ -16,17 +38,23 @@ var scrollingVer = false;
 var lastTouchY = 0;
 
 var filters = {geslacht: [0, 1], leeftijd: [0, 1, 2, 3, 4], status: [0, 1], geaardheid: [0, 1, 2], geloof: [0, 1, 2, 3, 4, 5], inkomen: [0, 1, 2]};
-var filter_gem1 = -1;
-var filters_gemeente = {left: -1, leftName: "Nederland", right: -1, rightName: "Nederland"};
 
-var charts;
+var charts, gemeentes;
 
 // TODO: this stuff should obviously be refactored
 function initApp() {
     charts = new Charts(".container_header", datastore, window.THEMES);
+    gemeentes = new Gemeentes(".container_filterGemeente");
+
+    gemeentes.on({
+        'change' : gemeentes.render,
+        'delete' : function(g) {
+            console.log(g);
+        }
+    });
 
     charts.on('gemeenteselect', function(gemeente) {
-        filterGemeente(gemeente);
+        gemeentes.add(gemeente);
     });
 
     charts.setup();
@@ -44,11 +72,11 @@ function initApp() {
             var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
 
             if (delta > 0){
-                changeBlock(currBlock-1);
+                changeBlock(app.get('currBlock') - 1);
             } else {
-                changeBlock(currBlock+1);
+                changeBlock(app.get('currBlock') + 1);
             }
-        }, 100, true));
+        }, 50, true));
 
         $el.on("touchstart", function(e){
             lastTouchY = e.originalEvent.touches[0].clientY;
@@ -94,10 +122,13 @@ function initApp() {
         if (key >= 37 && key <= 41){
             e.preventDefault();
 
+            var currPage = app.get('currPage');
+            var currBlock = app.get('currBlock');
+
             switch(key){
                 case 37:
                     if (currPage > 1){
-                    changePage(currPage-1);
+                        changePage(currPage-1);
                     }
                     break;
                 case 38:
@@ -136,14 +167,6 @@ function initApp() {
         document.activeElement.blur();
     });
 
-    $("#gemeente_left").children(".gemeente_del").on("click", function(e){
-        e.preventDefault();
-        filterGemeente(-1, "left");
-    });
-    $("#gemeente_right").children(".gemeente_del").on("click", function(e){
-        e.preventDefault();
-        filterGemeente(-1, "right");
-    });
 
     $(".container_frontpageIcon").each(function(){
         $(this).on("mouseover", function(){
@@ -243,7 +266,7 @@ function changePage(page, fn, bl) {
             page = maxPages-1;
         }
 
-        currPage = page;
+        app.set('currPage', page);
 
         if (page != 0){
             $($(".btn_nav").get(page-1)).addClass('btn_nav_active');
@@ -260,15 +283,14 @@ function changePage(page, fn, bl) {
              easing: 'easeInOutQuart',
              complete: function(){
                 for (var i=0; i<maxPages; i++){
-                    if (i != currPage){
+                    if (i != app.get('currPage')) {
                         $($(".container_page").get(i)).scrollTop(0);
                     }
                 }
 
-                drawBlockLegend();
                 setClasses();
 
-                if (currPage != 0 && page < 4){
+                if (app.get('currPage') != 0 && page < 4){
                     $(".container_left").removeClass("contracted");
                     $(".container_filters").removeClass("contracted");
                     $(".container_filterGemeente").removeClass("contracted");
@@ -292,16 +314,17 @@ function changePage(page, fn, bl) {
 function changeBlock(block){
     if (!scrollingVer){
         scrollingVer = true;
-        var maxBlocks = $(".container_page").get(currPage).children.length;
+        var maxBlocks = $(".container_page").get(app.get('currPage')).children.length;
+
         if (block > maxBlocks-1) {
             block = maxBlocks-1;
         } else if (block < 0){
             block = 0;
         }
 
-        var diff = Math.abs(currBlock-block);
+        var diff = Math.abs(app.get('currBlock') - block);
 
-        currBlock = block;
+        app.set('currBlock', block);
 
         $($(".legendItem").get(block)).addClass('legendItem_active');
         for (var i=0; i<$(".legendItem").length; i++){
@@ -310,7 +333,7 @@ function changeBlock(block){
             }
         }
 
-        $el = $($(".container_page").get(currPage));
+        $el = $($(".container_page").get(app.get('currPage')));
         $el.stop().animate(
             {scrollTop : height*(block)},
             {duration: 400+(diff*100),
@@ -318,7 +341,7 @@ function changeBlock(block){
              complete: function(){
                 lastScroll = height*(block);
 
-                var $block = $(".container_page").eq(currPage).find(".contentBlock").eq(block);
+                var $block = $(".container_page").eq(app.get('currPage')).find(".contentBlock").eq(block);
                 var $chart = $block.find(".chartcontainer");
                 charts.renderChart($chart.get(0));
 
@@ -342,11 +365,11 @@ function changeSize(){
         $(this).css('height', height);
     });
 
-    skipTo(currPage, currBlock);
+    skipTo(app.get('currPage'), app.get('currBlock'));
 }
 
 function drawBlockLegend() {
-    var pageName = getCurrPageName();
+    var pageName = app.getCurrPageName();
 
     if (!pageName) return;
 
@@ -386,8 +409,10 @@ function skipTo(page, block){
         block = 0;
     }
 
-    currBlock = block;
-    currPage = page;
+    app.set({
+        currPage : page,
+        currBlock : block
+    });
 
     if (page == 0 || page > 3){
         $(".container_left").addClass("contracted");
@@ -399,7 +424,7 @@ function skipTo(page, block){
     }
 
     $("#mask_header").scrollLeft(width*(page));
-    $($(".container_page").get(currPage)).scrollTop(height*(block));
+    $($(".container_page").get(app.get('currPage'))).scrollTop(height*(block));
 
     if (page != 0){
         $($(".btn_nav").get(page-1)).addClass('btn_nav_active');
@@ -410,8 +435,6 @@ function skipTo(page, block){
         }
     }
 
-    drawBlockLegend();
-
     setClasses();
 
     $($(".legendItem").get(block)).addClass('legendItem_active');
@@ -421,7 +444,7 @@ function skipTo(page, block){
         }
     }
 
-    if (currPage != 0 && page < 4){
+    if (app.get('currPage') != 0 && page < 4){
         $(".container_left").removeClass("contracted");
         $(".container_filters").removeClass("contracted");
         $(".container_filterGemeente").removeClass("contracted");
@@ -438,7 +461,7 @@ function setClasses(){
     var classes = ["liefde", "lust", "angst"];
 
     for (var i=0; i<classes.length; i++){
-        if (i+1 == currPage){
+        if (i+1 == app.get('currPage')){
             $all.addClass(classes[i]);
         } else {
             $all.removeClass(classes[i]);
@@ -496,112 +519,6 @@ function changeFilter(btn){
             $(this).removeClass('disabled');
         });
     }
-
-    update();
-}
-
-function filterGemeente(id, side){ // side is optional, only for deleting the filter
-    var f = filters_gemeente;
-    if (id == -1 || (id != f.left && id != f.right)){
-        if (f.left == -1 || f.right == -1 || id == -1){
-            if (id == -1){
-                if (side == "left"){
-                    f.left = -1;
-                } else {
-                    f.right = f.left;
-                    f.left = -1;
-                }
-            } else {
-                if (f.right == -1){
-                    f.right = id;
-                } else {
-                    f.left = id;
-                }
-            }
-
-            updateGemeenteBars();
-        } else {
-            bounceGemeenteBars();
-        }
-
-        console.log(filters_gemeente);
-    }
-}
-
-function updateGemeenteBars(){
-    filters_gemeente.leftName = (filters_gemeente.left == -1)? "Nederland" : API.getGemeenteFromID(filters_gemeente.left);
-    filters_gemeente.rightName = (filters_gemeente.right == -1)? "Gemeente" : API.getGemeenteFromID(filters_gemeente.right);
-
-
-    if (filters_gemeente.leftName == "Nederland") {
-        $('#gemeente_left .gemeente_del').hide();
-    } else {
-        $('#gemeente_left .gemeente_del').show();
-    }
-    // if (filters_gemeente.leftName == "Nederland") {
-    //     $("#gemeente_left").addClass("inactive");
-    // } else {
-    //      $("#gemeente_left").removeClass("inactive");
-    // }
-
-    if (filters_gemeente.rightName == "Gemeente") {
-        $("#gemeente_right").addClass("inactive");
-    } else {
-         $("#gemeente_right").removeClass("inactive");
-    }
-
-    $("#gemeente_left").children(".gemeente_name").text(filters_gemeente.leftName);
-    $("#gemeente_right").children(".gemeente_name").text(filters_gemeente.rightName);
-
-    updateCharts();
-}
-
-function bounceGemeenteBars(){
-    $(".container_filterGemeente").addClass("bounce");
-
-    setTimeout(function(){
-        $(".container_filterGemeente").removeClass("bounce");
-    }, 100);
-}
-
-// TODO: fix of something better for this
-function getCurrPageName() {
-    if (currPage === 1) return 'liefde';
-    if (currPage === 2) return 'lust';
-    if (currPage === 3) return 'angst';
-}
-
-function updateCharts(){
-    if (filters_gemeente.left == -1 && filters_gemeente.right == -1){
-        $(".doubleQuote").hide();
-        $(".singleQuote").show();
-
-        $(".gemeente_name1").text(filters_gemeente.leftName);
-
-        $(".chart_right").each(function(){
-            $(this).hide();
-        });
-        $(".chart_left").each(function(){
-            $(this).css("width", "100%");
-        });
-    } else {
-        $(".singleQuote").hide();
-        $(".doubleQuote").show();
-
-        $(".gemeente_name1").text(filters_gemeente.leftName);
-        $(".gemeente_name2").text(filters_gemeente.rightName);
-
-        $(".chart_right").each(function(){
-            $(this).show();
-            $(this).css("width", "50%");
-        });
-        $(".chart_left").each(function(){
-            $(this).css("width", "50%");
-        });
-    }
-
-    $(".chart_left").find(".chart_gemeenteName").text(filters_gemeente.leftName);
-    $(".chart_right").find(".chart_gemeenteName").text(filters_gemeente.rightName);
 
     update();
 }

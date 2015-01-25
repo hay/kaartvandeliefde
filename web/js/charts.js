@@ -5,6 +5,7 @@ window.Charts = Stapes.subclass({
         this.answers = [];
         this.filters = {};
         this.themes = themes;
+        this.maps = {};
 
         var tmplTheme = $("#tmpl-theme").html();
         this.tmplTheme = Handlebars.compile(tmplTheme);
@@ -51,7 +52,6 @@ window.Charts = Stapes.subclass({
             this.$el.append( themeHtml );
         }, this);
 
-        this.setupMaps();
         this.getAnswers();
     },
 
@@ -75,15 +75,20 @@ window.Charts = Stapes.subclass({
         chart.show();
     },
 
-    setupMaps : function() {
-        // TODO: why does the map only appear after resizing?
-        _.each(this.themes, function(theme, themeId) {
-            var $el = $("." + themeId + ".contentHeader");
-            var map = new GeoMap(this.data.gemeentes, $el, theme.color);
+    renderMap : function(el) {
+        var $el = $(el);
+        var themeId = $el.data('theme');
+        var theme = this.themes[themeId];
 
-            map.on('gemeenteselect', function(gemeente) {
-                this.emit('gemeenteselects', gemeente);
-            }, this);
+        if (this.maps[themeId]) {
+            return;
+        }
+
+        var map = new GeoMap(this.data.gemeentes, $el.get(0), theme.color);
+        this.maps[themeId] = map;
+
+        map.on('gemeenteselect', function(gemeente) {
+            this.emit('gemeenteselect', gemeente);
         }, this);
     }
 })
