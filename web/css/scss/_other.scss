@@ -441,7 +441,7 @@
 }
 
 #quotes{
-    min-height:38px;
+    min-height:40px;
 }
 
 #quotes p {
@@ -450,6 +450,8 @@
     opacity:0;
     font-weight:200;
     font-size: 20px;
+    margin: 0px auto;
+    padding: 0px;
 }
 
 .chart rect{
