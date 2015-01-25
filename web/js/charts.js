@@ -55,7 +55,7 @@ window.Charts = Stapes.subclass({
         $(el).html('').parent().find('.quote').html('');
     },
 
-    getAnswers : function() {
+    setAnswers : function() {
         this.answers = this.data.query(this.filters);
     },
 
@@ -85,7 +85,7 @@ window.Charts = Stapes.subclass({
             this.$el.append( themeHtml );
         }, this);
 
-        this.getAnswers();
+        this.setAnswers();
     },
 
     renderChart : function(el) {
@@ -146,6 +146,10 @@ window.Charts = Stapes.subclass({
         map.on('gemeenteselect', function(gemeente) {
             this.emit('gemeenteselect', gemeente);
         }, this);
+    },
+
+    setFilters : function(filters) {
+        this.filters = filters;
     },
 
     setGemeentes : function(gemeentes) {

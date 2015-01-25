@@ -1,3 +1,63 @@
+window.FILTERS = [
+    {
+        "name" : "Geslacht",
+        "key" : "sex",
+        "values" : [
+            { label : "Man", value : "male", selected : true},
+            { label : "Vrouw", value : "female", selected : true},
+        ]
+    },
+    {
+        "name" : "Leeftijd",
+        "key" : "age",
+        "values" : [
+            { label : "&lt;20", value: function(d) { return d < 20; }, selected : true },
+            { label: "20-25", value: function(d) { return d > 19 && d < 26; }, selected : true },
+            { label: "25-30", value:function(d) { return d > 24 && d < 31; }, selected : true },
+            { label: "30-35", value:function(d) { return d > 29 && d < 36; }, selected : true },
+            { label: "&gt;35", value:function(d) { return d > 35; }, selected : true }
+        ]
+    },
+    {
+        "name" : "Status",
+        "key" : "relation",
+        "values" : [
+            { label: "Vrijgezel", value: "single", selected : true},
+            { label: "In een relatie", value: "relation", selected : true }
+        ]
+    },
+    {
+        "name" : "Geaardheid",
+        "key" : "orientation",
+        "values" : [
+            { label : "Hetero", value: "hetero", selected : true },
+            { label : "Homo / Lesbisch", value: "gay", selected : true },
+            { label : "Biseksueel", value: "bi", selected : true }
+        ]
+    },
+    {
+        "name" : "Inkomen",
+        "key" : "income",
+        "values" : [
+            { label : "Beneden modaal", value: "belowaverage", selected : true },
+            { label : "Modaal", value: "average", selected : true },
+            { label : "Boven modaal", value: "aboveaverage", selected : true }
+        ]
+    },
+    {
+        "name" : "Geloof",
+        "key"  : "religion",
+        "values" : [
+            { label : "Katholiek", value: "catholic", selected : true },
+            { label : "Protestants", value: "protestant", selected : true },
+            { label : "Joods", value: "jewish", selected : true },
+            { label : "Islamitisch", value: "islamic", selected : true },
+            { label : "Overig", value: "other", selected : true },
+            { label : "Niet gelovig", value: "atheist", selected : true }
+        ]
+    }
+];
+
 window.THEMES = {
     "liefde": {
         "color": "#F21933",

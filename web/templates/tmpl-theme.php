@@ -4,7 +4,7 @@
     {{#each charts}}
         <div class="contentBlock">
             <div class="container_content">
-                <div class="quote">{{text}}</div>
+                <div class="quote"></div>
                 <div class="chartcontainer" data-theme="{{../themeId}}" data-index="{{@index}}"></div>
             </div>
         </div>

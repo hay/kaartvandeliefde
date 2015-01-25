@@ -12,6 +12,11 @@ window.Gemeentes = Stapes.subclass({
             return;
         }
 
+        // Maximum number of gemeentes
+        if (this.gemeentes.length === 3) {
+            return;
+        }
+
         this.gemeentes.push( gemeente );
         this.emit('change');
     },

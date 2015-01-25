@@ -18,17 +18,13 @@
         <div class="container_filterGemeente"></div>
 
         <div class="container_dropdown"></div>
-
-        <?php require 'templates/filters.php'; ?>
+        <div id="filters" class="container_filters"></div>
 
         <div id="mask_header" class="mask_header">
             <div class="container_header">
                 <?php require 'templates/splash.php'; ?>
             </div>
         </div>
-
-        <?php /* FIXME: where is this found? */ ?>
-        <a class="open_about" href="#">About</a>
 
         <?php require 'templates/about.php'; ?>
 
@@ -43,20 +39,21 @@
         <script src="lib/handlebars/handlebars.js"></script>
 
         <!-- Templates -->
-        <script type="text/html" id="tmpl-theme">
-            <?php require 'templates/tmpl-theme.php'; ?>
+        <?php foreach (["theme", "gemeentes", "filters"] as $tmpl) : ?>
+        <script type="text/html" id="tmpl-<?= $tmpl; ?>">
+            <?php require "templates/tmpl-$tmpl.php"; ?>
         </script>
-
-        <script type="text/html" id="tmpl-gemeentes">
-            <?php require 'templates/tmpl-gemeentes.php'; ?>
-        </script>
+        <?php endforeach; ?>
 
         <!-- App code -->
         <script src="js/datastore.js"></script>
-        <script src="js/themes.js"></script>
+        <script src="js/chart.js"></script>
+        <script src="js/data.js"></script>
         <script src="js/geomap.js"></script>
         <script src="js/gemeentes.js"></script>
-        <script src="js/bartchart.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/barchart.js"></script>
+        <script src="js/piechart.js"></script>
         <script src="js/dataapi.js"></script>
         <script src="js/charts.js"></script>
         <script src="js/app.js"></script>

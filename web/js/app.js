@@ -37,19 +37,23 @@ var scrollingVer = false;
 
 var lastTouchY = 0;
 
-var filters = {geslacht: [0, 1], leeftijd: [0, 1, 2, 3, 4], status: [0, 1], geaardheid: [0, 1, 2], geloof: [0, 1, 2, 3, 4, 5], inkomen: [0, 1, 2]};
+// var filters = {geslacht: [0, 1], leeftijd: [0, 1, 2, 3, 4], status: [0, 1], geaardheid: [0, 1, 2], geloof: [0, 1, 2, 3, 4, 5], inkomen: [0, 1, 2]};
 
-var charts, gemeentes;
+var charts, gemeentes, filters;
 
 // TODO: this stuff should obviously be refactored
 function initApp() {
     charts = new Charts(".container_header", datastore, window.THEMES);
     gemeentes = new Gemeentes(".container_filterGemeente");
+    filters = new Filters("#filters", window.FILTERS);
+    charts.setFilters( filters.getFilters() );
 
     gemeentes.on({
         'change' : function() {
+            console.log(gemeentes.getGemeentes());
             gemeentes.render();
             charts.setGemeentes( gemeentes.getGemeentes() );
+
             if (charts.getCurrentChart()) {
                 charts.renderChart( charts.getCurrentChart() );
             }
@@ -60,7 +64,24 @@ function initApp() {
         gemeentes.add(gemeente);
     });
 
+    filters.on({
+        'change' : function() {
+            charts.setFilters( filters.getFilters() );
+            charts.setAnswers();
+
+            if (charts.getCurrentChart()) {
+                charts.destroyChart( charts.getCurrentChart() );
+                charts.renderChart( charts.getCurrentChart() );
+            }
+        },
+
+        'click' : function(d) {
+            filters.toggle(d.filter, d.label);
+        }
+    });
+
     charts.setup();
+    filters.render();
 
     maxPages = $(".container_page").length;
     changeSize()
@@ -234,7 +255,7 @@ function initApp() {
 	  if (e.keyCode == 27) { $('#about.open').fadeOut(200); }   // esc
 	});
 
-    setCheckmarks();
+    // setCheckmarks();
 
     // updateGemeenteBars();
 
@@ -246,7 +267,7 @@ function initApp() {
     // Also set up an event handler for hashchange
     $(window).on('hashchange', parseHash);
 
-    bindEventHandlers();
+    // bindEventHandlers();
 };
 
 function parseHash() {
@@ -485,6 +506,7 @@ function setClasses(){
     }
 }
 
+/*
 function setCheckmarks(){
     $(".dropdown_menuButton").each(function(){
         var $e = $(this);
@@ -536,3 +558,4 @@ function changeFilter(btn){
         });
     }
 }
+*/

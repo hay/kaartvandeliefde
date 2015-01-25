@@ -57,23 +57,23 @@ window.DataStore = Stapes.subclass({
     // see, for example, which gemeentes have the most bedpartners or something
     query : function(filters) {
         return this.data.survey.filter(function(record) {
-            for (var key in filters) {
-                var check = false;
-                var filterValue = filters[key];
-                var recordValue = record.filters[key];
+            // We now run all the filters, all of them need to have at
+            // least *one* matching value, so it's basically a
+            // (x OR y) AND (x OR y) query
 
-                if (typeof value === 'function') {
-                    check = filterValue( recordValue );
-                } else {
-                    check = filterValue === recordValue;
-                }
+            var checks = filters.map(function(filter) {
+                var recordValue = record.filters[filter.key];
 
-                if (!check) {
-                    return false;
-                }
-            }
+                return filter.values.some(function(check) {
+                    if (typeof check.value === 'function') {
+                        return check.selected && check.value(recordValue);
+                    } else {
+                        return check.selected && check.value === recordValue;
+                    }
+                });
+            });
 
-            return true;
+            return checks.every(function(d) { return d; });
         });
     }
 });
