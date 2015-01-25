@@ -43,6 +43,8 @@ var charts, gemeentes, filters;
 
 // TODO: this stuff should obviously be refactored
 function initApp() {
+    FastClick.attach(document.body);
+
     charts = new Charts(".container_header", datastore, window.THEMES);
     gemeentes = new Gemeentes(".container_filterGemeente");
     filters = new Filters("#filters", window.FILTERS);

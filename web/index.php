@@ -34,6 +34,7 @@
         <script src="lib/d3/d3.min.js"></script>
         <script src="lib/c3/c3.js"></script>
         <script src="lib/handlebars/handlebars.js"></script>
+        <script src="lib/fastclick/lib/fastclick.js"></script>
 
         <!-- Templates -->
         <?php foreach (["theme", "gemeentes", "filters"] as $tmpl) : ?>
