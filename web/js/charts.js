@@ -6,18 +6,25 @@ window.Charts = Stapes.subclass({
         this.filters = {};
         this.themes = themes;
         this.maps = {};
+        this.gemeentes = ['Nederland'];
+        this.currentChart = false;
 
         var tmplTheme = $("#tmpl-theme").html();
         this.tmplTheme = Handlebars.compile(tmplTheme);
     },
 
     // This is all really basic right now
-    calculateAnswer : function(question, type) {
+    calculateAnswer : function(question, gemeente) {
         var answers = [];
+        var population = 0;
 
         this.answers.forEach(function(record) {
-            if (record.answers[question]) {
+            var zip = record.filters.zip;
+            var inGemeente = this.data.zips[zip] === gemeente || gemeente === 'Nederland';
+
+            if (record.answers[question] && inGemeente) {
                 var answer = record.answers[question];
+                population++;
 
                 if (!!answers[answer - 1]) {
                     answers[answer - 1]++;
@@ -25,9 +32,12 @@ window.Charts = Stapes.subclass({
                     answers[answer - 1] = 1;
                 }
             }
-        });
+        }, this);
 
-        return this.convertToPercentage(answers);
+        return {
+            data : this.convertToPercentage(answers),
+            population : population
+        };
     },
 
     convertToPercentage : function(row) {
@@ -41,8 +51,31 @@ window.Charts = Stapes.subclass({
         });
     },
 
+    destroyChart : function(el) {
+        $(el).html('').parent().find('.quote').html('');
+    },
+
     getAnswers : function() {
         this.answers = this.data.query(this.filters);
+    },
+
+    getCurrentChart : function() {
+        return this.currentChart;
+    },
+
+    getQuote : function(quote) {
+        var l = this.gemeentes.length;
+        var gemeentes = this.gemeentes;
+
+        if (l === 1) {
+            gemeentes = gemeentes[0];
+        } else if (l === 2) {
+            gemeentes = gemeentes.join(' en ');
+        } else {
+            gemeentes = gemeentes.slice(0, -1).join(', ') + ' en ' + gemeentes.pop();
+        }
+
+        return quote.replace('%s', gemeentes);
     },
 
     setup : function() {
@@ -56,23 +89,46 @@ window.Charts = Stapes.subclass({
     },
 
     renderChart : function(el) {
+        this.currentChart = el;
         var $el = $(el);
         var themeId = $el.data('theme');
         var index = $el.data('index');
         var chartOpts = this.themes[themeId].charts[index];
 
+        var quote = this.getQuote(chartOpts.text);
+        $el.parent().find('.quote').text(quote);
+
         // TODO: combine multiple questions
         var question = chartOpts.questions[0];
-        var answers = this.calculateAnswer(question, chartOpts.type);
 
-        answers.unshift('Nederland');
+        var columns = this.gemeentes.map(function(gemeente) {
+            var answer = this.calculateAnswer(question, gemeente);
+            var column = answer.data;
+            column.unshift(gemeente + ' (' + answer.population + ')');
+            return column;
+        }, this);
 
-        var chart = new BarChart(el, {
-            columns : [answers],
-            labels : ['Zeker niet', 'Nee', 'Misschien', 'Ja', 'Absoluut']
-        });
+        try {
+            if (chartOpts.type === 'bar') {
+                var chart = new BarChart(el, {
+                    columns : columns,
+                    labels : ['Helemaal niet', 'Nee', 'Misschien', 'Ja', 'Heel erg']
+                });
 
-        chart.show();
+                chart.show();
+            }
+
+            if (chartOpts.type === 'pie') {
+                var chart = new PieChart(el, {
+                    columns : columns,
+                    labels : ["Ja", "Nee"]
+                });
+            }
+        } catch (e) {
+            // TODO: data not ok
+            $el.html('<img src="img/icon-404.png">');
+            return;
+        }
     },
 
     renderMap : function(el) {
@@ -90,5 +146,9 @@ window.Charts = Stapes.subclass({
         map.on('gemeenteselect', function(gemeente) {
             this.emit('gemeenteselect', gemeente);
         }, this);
+    },
+
+    setGemeentes : function(gemeentes) {
+        this.gemeentes = gemeentes;
     }
 })

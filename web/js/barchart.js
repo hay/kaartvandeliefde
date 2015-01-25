@@ -1,17 +1,6 @@
-window.BarChart = Stapes.subclass({
+window.BarChart = Chart.subclass({
     constructor : function(el, data) {
-        this.el = el;
-        this.data = data;
-
-        var emptyColumns = data.columns.map(function(column) {
-            return column.map(function(val) {
-                if (typeof val === 'number') {
-                    return 0;
-                } else {
-                    return val;
-                }
-            });
-        });
+        Chart.prototype.constructor.apply(this, arguments);
 
         this.chart = c3.generate({
             bindto : el,
@@ -34,7 +23,7 @@ window.BarChart = Stapes.subclass({
                 rotated : true
             },
             data : {
-                columns : emptyColumns,
+                columns : this.emptyColumns,
                 type : 'bar'
             },
             legend : {
@@ -44,11 +33,5 @@ window.BarChart = Stapes.subclass({
                 show : false
             }
         });
-    },
-
-    show : function() {
-        this.chart.load({
-            columns : this.data.columns
-        })
     }
 });

@@ -47,9 +47,12 @@ function initApp() {
     gemeentes = new Gemeentes(".container_filterGemeente");
 
     gemeentes.on({
-        'change' : gemeentes.render,
-        'delete' : function(g) {
-            console.log(g);
+        'change' : function() {
+            gemeentes.render();
+            charts.setGemeentes( gemeentes.getGemeentes() );
+            if (charts.getCurrentChart()) {
+                charts.renderChart( charts.getCurrentChart() );
+            }
         }
     });
 
@@ -113,7 +116,6 @@ function initApp() {
 
     $(window).resize(function(){
         changeSize();
-        resize();
     });
 
     $(window).on("keydown", function(e){
@@ -271,6 +273,7 @@ function changePage(page, fn, bl) {
         if (page != 0){
             $($(".btn_nav").get(page-1)).addClass('btn_nav_active');
         }
+
         for (var i=0; i<$(".btn_nav").length; i++){
             if (i!=page-1){
                 $($(".btn_nav").get(i)).removeClass("btn_nav_active");
@@ -327,6 +330,7 @@ function changeBlock(block){
         app.set('currBlock', block);
 
         $($(".legendItem").get(block)).addClass('legendItem_active');
+
         for (var i=0; i<$(".legendItem").length; i++){
             if (i!=block){
                 $($(".legendItem").get(i)).removeClass("legendItem_active");
@@ -334,6 +338,14 @@ function changeBlock(block){
         }
 
         $el = $($(".container_page").get(app.get('currPage')));
+
+        // First get the chart that needs to be drawn, blank out first
+        if (block > 0) {
+            var pageName = app.getCurrPageName();
+            var chartEl = $('.chartcontainer[data-theme="' + pageName + '"][data-index="' + (block - 1) + '"]').get(0);
+            charts.destroyChart(chartEl);
+        }
+
         $el.stop().animate(
             {scrollTop : height*(block)},
             {duration: 400+(diff*100),
@@ -341,9 +353,10 @@ function changeBlock(block){
              complete: function(){
                 lastScroll = height*(block);
 
-                var $block = $(".container_page").eq(app.get('currPage')).find(".contentBlock").eq(block);
-                var $chart = $block.find(".chartcontainer");
-                charts.renderChart($chart.get(0));
+                // Then draw
+                if (chartEl) {
+                    charts.renderChart(chartEl);
+                }
 
                 setTimeout(function(){
                     scrollingVer = false;
@@ -378,6 +391,9 @@ function drawBlockLegend() {
 
     // Remove previous event handlers
     $legend.off();
+
+    // Add the map as well
+    // charts.unshift({ category : 'Kaart'});
 
     var html = charts.map(function(chart, index) {
         return '<li class="legendItem" data-toblock="' + index + '">' + chart.category + '</li>';
@@ -519,6 +535,4 @@ function changeFilter(btn){
             $(this).removeClass('disabled');
         });
     }
-
-    update();
 }

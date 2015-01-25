@@ -7,15 +7,21 @@ window.Gemeentes = Stapes.subclass({
     },
 
     add : function(gemeente) {
-        this.gemeentes.unshift( gemeente );
+        // Make sure we don't add stuff that's already there
+        if (this.gemeentes.indexOf(gemeente) !== -1) {
+            return;
+        }
+
+        this.gemeentes.push( gemeente );
         this.emit('change');
     },
 
     bindEventHandlers : function() {
         var self = this;
 
-        this.$el.on('click', 'filter_gemeente', function() {
-            self.emit('delete', $(this).data('gemeente'));
+        this.$el.on('click', '.filter_gemeente', function() {
+            var gemeente = $(this).data('gemeente');
+            self.remove(gemeente);
         });
     },
 
@@ -33,5 +39,15 @@ window.Gemeentes = Stapes.subclass({
 
         var html = this.tmpl({ gemeentes : gemeentes });
         this.$el.html(html);
+    },
+
+    remove : function(gemeente) {
+        // We don't delete Nederland
+        if (gemeente === 'Nederland') {
+            return;
+        }
+
+        this.gemeentes = _.without(this.gemeentes, gemeente);
+        this.emit('change');
     }
 });
