@@ -441,15 +441,18 @@
 }
 
 #quotes{
-    min-height:38px;
+    height: 66px;
+    overflow: hidden;
 }
 
 #quotes p {
     font-family: 'Exo', sans-serif;
     display:none;
-    opacity:0;
-    font-weight:200;
+    opacity: 0;
+    font-weight: 200;
     font-size: 20px;
+    margin: 0px auto;
+    padding: 0px;
 }
 
 .chart rect{

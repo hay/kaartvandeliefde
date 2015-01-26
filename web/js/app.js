@@ -231,6 +231,7 @@ function initApp() {
         // zorg ervoor dat de oude quote verdwijnt
         $(allQuotes[previous]).css({'display': 'none', 'opacity' : '0'});
         $(allQuotes[next]).css('display', 'block');
+        $(allQuotes[next]).css('marginTop', $(allQuotes[next]).parent().innerHeight()/2 - $(allQuotes[next]).outerHeight()/2);
         $(allQuotes[next]).animate({opacity : 1});
         previous = next;
     }, 3500);
