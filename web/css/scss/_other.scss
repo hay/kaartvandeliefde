@@ -402,7 +402,8 @@
 
 .container_frontpageIcon {
     position: relative;
-    min-width: 100px;
+    max-width: 100px;
+    width: 20%;
     min-height: 120px;
     display: inline-block;
     cursor: pointer;
@@ -410,13 +411,15 @@
 }
 
 .frontpageIcon_shadow {
-
+    width: 100%;
 }
 
 .frontpageIcon_icon {
     position: absolute;
     top: 0px;
     left: 0px;
+    width: 100%;
+    z-index: 21;
 }
 
 .theme_liefde .gemeente_name1,
@@ -522,4 +525,29 @@
     border-radius: 50%;
     cursor: pointer;
     opacity: 0.5;
+}
+
+.container_scrollDown {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    z-index: 90;  
+}
+
+.container_scrollDown span {
+    text-shadow: 1px 1px rgba(0,0,0, 0.3);
+    color: black;
+    font-weight: bold;
+}
+
+.container_scrollDown .arrow_down {
+    border: solid transparent;
+    border-color: rgba(0, 0, 0, 0); 
+    border-top-color: #000; 
+    border-width: 10px;
+    width: 0px;
+    height: 0px;
+    margin: 0px auto;
 }
