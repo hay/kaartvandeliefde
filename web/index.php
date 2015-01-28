@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kaart van de Liefde</title>
+        <script>
+            // Precache the loader
+            (new Image()).src = 'img/loader.gif';
+        </script>
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" href="lib/c3/c3.css">
         <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css">
@@ -19,10 +23,7 @@
         </script>
     </head>
     <body>
-        <div class="loading">
-            <!-- Image below is just for making sure it's precached -->
-            <img src="img/loader.gif" style="display:none;">
-        </div>
+        <div class="loading"></div>
 
         <?php require 'templates/top.php'; ?>
         <?php require 'templates/legend.php'; ?>
@@ -45,8 +46,6 @@
             <?php require "templates/tmpl-$tmpl.php"; ?>
         </script>
         <?php endforeach; ?>
-
-        <?php flush(); ?>
 
         <!-- build:js js/dist.js -->
         <!-- Libraries -->
