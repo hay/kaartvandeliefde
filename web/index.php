@@ -19,6 +19,11 @@
         </script>
     </head>
     <body>
+        <div class="loading">
+            <!-- Image below is just for making sure it's precached -->
+            <img src="img/loader.gif" style="display:none;">
+        </div>
+
         <?php require 'templates/top.php'; ?>
         <?php require 'templates/legend.php'; ?>
         <div class="container_filterGemeente"></div>
@@ -40,6 +45,8 @@
             <?php require "templates/tmpl-$tmpl.php"; ?>
         </script>
         <?php endforeach; ?>
+
+        <?php flush(); ?>
 
         <!-- build:js js/dist.js -->
         <!-- Libraries -->

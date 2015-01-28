@@ -1,0 +1,23 @@
+.loading {
+    position: fixed;
+    @include pos(0);
+    background: white;
+    z-index: 1000;
+    @include transition(750ms);
+    @include transform( scale3d(1, 1, 1) );
+    opacity: 1;
+
+    img { display: none; }
+
+    &.hidden {
+        @include transform( scale3d(10, 10, 10) );
+        opacity: 0;
+    }
+
+    &:after {
+        content : '';
+        position: fixed;
+        @include pos(0);
+        background: url('../img/loader.gif') no-repeat center center;
+    }
+}

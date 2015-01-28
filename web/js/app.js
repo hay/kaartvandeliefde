@@ -284,7 +284,13 @@ function initApp() {
     // Also set up an event handler for hashchange
     $(window).on('hashchange', parseHash);
 
-    // bindEventHandlers();
+    // Remove the loading screen
+    setTimeout(function() {
+        $(".loading").addClass('hidden');
+        setTimeout(function() {
+            $(".loading").remove();
+        }, 1000);
+    }, 500);
 };
 
 function parseHash() {
@@ -371,7 +377,7 @@ function changeBlock(block){
             }
         }
 
-        $el = $($(".container_page").get(app.get('currPage')));
+        var $el = $($(".container_page").get(app.get('currPage')));
 
         // First get the chart that needs to be drawn, blank out first
         if (block > 0) {
