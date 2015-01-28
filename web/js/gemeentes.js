@@ -31,7 +31,7 @@ window.Gemeentes = Stapes.subclass({
     },
 
     getGemeentes : function() {
-        return this.gemeentes;
+        return _.clone(this.gemeentes);
     },
 
     render : function() {
