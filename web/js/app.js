@@ -173,11 +173,11 @@ function initApp() {
             }
         }
     });
-    
+
     $('.container_scrollDown').each(function(){
         var $this = $(this);
         setInterval(function(){
-            $this.animate({bottom: "10px"}, 
+            $this.animate({bottom: "10px"},
                 {duration: 300, easing: 'easeInOutQuart', complete: function(){
                     $this.animate({bottom: "0px"}, {duration: 300, easing: 'easeInOutQuart'});
                 }
@@ -293,9 +293,7 @@ function parseHash() {
 
 function changePage(page, fn, bl) {
     if (!scrollingHor){
-        $(".container_left").addClass("contracted");
-        $(".container_filters").addClass("contracted");
-        $(".container_filterGemeente").addClass("contracted");
+        $("body").addClass('contracted');
 
         scrollingHor = true;
         scrollingVer = true;
@@ -330,10 +328,8 @@ function changePage(page, fn, bl) {
 
                 setClasses();
 
-                if (app.get('currPage') != 0 && page < 4){
-                    $(".container_left").removeClass("contracted");
-                    $(".container_filters").removeClass("contracted");
-                    $(".container_filterGemeente").removeClass("contracted");
+                if (app.get('currPage') != 0 && page < 4) {
+                    $("body").removeClass('contracted');
                     $(".container_top").show();
                 } else {
                     $(".container_top").hide();
@@ -468,9 +464,7 @@ function skipTo(page, block){
     });
 
     if (page == 0 || page > 3){
-        $(".container_left").addClass("contracted");
-        $(".container_filters").addClass("contracted");
-        $(".container_filterGemeente").addClass("contracted");
+        $("body").addClass('contracted');
         $(".container_top").hide();
     } else {
         $(".container_top").show();
@@ -498,9 +492,7 @@ function skipTo(page, block){
     }
 
     if (app.get('currPage') != 0 && page < 4){
-        $(".container_left").removeClass("contracted");
-        $(".container_filters").removeClass("contracted");
-        $(".container_filterGemeente").removeClass("contracted");
+        $("body").removeClass('contracted');
     }
 
     setTimeout(function(){

@@ -170,7 +170,7 @@
     left: 0px;
 }
 
-.container_left.contracted {
+body.contracted .container_left {
     left: -310px;
 }
 
@@ -309,7 +309,7 @@
 }
 
 
-.container_filters.contracted {
+body.contracted .container_filters {
     right: -550px;
 }
 
@@ -374,7 +374,7 @@
     background-color: #FFAA00;
 }
 
-.container_filterGemeente.contracted {
+body.contracted .container_filterGemeente {
     right: -550px;
 }
 
@@ -533,7 +533,7 @@
     left: 0px;
     width: 100%;
     text-align: center;
-    z-index: 90;  
+    z-index: 90;
 }
 
 .container_scrollDown span {
@@ -544,8 +544,8 @@
 
 .container_scrollDown .arrow_down {
     border: solid transparent;
-    border-color: rgba(0, 0, 0, 0); 
-    border-top-color: #000; 
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: #000;
     border-width: 10px;
     width: 0px;
     height: 0px;
