@@ -98,8 +98,7 @@ window.Charts = Stapes.subclass({
         var quote = this.getQuote(chartOpts.text);
         $el.parent().find('.quote').text(quote);
 
-        // TODO: combine multiple questions
-        var question = chartOpts.questions[0];
+        var question = chartOpts.question;
 
         var columns = this.gemeentes.map(function(gemeente) {
             var answer = this.calculateAnswer(question, gemeente);

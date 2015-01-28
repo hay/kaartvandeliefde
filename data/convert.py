@@ -11,40 +11,32 @@ filters = {
     "zip"         : "V088"
 }
 
-questions = [
-    "V013_1",
-    "V013_2",
+# Questions that consist of a tuple with two values will be thrown together
+questions = (
+    ("V013_1", "V048_1"),
+    ("V013_2", "V048_2"),
     "V023_3",
-    "V024_1",
-    "V024_2",
-    "V025_1",
-    "V025_4",
+    ("V024_1", "V051_1"),
+    ("V024_2", "V051_2"),
+    ("V025_1", "V052_1"),
+    ("V025_4", "V052_4"),
     "V027_1",
     "V027_2",
     "V027_4",
     "V027_5",
-    "V028",
-    "V048_1",
-    "V048_2",
-    "V051_1",
-    "V051_2",
-    "V052_1",
-    "V052_4",
+    ("V028", "V054"),
     "V053_1",
     "V053_2",
     "V053_3",
-    "V054",
     "V075",
-    "V082",
-    "V084_3",
-    "V085_3",
+    ("V082", "V122"),
+    ("V084_3", "V085_3"),
     "V086_2",
     "V086_3",
     "V086_4",
     "V087_2",
-    "V087_3",
-    "V122"
-]
+    "V087_3"
+)
 
 def filter_sex(data):
     return ["male", "female"][data - 1]
@@ -111,7 +103,18 @@ def get_answers(row):
     answers = {}
 
     for question in questions:
-        answer = row.get(question, None)
+        if isinstance(question, tuple):
+            # Could probably be easier
+            if row.get(question[0], None) is not None:
+                answer = row.get(question[0])
+            elif row.get(question[1], None) is not None:
+                answer = row.get(question[1])
+            else:
+                answer = None
+
+            question = "-".join(question)
+        else:
+            answer = row.get(question, None)
 
         if answer.isdigit():
             answer = int(answer)
@@ -149,8 +152,10 @@ def main():
         "survey" : surveys
     }
 
+    jsondata = json.dumps(data)
+
     f = file("../web/data/data.json", "w")
-    f.write( json.dumps(data) )
+    f.write(jsondata)
     f.close()
 
 if __name__ == "__main__":
