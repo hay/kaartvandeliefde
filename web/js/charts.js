@@ -65,7 +65,7 @@ window.Charts = Stapes.subclass({
 
     getQuote : function(quote) {
         var l = this.gemeentes.length;
-        var gemeentes = this.gemeentes;
+        var gemeentes = _.clone(this.gemeentes);
 
         if (l === 1) {
             gemeentes = gemeentes[0];
