@@ -1,3 +1,4 @@
+(function() {
 var height;
 var width;
 
@@ -17,7 +18,7 @@ var App = Stapes.subclass({
     }
 });
 
-var app = new App();
+window.app = new App();
 
 app.on({
     'change:currPage' : function() {
@@ -512,3 +513,6 @@ function setClasses(){
         }
     }
 }
+
+window.initApp = initApp;
+})();
