@@ -4,7 +4,7 @@
             <img class="logo" src="img/logo_beeld.png"/>
         </a>
 
-        <a class="icon-hzt" href="http://www.hzt.nl/" target="_blank" title="Naar de website van Het Zuidelijk Toneel"></a>
+        <a class="icon-hzt" href="http://www.hzt.nl/romeoenjulia" target="_blank" title="Naar de website van Het Zuidelijk Toneel"></a>
     </div>
 
     <ul class="container_themaButtons">
