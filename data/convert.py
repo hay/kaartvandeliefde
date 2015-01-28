@@ -131,7 +131,7 @@ def get_survey():
             # There's a problem with the old data because a question id has
             # been changed, from V081 to V122, so we replace that here
             if "V081" in row:
-                print row
+                row["V122"] = row["V081"]
 
             records.append({
                 "filters" : get_filters(row),
@@ -149,8 +149,8 @@ def main():
         "survey" : surveys
     }
 
-    f = file("data.json", "w")
-    f.write( json.dumps(data, indent = 4) )
+    f = file("../web/data/data.json", "w")
+    f.write( json.dumps(data) )
     f.close()
 
 if __name__ == "__main__":
