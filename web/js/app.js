@@ -174,15 +174,19 @@ function initApp() {
         }
     });
     
-    $('.container_scrollDown').each(function(){
-        var $this = $(this);
+    $(".container_scrollDown").each(function(e){
+        var self = $(this);
         setInterval(function(){
-            $this.animate({bottom: "10px"}, 
-                {duration: 300, easing: 'easeInOutQuart', complete: function(){
-                    $this.animate({bottom: "0px"}, {duration: 300, easing: 'easeInOutQuart'});
-                }
-            });
-        }, 3000);
+            var $arrow = $("<div class='arrow_down'></div>");
+            $arrow.appendTo(self);
+            $arrow.animate({opacity: 1, top: "40px"}, {duration: 600, easing: 'easeOutQuart', complete: function(){
+                               setTimeout(function(){
+                                   $arrow.animate({opacity: 0, top: "90px"}, {duration: 600, easing: 'easeInQuart', complete: function(){
+                                        $arrow.remove();
+                                    }})
+                               }, 1200);
+            }});
+        }, 2100);
     });
     
     $('.container_scrollUp').each(function(){
