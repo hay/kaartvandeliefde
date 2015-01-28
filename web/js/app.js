@@ -153,15 +153,32 @@ function initApp() {
         }
     });
 
-    $('.container_scrollDown').each(function(){
+    $(".container_scrollDown").each(function(e){
+        var self = $(this);
+        setInterval(function(){
+            var $arrow = $("<div class='arrow_down'></div>");
+            $arrow.appendTo(self);
+            $arrow.animate({opacity: 1, top: "40px"}, {duration: 600, easing: 'easeOutQuart', complete: function(){
+                               setTimeout(function(){
+                                   $arrow.animate({opacity: 0, top: "90px"}, {duration: 600, easing: 'easeInQuart', complete: function(){
+                                        $arrow.remove();
+                                    }})
+                               }, 1200);
+            }});
+        }, 2100);
+    });
+
+    $('.container_scrollUp').each(function(){
         var $this = $(this);
         setInterval(function(){
-            $this.animate({bottom: "10px"},
+            $this.animate({top: "50px"},
                 {duration: 300, easing: 'easeInOutQuart', complete: function(){
-                    $this.animate({bottom: "0px"}, {duration: 300, easing: 'easeInOutQuart'});
+                    $this.animate({top: "60px"}, {duration: 300, easing: 'easeInOutQuart'});
                 }
             });
         }, 3000);
+    }).on("click", function(){
+        changeBlock(0);
     });
 
     $(".legend_open").on("click", function(){
@@ -386,6 +403,18 @@ function changeBlock(block){
 function changeSize(){
     height = $(window).height();
     width = $(window).width();
+
+    if (width < 1100){
+        $(".btn_about .nav_name, .btn_share .nav_name").hide();
+    } else {
+        $(".btn_about .nav_name, .btn_share .nav_name").show();
+    }
+
+    if (width < 1000){
+        $(".btn_nav .nav_name").hide();
+    } else {
+        $(".btn_nav .nav_name").show();
+    }
 
     $(".mask_header").css('width', width);
     $(".mask_header").css('height', height);
