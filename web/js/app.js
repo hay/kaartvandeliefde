@@ -378,6 +378,8 @@ function changeBlock(block){
             var pageName = app.getCurrPageName();
             var chartEl = $('.chartcontainer[data-theme="' + pageName + '"][data-index="' + (block - 1) + '"]').get(0);
             charts.destroyChart(chartEl);
+        } else {
+            var chartEl = false;
         }
 
         $el.stop().animate(
@@ -432,14 +434,14 @@ function drawBlockLegend() {
 
     if (!pageName || pageName === 'home') return;
 
-    var charts = window.THEMES[pageName].charts;
+    var charts = _.clone(window.THEMES[pageName].charts);
     var $legend = $("#legend");
 
     // Remove previous event handlers
     $legend.off();
 
     // Add the map as well
-    // charts.unshift({ category : 'Kaart'});
+    charts.unshift({ category : 'Kaart'});
 
     var html = charts.map(function(chart, index) {
         return '<li class="legendItem" data-toblock="' + index + '">' + chart.category + '</li>';
