@@ -6,8 +6,8 @@
         <title>Kaart van de Liefde</title>
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" href="lib/c3/c3.css">
-        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css">
+        <link rel="stylesheet" href="css/style.css">
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,23 +34,24 @@
 
         <?php require 'templates/about.php'; ?>
 
-        <!-- Libraries -->
-        <script src="lib/leaflet/dist/leaflet.js"></script>
-        <script src="lib/jquery/dist/jquery.min.js"></script>
-        <script src="lib/jquery-easing/jquery.easing.min.js"></script>
-        <script src="lib/stapes/stapes.js"></script>
-        <script src="lib/underscore/underscore-min.js"></script>
-        <script src="lib/d3/d3.min.js"></script>
-        <script src="lib/c3/c3.js"></script>
-        <script src="lib/handlebars/handlebars.js"></script>
-        <script src="lib/fastclick/lib/fastclick.js"></script>
-
         <!-- Templates -->
         <?php foreach (["theme", "gemeentes", "filters"] as $tmpl) : ?>
         <script type="text/html" id="tmpl-<?= $tmpl; ?>">
             <?php require "templates/tmpl-$tmpl.php"; ?>
         </script>
         <?php endforeach; ?>
+
+        <!-- build:js js/dist.js -->
+        <!-- Libraries -->
+        <script src="lib/leaflet/dist/leaflet.js"></script>
+        <script src="lib/jquery/dist/jquery.js"></script>
+        <script src="lib/jquery-easing/jquery.easing.js"></script>
+        <script src="lib/stapes/stapes.js"></script>
+        <script src="lib/underscore/underscore.js"></script>
+        <script src="lib/d3/d3.js"></script>
+        <script src="lib/c3/c3.js"></script>
+        <script src="lib/handlebars/handlebars.js"></script>
+        <script src="lib/fastclick/lib/fastclick.js"></script>
 
         <!-- App code -->
         <script src="js/datastore.js"></script>
@@ -63,6 +64,7 @@
         <script src="js/piechart.js"></script>
         <script src="js/charts.js"></script>
         <script src="js/app.js"></script>
+        <!-- endbuild -->
 
         <script>
             $(document).ready(function() {
