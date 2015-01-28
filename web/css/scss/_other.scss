@@ -108,12 +108,6 @@
 .chart_right {
 }
 
-.chart_gemeenteName {
-    height: 10%;
-    font-weight: bold;
-    font-size: 16px;
-}
-
 .chart_chart {
     height: 90%;
 }
@@ -334,8 +328,6 @@ body.contracted .container_filters {
     background-color: #FFAA00;
 }
 
-
-
 .caret {
     display: inline-block;
     border-left: 4px solid transparent;
@@ -344,69 +336,6 @@ body.contracted .container_filters {
     height: 0px;
     width: 0px;
     vertical-align: middle;
-}
-
-.container_filterGemeente {
-    position: absolute;
-    right: 20px;
-    top: 140px;
-    transition: right 0.3s ease 0s;
-}
-
-.filter_gemeente {
-    position: relative;
-    float: right;
-    z-index: 100;
-    background-color: #fff;
-    padding: 5px 10px;
-    margin-left: 20px;
-    color: #ccc;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-    cursor: default;
-    background: -webkit-linear-gradient(rgba(225,0,0,0) 0%, rgba(0,0,0,0.04) 100%) repeat scroll 0 0 rgba(255,255,255,1);
-    background: linear-gradient(rgba(225,0,0,0) 0%, rgba(0,0,0,0.04) 100%) repeat scroll 0 0 rgba(255,255,255,1);
-}
-
-.filter_gemeente:not(.inactive){
-    color: #fff;
-}
-
-.filter_gemeente.liefde:not(.inactive) {
-    background-color: #e53228;
-}
-
-.filter_gemeente.angst:not(.inactive) {
-    background-color: #19C0D1;
-}
-
-.filter_gemeente.lust:not(.inactive) {
-    background-color: #FFAA00;
-}
-
-body.contracted .container_filterGemeente {
-    right: -550px;
-}
-
-.container_filterGemeente.bounce {
-    transition: right 0.1s ease 0s;
-    right: 30px;
-}
-
-.filter_gemeente .gemeente_name {
-    text-align: right;
-    float: right;
-}
-
-.filter_gemeente .gemeente_del {
-    float: right;
-    width: 10px;
-    margin-left: 10px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.filter_gemeente.inactive .gemeente_del {
-    display: none;
 }
 
 .container_frontpageIcon {
@@ -431,22 +360,7 @@ body.contracted .container_filterGemeente {
     z-index: 21;
 }
 
-.theme_liefde .gemeente_name1,
-.theme_liefde .gemeente_name2 {
-    color: #e53228;
-}
-
-.theme_angst .gemeente_name1,
-.theme_angst .gemeente_name2 {
-    color: #19C0D1;
-}
-
-.theme_lust .gemeente_name1,
-.theme_lust .gemeente_name2 {
-    color: #FFAA00;
-}
-
-.singleQuote, .doubleQuote, .quote {
+.quote {
     font-weight: 800;
     font-size: 18px;
     text-transform: uppercase;

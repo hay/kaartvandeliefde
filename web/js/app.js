@@ -3,9 +3,6 @@
 var height;
 var width;
 
-var scrollTimerPage;
-var scrollTimerHeader;
-
 // Might change this to something fancier later on
 var App = Stapes.subclass({
     constructor : function() {
@@ -25,6 +22,8 @@ app.on({
     'change:currPage' : function() {
         var name = app.getCurrPageName();
 
+        if (name === 'home') return;
+
         drawBlockLegend();
         gemeentes.render();
         charts.renderMap('.themepage .contentHeader.' + name);
@@ -38,8 +37,6 @@ var scrollingHor = false;
 var scrollingVer = false;
 
 var lastTouchY = 0;
-
-// var filters = {geslacht: [0, 1], leeftijd: [0, 1, 2, 3, 4], status: [0, 1], geaardheid: [0, 1, 2], geloof: [0, 1, 2, 3, 4, 5], inkomen: [0, 1, 2]};
 
 var charts, gemeentes, filters;
 
@@ -56,10 +53,7 @@ function initApp() {
         'change' : function() {
             gemeentes.render();
             charts.setGemeentes( gemeentes.getGemeentes() );
-
-            if (charts.getCurrentChart()) {
-                charts.renderChart( charts.getCurrentChart() );
-            }
+            charts.renderChart( charts.getCurrentChart() );
         }
     });
 
@@ -71,11 +65,7 @@ function initApp() {
         'change' : function() {
             charts.setFilters( filters.getFilters() );
             charts.setAnswers();
-
-            if (charts.getCurrentChart()) {
-                charts.destroyChart( charts.getCurrentChart() );
-                charts.renderChart( charts.getCurrentChart() );
-            }
+            charts.renderChart( charts.getCurrentChart() );
         },
 
         'click' : function(d) {
@@ -122,22 +112,10 @@ function initApp() {
         });
     });
 
-    $(".btn_nav").each(function(){
-        $(this).on('click', function(){
-            changePage(parseInt($(this).attr("data-toPage")));
-        });
-    });
-
-    $(".home-link").each(function(){
-        $(this).on('click', function(e){
-            e.preventDefault();
-            changePage(parseInt($(this).attr("data-toPage")));
-        });
-    });
-
-    $('.scroll_top').click(function(){
-        changeBlock(0);
-        return false;
+    $("[data-toPage]").on('click', function(e) {
+        e.preventDefault();
+        var page = parseInt( $(this).attr('data-toPage') );
+        changePage(page);
     });
 
     $(window).resize(function(){
@@ -272,10 +250,6 @@ function initApp() {
 	  if (e.keyCode == 27) { $('#about.open').fadeOut(200); }   // esc
 	});
 
-    // setCheckmarks();
-
-    // updateGemeenteBars();
-
     // If we have a hash, get page and block, and go there
     if (!!window.location.hash) {
         parseHash();
@@ -345,9 +319,12 @@ function changePage(page, fn, bl) {
                 setTimeout(function(){
                     scrollingHor = false;
                     scrollingVer = false;
-                    changeBlock(0);
-                    lastScroll = 0;
 
+                    if (page > 0) {
+                        changeBlock(0);
+                    }
+
+                    lastScroll = 0;
                 }, 100);
             }
         });
@@ -424,7 +401,7 @@ function changeSize(){
 function drawBlockLegend() {
     var pageName = app.getCurrPageName();
 
-    if (!pageName) return;
+    if (!pageName || pageName === 'home') return;
 
     var charts = window.THEMES[pageName].charts;
     var $legend = $("#legend");

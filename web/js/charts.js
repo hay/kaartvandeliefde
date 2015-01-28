@@ -7,7 +7,6 @@ window.Charts = Stapes.subclass({
         this.themes = themes;
         this.maps = {};
         this.gemeentes = ['Nederland'];
-        this.currentChart = false;
 
         var tmplTheme = $("#tmpl-theme").html();
         this.tmplTheme = Handlebars.compile(tmplTheme);
@@ -90,6 +89,7 @@ window.Charts = Stapes.subclass({
 
     renderChart : function(el) {
         this.currentChart = el;
+        this.destroyChart( this.getCurrentChart() );
         var $el = $(el);
         var themeId = $el.data('theme');
         var index = $el.data('index');

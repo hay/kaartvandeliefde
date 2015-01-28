@@ -1,6 +1,9 @@
 <div class="container_top">
     <div class="container_logo">
-        <a href="#" class="scroll_top"><img class="logo" src="img/logo_beeld.png"/></a>
+        <a class="homebutton" data-toPage="0">
+            <img class="logo" src="img/logo_beeld.png"/>
+        </a>
+
         <a class="icon-hzt" href="http://www.hzt.nl/" target="_blank" title="Naar de website van Het Zuidelijk Toneel"></a>
     </div>
 
