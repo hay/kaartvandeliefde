@@ -18,7 +18,6 @@ window.Gemeentes = Stapes.subclass({
         }
 
         this.gemeentes.push( gemeente );
-        console.log(gemeente, this.gemeentes);
         this.emit('change');
     },
 
@@ -48,18 +47,12 @@ window.Gemeentes = Stapes.subclass({
     },
 
     remove : function(gemeente) {
-        console.log(gemeente);
-
         // We don't delete Nederland
         if (gemeente === 'Nederland') {
             return;
         }
 
-        console.log(this.gemeentes);
-
         this.gemeentes = _.without(this.gemeentes, gemeente);
-
-        console.log(this.gemeentes);
 
         this.emit('change');
     }

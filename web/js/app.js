@@ -52,7 +52,6 @@ function initApp() {
 
     gemeentes.on({
         'change' : function() {
-            console.log(gemeentes.getGemeentes());
             gemeentes.render();
             charts.setGemeentes( gemeentes.getGemeentes() );
 
