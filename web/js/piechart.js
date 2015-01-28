@@ -16,14 +16,18 @@ window.PieChart = Chart.subclass({
             });
         }
 
-        this.$el.append('<table class="chart_table"><tr></tr></table>');
+        // First create the divs
+        var html = columns.map(function(column) {
+            return '<div class="piechart"><h2>' + column.gemeente + '</h2><div class="piechart-chart"></div></div>';
+        }).join('');
 
-        columns.forEach(function(column) {
-            var $el = $('<td><h2>' +  column.gemeente + '</h2><div class="piechart"></div></td>');
-            this.$el.find("table tr").append($el);
+        this.$el.append('<div class="piechart-container">' + html + '</div>');
+
+        columns.forEach(function(column, index) {
+            var $el = this.$el.find(".piechart-chart").eq(index);
 
             c3.generate({
-                bindto : $el.find(".piechart").get(0),
+                bindto : $el.get(0),
                 data : {
                     columns : column.data,
                     type : 'pie'

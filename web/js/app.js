@@ -290,7 +290,7 @@ function initApp() {
         setTimeout(function() {
             $(".loading").remove();
         }, 1000);
-    }, 500);
+    }, 0);
 };
 
 function parseHash() {
