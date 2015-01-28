@@ -126,11 +126,17 @@ def get_answers(row):
 def get_survey():
     records = []
 
-    for row in read_csv("./data.csv"):
-        records.append({
-            "filters" : get_filters(row),
-            "answers" : get_answers(row)
-        })
+    for csvfile in ["./data-old.csv", "./data.csv"]:
+        for row in read_csv(csvfile):
+            # There's a problem with the old data because a question id has
+            # been changed, from V081 to V122, so we replace that here
+            if "V081" in row:
+                print row
+
+            records.append({
+                "filters" : get_filters(row),
+                "answers" : get_answers(row)
+            })
 
     return records
 
