@@ -109,12 +109,14 @@ function initApp() {
         });
 
         $el.on("touchmove", function(e){
-            e.preventDefault();
-            var currTouchY = e.originalEvent.touches[0].clientY;
-            if (currTouchY > lastTouchY){
-                changeBlock(currBlock-1);
-            } else {
-                changeBlock(currBlock+1);
+            if (app.get('currPage') != 0){
+                e.preventDefault();
+                var currTouchY = e.originalEvent.touches[0].clientY;
+                if (currTouchY > lastTouchY){
+                    changeBlock(app.get('currBlock') - 1);
+                } else {
+                    changeBlock(app.get('currBlock') + 1);
+                }
             }
         });
     });
@@ -170,6 +172,17 @@ function initApp() {
 
             }
         }
+    });
+    
+    $('.container_scrollDown').each(function(){
+        var $this = $(this);
+        setInterval(function(){
+            $this.animate({bottom: "10px"}, 
+                {duration: 300, easing: 'easeInOutQuart', complete: function(){
+                    $this.animate({bottom: "0px"}, {duration: 300, easing: 'easeInOutQuart'});
+                }
+            });
+        }, 3000);
     });
 
     $(".legend_open").on("click", function(){
