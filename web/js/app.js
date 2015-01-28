@@ -184,6 +184,19 @@ function initApp() {
             });
         }, 3000);
     });
+    
+    $('.container_scrollUp').each(function(){
+        var $this = $(this);
+        setInterval(function(){
+            $this.animate({top: "50px"}, 
+                {duration: 300, easing: 'easeInOutQuart', complete: function(){
+                    $this.animate({top: "60px"}, {duration: 300, easing: 'easeInOutQuart'});
+                }
+            });
+        }, 3000);
+    }).on("click", function(){
+        changeBlock(0);
+    });
 
     $(".legend_open").on("click", function(){
         $(".container_left").addClass("open");
@@ -406,6 +419,18 @@ function changeBlock(block){
 function changeSize(){
     height = $(window).height();
     width = $(window).width();
+    
+    if (width < 1100){
+        $(".btn_about .nav_name, .btn_share .nav_name").hide();
+    } else {
+        $(".btn_about .nav_name, .btn_share .nav_name").show();
+    }
+    
+    if (width < 1000){
+        $(".btn_nav .nav_name").hide();
+    } else {
+        $(".btn_nav .nav_name").show();
+    }
 
     $(".mask_header").css('width', width);
     $(".mask_header").css('height', height);

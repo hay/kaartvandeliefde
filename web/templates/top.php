@@ -5,13 +5,13 @@
     </div>
 
     <ul class="container_themaButtons">
-        <li class="btn_nav liefde" data-toPage="1"><span class="icon-heart"></span> Liefde</li>
-        <li class="btn_nav lust" data-toPage="2"><span class="icon-condom"></span> Lust</li>
-        <li class="btn_nav angst" data-toPage="3"><span class="icon-broken"></span> Angst</li>
+        <li class="btn_nav liefde" data-toPage="1"><span class="icon-heart"></span> <span class="nav_name">Liefde</span></li>
+        <li class="btn_nav lust" data-toPage="2"><span class="icon-condom"></span> <span class="nav_name">Lust</span></li>
+        <li class="btn_nav angst" data-toPage="3"><span class="icon-broken"></span> <span class="nav_name">Angst</span></li>
     </ul>
 
     <ul class="container_otherButtons">
-        <a href="https://www.facebook.com/hetzuidelijktoneel?fref=ts"><li class="btn_share "><span class="icon-share"></span> Delen</li></a>
-        <li class="btn_about"><span class="icon-about"></span> Info</li>
+        <a href="https://www.facebook.com/hetzuidelijktoneel?fref=ts"><li class="btn_share "><span class="icon-share"></span> <span class="nav_name">Delen</span></li></a>
+        <li class="btn_about"><span class="icon-about"></span> <span class="nav_name">Info</span></li>
     </ul>
 </div>

@@ -6,8 +6,8 @@
         <title>Kaart van de Liefde</title>
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="stylesheet" href="lib/c3/c3.css">
-        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <?php require 'templates/top.php'; ?>

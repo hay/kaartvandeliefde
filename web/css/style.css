@@ -329,7 +329,7 @@ h5 {
   border-left: 1px solid #ddd;
 }
 /* line 15, scss/_btn.scss */
-.btn_nav span {
+.btn_nav span:first-child {
   margin-right: 5px;
 }
 
@@ -1263,6 +1263,28 @@ li.btn_nav:last-child {
   border: solid transparent;
   border-color: rgba(0, 0, 0, 0);
   border-top-color: #000;
+  border-width: 10px;
+  width: 0px;
+  height: 0px;
+  margin: 0px auto;
+}
+
+/* line 555, scss/_other.scss */
+.container_scrollUp {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  z-index: 90;
+  cursor: pointer;
+}
+
+/* line 568, scss/_other.scss */
+.container_scrollUp .arrow_up {
+  border: solid transparent;
+  border-color: rgba(0, 0, 0, 0);
+  border-bottom-color: #000;
   border-width: 10px;
   width: 0px;
   height: 0px;

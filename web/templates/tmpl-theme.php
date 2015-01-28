@@ -12,6 +12,12 @@
                 <div class="quote"></div>
                 <div class="chartcontainer" data-theme="{{../themeId}}" data-index="{{@index}}"></div>
             </div>
+            {{#if @last}}
+                <div class="container_scrollUp">
+                        <div class="arrow_up"></div>
+                        <span>Terug naar de kaart</span>
+                </div>
+            {{/if}}
         </div>
     {{/each}}
 </div>
