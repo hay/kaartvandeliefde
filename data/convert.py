@@ -13,6 +13,7 @@ filters = {
 
 # Questions that consist of a tuple with two values will be thrown together
 questions = (
+    ("V023_1", "V050"),
     ("V028", "V054"),
     ("V013_1", "V048_1"),
     ("V013_2", "V048_2"),
@@ -21,6 +22,7 @@ questions = (
     ("V024_2", "V051_2"),
     ("V025_1", "V052_1"),
     ("V025_4", "V052_4"),
+    ("V025_2", "V052_2"),
     "V027_1",
     "V027_2",
     "V027_4",
@@ -37,12 +39,14 @@ questions = (
     "V087_2",
     "V089",
     "V073",
+    "V083",
     "V074",
     "V076",
     "V038",
     "BNN1relatiea1",
     "V087_3",
-    "V010"
+    "V010",
+    ("V025_1", "V052_2")
 )
 
 def filter_sex(data):
@@ -178,7 +182,7 @@ def main():
         "survey" : surveys
     }
 
-    if len(sys.argv) > 0 and sys.argv[1] == "indent":
+    if len(sys.argv) > 1 and sys.argv[1] == "indent":
         indent = 4
     else:
         indent = None

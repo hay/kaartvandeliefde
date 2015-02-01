@@ -182,8 +182,8 @@ window.THEMES = {
             {
                 "type": "bar",
                 "question" : "V082-V122",
-            "category" : "Aantal bedpartners",
-                "text" : "Hoeveel bedpartners heeft men gehad in %s?",
+                "category" : "Aantal bedpartners",
+                "text" : "Hoeveel bedpartners heeft deze generatie in %s gehad?",
                 "indexer" : function(d) {
                     if (d < 6) return 0;
                     if (d < 11) return 1;
@@ -194,34 +194,43 @@ window.THEMES = {
                 "labels" : ["Minder dan 5", "5 - 10", "10 - 20", "20 - 30", "Meer dan 30"]
             },
             {
-                "type": "bar",
-                "question": "V025_4-V052_4",
-                "category" : "Zijn liefde en seks hetzelfde?",
-                "text" : "Ziet men liefde en seks als hetzelfde in %s?"
+                "type" : "bar",
+                "question" : "V025_4-V052_4",
+                "category" : "Liefde vs seks",
+                "text" : "Vindt deze generatie %s liefde en seks twee verschillende dingen?"
             },
             {
-                "type": "bar",
-                "question": "V025_1-V052_1",
-                "category" : "Liever seks dan relatie",
-                "text" : "Heeft men liever seks dan een relatie in %s?"
+                "type" : "bar",
+                "question" : "V023_1-V050",
+                "category" : "Seksuele tevredenheid",
+                "text" : "Is deze generatie %s tevreden met zijn huidige seksleven?"
+            },
+            {
+                "type" : "bar",
+                "question" : "V025_2-V052_2",
+                "category" : "Seks & relatie",
+                "text" : "Vindt deze generatie %s seks beter als je in een relatie zit?"
             },
             {
                 "type": "pie",
                 "question": "V024_1-V051_1",
-                "category" : "Vreemdgaan",
-                "text" : "Is men wel eens vreemdgegaan in %s?"
+                "category" : "Vreemd gaan",
+                "text" : "Is deze generatie %s wel eens vreemd gegaan?"
             },
             {
-                "type": "pie",
-                "question": "V024_2-V051_2",
-                "category" : "Vreemdgaan met toestemming",
-                "text" : "Hoe vaak gaat men vreemd met toestemming in %s?"
-            },
-            {
-                "type": "bar",
-                "question": "V023_3",
-                "category" : "Seksuele tevredenheid",
-                "text" : "Is men seksueel tevreden met de huidige partner in %s?"
+                "type" : "bar",
+                "question" : "V083",
+                "category" : "Afspraken",
+                "text" : "Wat voor soort afspraken maakt deze generatie %s rond seks buiten de relatie?",
+                "labels" : [
+                    "Nee, we hebben geen afspraken gemaakt",
+                    "Ja, we hebben afgesproken niet vreemd te gaan",
+                    "Ja, we mogen vreemdgaan maar dan wel sámen",
+                    "Ja, we mogen vreemdgaan, maar dan wil de ander er nooit iets van weten",
+                    "Ja, zoenen mag, maar seks niet",
+                    "Ja, het mag wel met vrouwen, maar niet met mannen (of andersom)",
+                    "Anders"
+                ]
             }
         ]
     },
