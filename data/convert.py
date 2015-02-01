@@ -13,6 +13,7 @@ filters = {
 
 # Questions that consist of a tuple with two values will be thrown together
 questions = (
+    ("V028", "V054"),
     ("V013_1", "V048_1"),
     ("V013_2", "V048_2"),
     "V023_3",
@@ -24,7 +25,6 @@ questions = (
     "V027_2",
     "V027_4",
     "V027_5",
-    ("V028", "V054"),
     "V053_1",
     "V053_2",
     "V053_3",
@@ -103,14 +103,16 @@ def get_answers(row):
     answers = {}
 
     for question in questions:
+        # Combine questions?
         if isinstance(question, tuple):
             # Could probably be easier
-            if row.get(question[0], None) is not None:
-                answer = row.get(question[0])
-            elif row.get(question[1], None) is not None:
-                answer = row.get(question[1])
+            a1 = row.get(question[0], None)
+            a2 = row.get(question[1], None)
+
+            if a1 == "99999":
+                answer = a2
             else:
-                answer = None
+                answer = a1
 
             question = "-".join(question)
         else:
