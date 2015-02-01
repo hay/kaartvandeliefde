@@ -197,31 +197,31 @@ window.THEMES = {
                 "type" : "bar",
                 "question" : "V025_4-V052_4",
                 "category" : "Liefde vs seks",
-                "text" : "Vindt deze generatie %s liefde en seks twee verschillende dingen?"
+                "text" : "Vindt deze generatie in %s liefde en seks twee verschillende dingen?"
             },
             {
                 "type" : "bar",
                 "question" : "V023_1-V050",
                 "category" : "Seksuele tevredenheid",
-                "text" : "Is deze generatie %s tevreden met zijn huidige seksleven?"
+                "text" : "Is deze generatie in %s tevreden met zijn huidige seksleven?"
             },
             {
                 "type" : "bar",
                 "question" : "V025_2-V052_2",
                 "category" : "Seks & relatie",
-                "text" : "Vindt deze generatie %s seks beter als je in een relatie zit?"
+                "text" : "Vindt deze generatie in %s seks beter als je in een relatie zit?"
             },
             {
                 "type": "pie",
                 "question": "V024_1-V051_1",
                 "category" : "Vreemd gaan",
-                "text" : "Is deze generatie %s wel eens vreemd gegaan?"
+                "text" : "Is deze generatie in %s wel eens vreemd gegaan?"
             },
             {
                 "type" : "bar",
                 "question" : "V083",
                 "category" : "Afspraken",
-                "text" : "Wat voor soort afspraken maakt deze generatie %s rond seks buiten de relatie?",
+                "text" : "Wat voor soort afspraken maakt deze generatie in %s rond seks buiten de relatie?",
                 "labels" : [
                     "Nee, we hebben geen afspraken gemaakt",
                     "Ja, we hebben afgesproken niet vreemd te gaan",
@@ -241,55 +241,43 @@ window.THEMES = {
                 "type": "bar",
                 "question": "V053_3",
                 "category" : "Bindingsangst",
-                "text" : "Heeft men last van bindingsangst in %s?"
-            },
-            {
-                "type": "pie",
-                "question": "V053_1",
-                "category" : "Angst om alleen te blijven",
-                "text" : "Is men bang om alleen te blijven in %s?"
-            },
-            {
-                "type": "bar",
-                "question": "V053_2",
-                "category" : "Ontevreden of alleen?",
-                "text" : "Is men in %s liever ontevreden in een relatie dan vrijgezel?"
-            },
-            {
-                "type": "bar",
-                "question": "V013_1-V048_1",
-                "category" : "Date vinden makkelijk",
-                "text" : "Hoe makkelijk is het in %s om een date te krijgen?"
+                "text" : "Is deze generatie in %s bang om zich te binden?"
             },
             {
                 "type": "bar",
                 "question": "V013_2-V048_2",
-                "category" : "Serieuze relatie vinden makkelijk",
-                "text" : "Hoe gemakkelijk is het in %s om een serieuze relatie te krijgen?"
+                "category" : "Vinden serieuze partner",
+                "text" : "Vindt deze generatie in %s het gemakkelijk om een serieuze partner te vinden?"
             },
             {
-                "type": "bar",
-                "question": "V027_5",
-                "category" : "Angst voor andere liefde partner",
-                "text" : "Hoe bang is men in %s dat hun partner verliefd wordt op een ander?"
-            },
-            {
-                "type": "bar",
-                "question": "V027_4",
-                "category" : "Wanhopig bij verlaten partner",
-                "text" : "Hoe wanhopig is men in %s als hun partner hen verlaat?"
+                "type": "pie",
+                "question": "V053_1",
+                "category" : "Alleen blijven singles",
+                "text" : "Zijn de singles van deze generatie in %s bang om nooit een serieuze relatie te vinden?"
             },
             {
                 "type": "bar",
                 "question": "V027_1",
-                "category" : "Angst om alleen achter te blijven",
-                "text" : "Hoe bang is men in %s dat ze allen achterblijven na een relatie?"
+                "category" : "Alleen blijven na relatie",
+                "text" : "Is deze generatie in %s bang om na hun huidige relatie alleen te blijven?"
             },
             {
                 "type": "bar",
-                "question": "V027_2",
-                "category" : "Relatie alleen tegen eenzaamheid",
-                "text" : "Houdt men in %s alleen maar de relatie in stand om niet alleen te zijn?"
+                "question": "V053_2",
+                "category" : "Ontevreden vs relatie",
+                "text" : "Is deze generatie in %s liever ontevreden in een relatie dan vrijgezel?"
+            },
+            {
+                "type": "bar",
+                "question": "V027_5",
+                "category" : "Verliefd op een ander",
+                "text" : "Is deze generatie in %s bang dat hun partner verliefd wordt op een ander?"
+            },
+            {
+                "type": "bar",
+                "question": "V027_4",
+                "category" : "Einde van de wereld",
+                "text" : "Stort de wereld van deze generatie in %s in als hun partner hen zou verlaten?"
             }
         ]
     }
