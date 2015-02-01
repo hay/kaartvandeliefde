@@ -45,6 +45,17 @@ module.exports = function (grunt) {
 
         usemin: {
             html : ['dist/index.php']
+        },
+
+        asset_cachebuster : {
+            options : {
+                buster : Date.now()
+            },
+            build : {
+                files : {
+                    'dist/index.php' : ['dist/index.php']
+                }
+            }
         }
     });
 
@@ -55,6 +66,7 @@ module.exports = function (grunt) {
         'concat',
         'uglify',
         'usemin',
+        'asset_cachebuster',
         'clean:after'
     ]);
 
