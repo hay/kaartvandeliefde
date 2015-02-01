@@ -7,6 +7,7 @@ module.exports = function (grunt) {
             before : ['dist/*', '.tmp'],
             after : [
                 'dist/css/scss',
+                'dist/templates',
                 'dist/js/*',
                 '!dist/js/dist.js',
                 'dist/lib/*',
@@ -37,14 +38,14 @@ module.exports = function (grunt) {
         },
 
         useminPrepare: {
-            html: ['web/index.php'],
+            html: ['web/index.html'],
             options: {
                 dest: 'dist'
             }
         },
 
         usemin: {
-            html : ['dist/index.php']
+            html : ['dist/index.html']
         },
 
         asset_cachebuster : {
@@ -53,7 +54,15 @@ module.exports = function (grunt) {
             },
             build : {
                 files : {
-                    'dist/index.php' : ['dist/index.php']
+                    'dist/index.html' : ['dist/index.html']
+                }
+            }
+        },
+
+        bake : {
+            build : {
+                files : {
+                    "web/index.html" : "web/base.html"
                 }
             }
         }
@@ -61,6 +70,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:before',
+        'bake',
         'copy:all',
         'useminPrepare',
         'concat',

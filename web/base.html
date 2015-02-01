@@ -25,8 +25,8 @@
     <body>
         <div class="loading"></div>
 
-        <?php require 'templates/top.php'; ?>
-        <?php require 'templates/legend.php'; ?>
+        <!--(bake templates/top.html)-->
+        <!--(bake templates/legend.html)-->
         <div class="container_filterGemeente"></div>
 
         <div class="container_dropdown"></div>
@@ -34,18 +34,24 @@
 
         <div id="mask_header" class="mask_header">
             <div class="container_header">
-                <?php require 'templates/splash.php'; ?>
+                <!--(bake templates/splash.html)-->
             </div>
         </div>
 
-        <?php require 'templates/about.php'; ?>
+        <!--(bake templates/about.html)-->
 
         <!-- Templates -->
-        <?php foreach (["theme", "gemeentes", "filters"] as $tmpl) : ?>
-        <script type="text/html" id="tmpl-<?= $tmpl; ?>">
-            <?php require "templates/tmpl-$tmpl.php"; ?>
+        <script type="text/html" id="tmpl-theme">
+            <!--(bake templates/tmpl-theme.html)-->
         </script>
-        <?php endforeach; ?>
+
+        <script type="text/html" id="tmpl-gemeentes">
+            <!--(bake templates/tmpl-gemeentes.html)-->
+        </script>
+
+        <script type="text/html" id="tmpl-filters">
+            <!--(bake templates/tmpl-filters.html)-->
+        </script>
 
         <!-- build:js js/dist.js -->
         <!-- Libraries -->
