@@ -3,60 +3,74 @@ window.FILTERS = [
         "name" : "Geslacht",
         "key" : "sex",
         "values" : [
-            { label : "Man", value : "male", selected : true},
-            { label : "Vrouw", value : "female", selected : true},
+            { label : "Man", value : "male"},
+            { label : "Vrouw", value : "female"},
         ]
     },
     {
         "name" : "Leeftijd",
         "key" : "age",
         "values" : [
-            { label : "&lt; 21", value: function(d) { return d > 16 && d < 22; }, selected : true },
-            { label: "21-27", value: function(d) { return d > 21 && d < 28; }, selected : true },
-            { label: "&gt; 27", value:function(d) { return d > 27 && d < 40; }, selected : true }
+            { label : "&lt; 21", value: function(d) { return d > 16 && d < 22; } },
+            { label: "21-27", value: function(d) { return d > 21 && d < 28; } },
+            { label: "&gt; 27", value:function(d) { return d > 27 && d < 40; } }
         ]
     },
     {
         "name" : "Status",
         "key" : "relation",
         "values" : [
-            { label: "Vrijgezel", value: "single", selected : true},
-            { label: "In een relatie", value: "relation", selected : true }
+            { label: "Vrijgezel", value: "single" },
+            { label: "In een relatie", value: "relation" }
         ]
     },
     {
         "name" : "Geaardheid",
         "key" : "orientation",
         "values" : [
-            { label : "Hetero", value: "hetero", selected : true },
-            { label : "Homo / Lesbisch", value: "gay", selected : true },
-            { label : "Biseksueel", value: "bi", selected : true }
+            {
+                label : "Hetero",
+                value: function(d) {
+                    return d === 'hetero';
+                }
+            },
+            {
+                label : "Homo / Lesbisch / Biseksueel",
+                value : function(d) {
+                    return ['gay', 'bi'].indexOf(d) !== -1;
+                }
+            }
         ]
     },
-    /*
-    {
-        "name" : "Inkomen",
-        "key" : "income",
-        "values" : [
-            { label : "Beneden modaal", value: "belowaverage", selected : true },
-            { label : "Modaal", value: "average", selected : true },
-            { label : "Boven modaal", value: "aboveaverage", selected : true }
-        ]
-    },
-    */
     {
         "name" : "Geloof",
         "key"  : "religion",
         "values" : [
-            { label : "Katholiek", value: "catholic", selected : true },
-            { label : "Protestants", value: "protestant", selected : true },
-            { label : "Joods", value: "jewish", selected : true },
-            { label : "Islamitisch", value: "islamic", selected : true },
-            { label : "Overig", value: "other", selected : true },
-            { label : "Niet gelovig", value: "atheist", selected : true }
+            {
+                label : "Gelovig",
+                value : function(d) {
+                    return ['other', 'atheist'].indexOf(d) === -1;
+                }
+            },
+            {
+                label : "Niet-gelovig",
+                value : function(d) {
+                    return ['other', 'atheist'].indexOf(d) !== -1;
+                }
+            }
         ]
     }
 ];
+
+// All filters are selected by default
+window.FILTERS = window.FILTERS.map(function(filter) {
+    filter.values = filter.values.map(function(value) {
+        value.selected = true;
+        return value;
+    });
+
+    return filter;
+});
 
 window.THEMES = {
     "liefde": {
