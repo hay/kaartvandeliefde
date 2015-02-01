@@ -74,6 +74,7 @@ window.FILTERS = window.FILTERS.map(function(filter) {
 
 window.THEMES = {
     "liefde": {
+        "themeId" : "liefde",
         "color": "#F21933",
         "charts": [
             {
@@ -183,6 +184,7 @@ window.THEMES = {
         ]
     },
     "lust": {
+        "themeId" : "lust",
         "color": "#FFAA00",
         "charts": [
             {
@@ -241,6 +243,7 @@ window.THEMES = {
         ]
     },
     "angst": {
+        "themeId" : "angst",
         "color": "#19C0D1",
         "charts": [
             {

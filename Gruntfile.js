@@ -61,6 +61,9 @@ module.exports = function (grunt) {
 
         bake : {
             build : {
+                options : {
+                    process: false
+                },
                 files : {
                     "web/index.html" : "web/base.html"
                 }

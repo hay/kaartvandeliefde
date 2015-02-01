@@ -148,8 +148,8 @@
 
         <!-- Templates -->
         <script type="text/html" id="tmpl-theme">
-            <div class="themepage theme_ container_page">
-                <div class="contentHeader " data-theme="">
+            <div class="themepage theme_{{themeId}} container_page">
+                <div class="contentHeader {{themeId}}" data-theme="{{themeId}}">
                     <div class="container_scrollDown"></div>
                 </div>
             
@@ -172,9 +172,9 @@
 
         <script type="text/html" id="tmpl-gemeentes">
             {{#each gemeentes}}
-            <div class="filter_gemeente " data-gemeente="">
+            <div class="filter_gemeente {{theme}}" data-gemeente="{{name}}">
                 <a class="gemeente_del">X</a>
-                <span class="gemeente_name"></span>
+                <span class="gemeente_name">{{name}}</span>
             </div>
             {{/each}}
         </script>
@@ -184,7 +184,7 @@
                 {{#each filters}}
                     <li class="dropdown">
                         <a class="dropdown_button">
-                            
+                            {{name}}
                             <span class="caret"></span>
                         </a>
             
@@ -193,9 +193,9 @@
                                 <li>
                                     <a class="dropdown_menuButton {{#if selected}}active{{/if}}"
                                        data-filter="{{../key}}"
-                                       data-label=""
+                                       data-label="{{label}}"
                                     >
-                                        {}
+                                        {{{label}}}
                                     </a>
                                 </li>
                             {{/each}}

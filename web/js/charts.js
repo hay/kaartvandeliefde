@@ -91,8 +91,7 @@ window.Charts = Stapes.subclass({
     },
 
     setup : function() {
-        _.each(this.themes, function(theme, themeId) {
-            theme.themeId = themeId;
+        _.each(this.themes, function(theme) {
             var themeHtml = this.tmplTheme( theme );
             this.$el.append( themeHtml );
         }, this);
