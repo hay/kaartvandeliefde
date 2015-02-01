@@ -11,11 +11,9 @@ window.FILTERS = [
         "name" : "Leeftijd",
         "key" : "age",
         "values" : [
-            { label : "&lt;20", value: function(d) { return d < 20; }, selected : true },
-            { label: "20-25", value: function(d) { return d > 19 && d < 26; }, selected : true },
-            { label: "25-30", value:function(d) { return d > 24 && d < 31; }, selected : true },
-            { label: "30-35", value:function(d) { return d > 29 && d < 36; }, selected : true },
-            { label: "&gt;35", value:function(d) { return d > 35; }, selected : true }
+            { label : "&lt; 21", value: function(d) { return d > 16 && d < 22; }, selected : true },
+            { label: "21-27", value: function(d) { return d > 21 && d < 28; }, selected : true },
+            { label: "&gt; 27", value:function(d) { return d > 27 && d < 40; }, selected : true }
         ]
     },
     {
@@ -35,6 +33,7 @@ window.FILTERS = [
             { label : "Biseksueel", value: "bi", selected : true }
         ]
     },
+    /*
     {
         "name" : "Inkomen",
         "key" : "income",
@@ -44,6 +43,7 @@ window.FILTERS = [
             { label : "Boven modaal", value: "aboveaverage", selected : true }
         ]
     },
+    */
     {
         "name" : "Geloof",
         "key"  : "religion",
