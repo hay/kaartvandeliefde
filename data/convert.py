@@ -178,7 +178,7 @@ def main():
         "survey" : surveys
     }
 
-    if sys.argv[1] and sys.argv[1] == "indent":
+    if len(sys.argv) > 0 and sys.argv[1] == "indent":
         indent = 4
     else:
         indent = None
