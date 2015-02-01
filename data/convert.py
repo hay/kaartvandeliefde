@@ -1,4 +1,4 @@
-import csv, json
+import csv, json, sys
 
 filters = {
     "sex"         : "V002",
@@ -35,7 +35,14 @@ questions = (
     "V086_3",
     "V086_4",
     "V087_2",
-    "V087_3"
+    "V089",
+    "V073",
+    "V074",
+    "V076",
+    "V038",
+    "BNN1relatiea1",
+    "V087_3",
+    "V010"
 )
 
 def filter_sex(data):
@@ -99,6 +106,17 @@ def get_filters(row):
 
     return fdict
 
+def normalize_answer(answer):
+    if answer == 1 or answer == 2: return 1
+    if answer == 3: return 2
+    return 3
+
+def add_combinations(answers):
+    combo = [answers[q] for q in ["V023_3", "V086_4", "V087_2"]]
+    combo = map(normalize_answer, combo)
+    answers["C1"] = int(round(sum(combo) / len(combo)))
+    return answers
+
 def get_answers(row):
     answers = {}
 
@@ -118,13 +136,19 @@ def get_answers(row):
         else:
             answer = row.get(question, None)
 
-        if answer.isdigit():
+        if answer is not None and answer.isdigit():
             answer = int(answer)
 
         if answer == None or answer == 99999:
             answers[question] = None
         else:
             answers[question] = answer
+
+    answers = add_combinations(answers)
+
+    # Fix this question
+    if answers["V010"] == "99999" or answers["V010"] is None:
+        answers["V010"] = 0
 
     return answers
 
@@ -154,7 +178,12 @@ def main():
         "survey" : surveys
     }
 
-    jsondata = json.dumps(data)
+    if sys.argv[1] and sys.argv[1] == "indent":
+        indent = 4
+    else:
+        indent = None
+
+    jsondata = json.dumps(data, indent = indent)
 
     f = file("../web/data/data.json", "w")
     f.write(jsondata)

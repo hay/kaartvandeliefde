@@ -77,10 +77,25 @@ window.THEMES = {
         "color": "#F21933",
         "charts": [
             {
-                "type": "pie",
-                "question": "V028-V054",
-                "category" : "Gelooft in ware liefde",
-                "text" : "Gelooft men in %s in de ware liefde?"
+                "type" : "bar",
+                "question" : "C1",
+                "category" : "Gelukkig in de liefde",
+                "text" : "Is deze generatie in %s gelukkig in de liefde?",
+                "labels" : ["Nee", "Weet niet", "Ja"]
+            },
+            {
+                "type" : "bar",
+                "question" : "V010",
+                "category" : "Aantal relaties",
+                "text" : "Hoeveel serieuze relaties heeft deze generatie in %s gehad?",
+                "labels" : ["Geen", "1", "2 - 3", "4 - 5", "Meer dan vijf"],
+                "indexer" : function(d) {
+                    if (d === 0) return 0;
+                    if (d < 2) return 1;
+                    if (d < 4) return 2;
+                    if (d < 6) return 3;
+                    if (d > 5) return 4;
+                }
             },
             {
                 "type": "bar",
@@ -96,27 +111,21 @@ window.THEMES = {
             },
             {
                 "type": "bar",
-                "question": "V086_3",
-                "category" : "De ware liefde",
-                "text" : "Hebben de mensen in %s de ware liefde gevonden?"
-            },
-            {
-                "type": "bar",
-                "question": "V086_2",
-                "category" : "Partner belangrijkste in het leven",
-                "text" : "Is de partner in %s het belangrijkste in het leven?"
-            },
-            {
-                "type": "bar",
                 "question": "V087_2",
                 "category" : "Relatie voor het leven",
                 "text" : "Blijven de mensen in %s de rest van hun leven bij hun huidige partner?"
             },
             {
-                "type": "bar",
-                "question": "V087_3",
-                "category" : "Partner en toekomstplannen",
-                "text" : "Betrekt men in %s de partner bij de toekomstplannen?"
+                "type" : "pie",
+                "question" : "V073",
+                "category" : "Kinderwens",
+                "text" : "Willen ze kinderen in %s?",
+            },
+            {
+                "type" : "pie",
+                "question" : "V074",
+                "category" : "Kinderwens zonder partner",
+                "text" : "Willen ze ook kinderen zonder partner in %s?"
             },
             {
                 "type": "pie",
@@ -125,24 +134,47 @@ window.THEMES = {
                 "text" : "Maakt men het uit in %s als de partner geen kinderen wilt?"
             },
             {
-                "type": "bar",
-                "question": "V023_3",
-                "category" : "Seksuele tevredenheid",
-                "text" : "Is men seksueel tevreden met de huidige partner in %s?"
+                "type" : "bar",
+                "question" : "V076",
+                "category" : "Ontmoeten",
+                "text" : "Wat is de beste plaats om partners te ontmoeten in %s?",
+                "labels" : ["Online", "In de kroeg", "Via vrienden", "Via een hobby", "Anders"]
+            },
+            {
+                "type" : "bar",
+                "question" : "V038",
+                "category" : "Relatie-eigenschappen",
+                "text" : "Wat is de belangrijkste eigenschap van een relatie in %s?",
+                "labels" : [
+                    "Vriendschap",
+                    "Gelijkwaardigheid",
+                    "Betrouwbaarheid",
+                    "Gelijkgezindheid",
+                    "Seksuele bevrediging",
+                    "Goede communicatie",
+                    "Aanpassingsvermogen",
+                    "Zelfkennis"
+                ]
             }
         ]
     },
     "lust": {
         "color": "#FFAA00",
         "charts": [
-            // We got to figure out something better for this question
-            /*
             {
                 "type": "bar",
-                "questions" : ["V122", "V082"],
-                "text" : "Hoeveel bedpartners heeft men gehad in %s?"
+                "question" : "V082-V122",
+            "category" : "Aantal bedpartners",
+                "text" : "Hoeveel bedpartners heeft men gehad in %s?",
+                "indexer" : function(d) {
+                    if (d < 6) return 0;
+                    if (d < 11) return 1;
+                    if (d < 21) return 2;
+                    if (d < 31) return 3;
+                    return 4;
+                },
+                "labels" : ["Minder dan 5", "5 - 10", "10 - 20", "20 - 30", "Meer dan 30"]
             },
-            */
             {
                 "type": "bar",
                 "question": "V025_4-V052_4",
@@ -166,12 +198,36 @@ window.THEMES = {
                 "question": "V024_2-V051_2",
                 "category" : "Vreemdgaan met toestemming",
                 "text" : "Hoe vaak gaat men vreemd met toestemming in %s?"
+            },
+            {
+                "type": "bar",
+                "question": "V023_3",
+                "category" : "Seksuele tevredenheid",
+                "text" : "Is men seksueel tevreden met de huidige partner in %s?"
             }
         ]
     },
     "angst": {
         "color": "#19C0D1",
         "charts": [
+            {
+                "type" : "bar",
+                "question" : "V089",
+                "category" : "Uitgaan",
+                "text" : "Wat was de meest voorkomende reden dat het uit gaat in %s?",
+                "labels" : [
+                    "De relatie gaf me meer verdriet dan vreugde",
+                    "Vanwege seksuele verschillen",
+                    "Vanwege ontrouw van mijn partner",
+                    "Vanwege ontrouw van mij",
+                    "Vanwege verlangen naar een ex-partner",
+                    "Door een verkeerde of onrealistische partnerkeuze en idealen",
+                    "Mijn omgeving was tegen mijn relatie",
+                    "Vanwege verschillende toekomstbeelden",
+                    "N.v.t. (ik ben nog steeds in mijn eerste relatie)",
+                    "Anders",
+                ]
+            },
             {
                 "type": "bar",
                 "question": "V053_3",

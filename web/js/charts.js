@@ -13,22 +13,35 @@ window.Charts = Stapes.subclass({
     },
 
     // This is all really basic right now
-    calculateAnswer : function(question, gemeente) {
-        var answers = [];
+    calculateAnswer : function(question, gemeente, opts) {
+        // Always populate answers array with zeroes
+        var answersLength;
+
+        if (opts.labels) {
+            answersLength = opts.labels.length;
+        } else if (opts.type === 'bar') {
+            answersLength = 5;
+        } else if (opts.type === 'pie') {
+            answersLength = 2;
+        }
+
+        var answers = _.range(answersLength).map(function(d) { return 0; });
         var population = 0;
 
         this.answers.forEach(function(record) {
             var zip = record.filters.zip;
             var inGemeente = this.data.zips[zip] === gemeente || gemeente === 'Nederland';
 
-            if (record.answers[question] && inGemeente) {
+            if (record.answers[question] !== null && inGemeente) {
                 var answer = record.answers[question];
                 population++;
 
-                if (!!answers[answer - 1]) {
-                    answers[answer - 1]++;
+                var index = opts.indexer ? opts.indexer(answer) : parseInt(answer - 1, 10);
+
+                if (!!answers[index]) {
+                    answers[index]++;
                 } else {
-                    answers[answer - 1] = 1;
+                    answers[index] = 1;
                 }
             }
         }, this);
@@ -101,7 +114,7 @@ window.Charts = Stapes.subclass({
         var question = chartOpts.question;
 
         var columns = this.gemeentes.map(function(gemeente) {
-            var answer = this.calculateAnswer(question, gemeente);
+            var answer = this.calculateAnswer(question, gemeente, chartOpts);
             var column = answer.data;
             column.unshift(gemeente + ' (' + answer.population + ')');
             return column;
@@ -109,9 +122,11 @@ window.Charts = Stapes.subclass({
 
         try {
             if (chartOpts.type === 'bar') {
+                var labels = chartOpts.labels ? chartOpts.labels : ['Helemaal niet', 'Nee', 'Misschien', 'Ja', 'Heel erg'];
+
                 var chart = new BarChart(el, {
                     columns : columns,
-                    labels : ['Helemaal niet', 'Nee', 'Misschien', 'Ja', 'Heel erg']
+                    labels : labels
                 });
 
                 chart.show();
