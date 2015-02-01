@@ -13,40 +13,51 @@ filters = {
 
 # Questions that consist of a tuple with two values will be thrown together
 questions = (
-    ("V023_1", "V050"),
-    ("V028", "V054"),
-    ("V013_1", "V048_1"),
-    ("V013_2", "V048_2"),
-    "V023_3",
-    ("V024_1", "V051_1"),
-    ("V024_2", "V051_2"),
-    ("V025_1", "V052_1"),
-    ("V025_4", "V052_4"),
-    ("V025_2", "V052_2"),
-    "V027_1",
-    "V027_2",
-    "V027_4",
-    "V027_5",
-    "V053_1",
-    "V053_2",
-    "V053_3",
-    "V075",
-    ("V082", "V122"),
-    ("V084_3", "V085_3"),
-    "V086_2",
-    "V086_3",
-    "V086_4",
-    "V087_2",
-    "V089",
-    "V073",
-    "V083",
-    "V074",
+    # Liefde
+    "V010",
     "V076",
     "V038",
-    "BNN1relatiea1",
-    "V087_3",
-    "V010",
-    ("V025_1", "V052_2")
+    "V087_2",
+    "V086_4",
+    ("V084_3", "V085_3"),
+    ("V065", "V073"),
+    "V075",
+    "V074",
+    "V089",
+    # Lust
+    ("V082", "V122"),
+    ("V025_4", "V052_4"),
+    ("V023_1", "V050"),
+    ("V025_2", "V052_2"),
+    ("V024_1", "V051_1"),
+    "V083",
+    # Angst
+    "V053_3",
+    ("V013_2", "V048_2"),
+    "V053_1",
+    "V027_1",
+    "V053_2",
+    "V027_5",
+    "V027_4",
+    # Only combination
+    "V023_3"
+)
+
+to_normalize = (
+    "V087_2",
+    "V086_4",
+    "V084_3-V085_3",
+    "V025_4-V052_4",
+    "V023_1-V050",
+    "V025_2-V052_2",
+    "V024_1-V051_1",
+    "V053_3",
+    "V053_1",
+    "V027_1",
+    "V053_2",
+    "V027_5",
+    "V013_2-V048_2",
+    "V027_4"
 )
 
 def filter_sex(data):
@@ -121,6 +132,15 @@ def add_combinations(answers):
     answers["C1"] = int(round(sum(combo) / len(combo)))
     return answers
 
+def normalize_answers(answers):
+    for question in to_normalize:
+        answer = answers[question]
+
+        if answer is not None:
+            answers[question] = normalize_answer(answer)
+
+    return answers
+
 def get_answers(row):
     answers = {}
 
@@ -149,6 +169,7 @@ def get_answers(row):
             answers[question] = answer
 
     answers = add_combinations(answers)
+    answers = normalize_answers(answers)
 
     # Fix this question
     if answers["V010"] == "99999" or answers["V010"] is None:

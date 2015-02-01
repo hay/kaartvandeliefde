@@ -77,7 +77,7 @@ window.THEMES = {
         "color": "#F21933",
         "charts": [
             {
-                "type" : "bar",
+                "type" : "pie",
                 "question" : "C1",
                 "category" : "Gelukkig in de liefde",
                 "text" : "Is deze generatie in %s gelukkig in de liefde?",
@@ -121,28 +121,34 @@ window.THEMES = {
                 ]
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V087_2",
                 "category" : "Voor de rest van je leven",
                 "text" : "Denkt deze generatie in %s voor de rest van hun leven bij hun huidige partner te blijven?"
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V086_4",
                 "category" : "Huidige partner vs ideaalbeeld",
                 "text" : "Voldoet de huidige partner van deze generatie in %s aan hun ideaalbeeld?"
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V084_3-V085_3",
                 "category" : "Carrière boven relatie",
                 "text" : "Verkiest deze generatie in %s een carrière boven een relatie?"
             },
             {
                 "type" : "pie",
-                "question" : "V073",
+                "question" : "V065-V073",
                 "category" : "Kinderen",
                 "text" : "Wil deze generatie in %s kinderen krijgen?",
+                "labels" : [
+                    "Ja",
+                    "Misschien",
+                    "Nee",
+                    "Weet ik (nog) niet"
+                ]
             },
             {
                 "type": "pie",
@@ -194,19 +200,19 @@ window.THEMES = {
                 "labels" : ["Minder dan 5", "5 - 10", "10 - 20", "20 - 30", "Meer dan 30"]
             },
             {
-                "type" : "bar",
+                "type" : "pie",
                 "question" : "V025_4-V052_4",
                 "category" : "Liefde vs seks",
                 "text" : "Vindt deze generatie in %s liefde en seks twee verschillende dingen?"
             },
             {
-                "type" : "bar",
+                "type" : "pie",
                 "question" : "V023_1-V050",
                 "category" : "Seksuele tevredenheid",
                 "text" : "Is deze generatie in %s tevreden met zijn huidige seksleven?"
             },
             {
-                "type" : "bar",
+                "type" : "pie",
                 "question" : "V025_2-V052_2",
                 "category" : "Seks & relatie",
                 "text" : "Vindt deze generatie in %s seks beter als je in een relatie zit?"
@@ -238,13 +244,13 @@ window.THEMES = {
         "color": "#19C0D1",
         "charts": [
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V053_3",
                 "category" : "Bindingsangst",
                 "text" : "Is deze generatie in %s bang om zich te binden?"
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V013_2-V048_2",
                 "category" : "Vinden serieuze partner",
                 "text" : "Vindt deze generatie in %s het gemakkelijk om een serieuze partner te vinden?"
@@ -253,28 +259,28 @@ window.THEMES = {
                 "type": "pie",
                 "question": "V053_1",
                 "category" : "Alleen blijven singles",
-                "text" : "Zijn de singles van deze generatie in %s bang om nooit een serieuze relatie te vinden?"
+                "text" : "Zouden de singles van deze generatie in %s het erg vinden om nooit een serieuze relatie te vinden?"
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V027_1",
                 "category" : "Alleen blijven na relatie",
                 "text" : "Is deze generatie in %s bang om na hun huidige relatie alleen te blijven?"
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V053_2",
                 "category" : "Ontevreden vs relatie",
                 "text" : "Is deze generatie in %s liever ontevreden in een relatie dan vrijgezel?"
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V027_5",
                 "category" : "Verliefd op een ander",
                 "text" : "Is deze generatie in %s bang dat hun partner verliefd wordt op een ander?"
             },
             {
-                "type": "bar",
+                "type": "pie",
                 "question": "V027_4",
                 "category" : "Einde van de wereld",
                 "text" : "Stort de wereld van deze generatie in %s in als hun partner hen zou verlaten?"

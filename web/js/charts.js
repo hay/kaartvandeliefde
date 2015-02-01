@@ -133,9 +133,17 @@ window.Charts = Stapes.subclass({
             }
 
             if (chartOpts.type === 'pie') {
+                if (chartOpts.labels) {
+                    var labels = chartOpts.labels;
+                } else if (columns[0].length === 3) {
+                    var labels = ["Ja", "Nee"];
+                } else if (columns[0].length === 4) {
+                    var labels = ["Nee", "Misschien", "Ja"];
+                }
+
                 var chart = new PieChart(el, {
                     columns : columns,
-                    labels : ["Ja", "Nee"]
+                    labels : labels
                 });
             }
         } catch (e) {
