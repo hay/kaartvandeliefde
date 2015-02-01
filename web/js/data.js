@@ -98,53 +98,17 @@ window.THEMES = {
                 }
             },
             {
-                "type": "bar",
-                "question": "V084_3-V085_3",
-                "category" : "Carrière boven relatie",
-                "text" : "Plaatst men in %s een carrière boven een relatie?"
-            },
-            {
-                "type": "bar",
-                "question": "V086_4",
-                "category" : "Huidige partner is ideaal",
-                "text" : "Hoe ideaal vindt men de huidige partner in %s?"
-            },
-            {
-                "type": "bar",
-                "question": "V087_2",
-                "category" : "Relatie voor het leven",
-                "text" : "Blijven de mensen in %s de rest van hun leven bij hun huidige partner?"
-            },
-            {
-                "type" : "pie",
-                "question" : "V073",
-                "category" : "Kinderwens",
-                "text" : "Willen ze kinderen in %s?",
-            },
-            {
-                "type" : "pie",
-                "question" : "V074",
-                "category" : "Kinderwens zonder partner",
-                "text" : "Willen ze ook kinderen zonder partner in %s?"
-            },
-            {
-                "type": "pie",
-                "question": "V075",
-                "category" : "Kinderwens en relatie",
-                "text" : "Maakt men het uit in %s als de partner geen kinderen wilt?"
-            },
-            {
                 "type" : "bar",
                 "question" : "V076",
-                "category" : "Ontmoeten",
-                "text" : "Wat is de beste plaats om partners te ontmoeten in %s?",
+                "category" : "First date",
+                "text" : "Wat is volgens deze generatie in %s de beste plek om een partner te ontmoeten?",
                 "labels" : ["Online", "In de kroeg", "Via vrienden", "Via een hobby", "Anders"]
             },
             {
                 "type" : "bar",
                 "question" : "V038",
-                "category" : "Relatie-eigenschappen",
-                "text" : "Wat is de belangrijkste eigenschap van een relatie in %s?",
+                "category" : "Ideaalbeeld relatie",
+                "text" : "Wat vindt deze generatie in %s het belangrijkst in een relatie?",
                 "labels" : [
                     "Vriendschap",
                     "Gelijkwaardigheid",
@@ -154,6 +118,60 @@ window.THEMES = {
                     "Goede communicatie",
                     "Aanpassingsvermogen",
                     "Zelfkennis"
+                ]
+            },
+            {
+                "type": "bar",
+                "question": "V087_2",
+                "category" : "Voor de rest van je leven",
+                "text" : "Denkt deze generatie in %s voor de rest van hun leven bij hun huidige partner te blijven?"
+            },
+            {
+                "type": "bar",
+                "question": "V086_4",
+                "category" : "Huidige partner vs ideaalbeeld",
+                "text" : "Voldoet de huidige partner van deze generatie in %s aan hun ideaalbeeld?"
+            },
+            {
+                "type": "bar",
+                "question": "V084_3-V085_3",
+                "category" : "Carrière boven relatie",
+                "text" : "Verkiest deze generatie in %s een carrière boven een relatie?"
+            },
+            {
+                "type" : "pie",
+                "question" : "V073",
+                "category" : "Kinderen",
+                "text" : "Wil deze generatie in %s kinderen krijgen?",
+            },
+            {
+                "type": "pie",
+                "question": "V075",
+                "category" : "Kinderen vs relatie",
+                "text" : "Zou deze generatie in %s de relatie beëindigen als hun partner geen kinderen wil?"
+            },
+            {
+                "type" : "pie",
+                "question" : "V074",
+                "category" : "Kinderen zonder relatie",
+                "text" : "Zou deze generatie in %s kinderen nemen zonder relatie?"
+            },
+            {
+                "type" : "bar",
+                "question" : "V089",
+                "category" : "Break-up",
+                "text" : "Wat is voor deze generatie in %s de belangrijkste reden om een relatie te beëindigen?",
+                "labels" : [
+                    "De relatie gaf me meer verdriet dan vreugde",
+                    "Vanwege seksuele verschillen",
+                    "Vanwege ontrouw van mijn partner",
+                    "Vanwege ontrouw van mij",
+                    "Vanwege verlangen naar een ex-partner",
+                    "Door een verkeerde of onrealistische partnerkeuze en idealen",
+                    "Mijn omgeving was tegen mijn relatie",
+                    "Vanwege verschillende toekomstbeelden",
+                    "N.v.t. (ik ben nog steeds in mijn eerste relatie)",
+                    "Anders",
                 ]
             }
         ]
@@ -210,24 +228,6 @@ window.THEMES = {
     "angst": {
         "color": "#19C0D1",
         "charts": [
-            {
-                "type" : "bar",
-                "question" : "V089",
-                "category" : "Uitgaan",
-                "text" : "Wat was de meest voorkomende reden dat het uit gaat in %s?",
-                "labels" : [
-                    "De relatie gaf me meer verdriet dan vreugde",
-                    "Vanwege seksuele verschillen",
-                    "Vanwege ontrouw van mijn partner",
-                    "Vanwege ontrouw van mij",
-                    "Vanwege verlangen naar een ex-partner",
-                    "Door een verkeerde of onrealistische partnerkeuze en idealen",
-                    "Mijn omgeving was tegen mijn relatie",
-                    "Vanwege verschillende toekomstbeelden",
-                    "N.v.t. (ik ben nog steeds in mijn eerste relatie)",
-                    "Anders",
-                ]
-            },
             {
                 "type": "bar",
                 "question": "V053_3",
