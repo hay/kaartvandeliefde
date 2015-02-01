@@ -35,7 +35,7 @@ window.FILTERS = [
                 }
             },
             {
-                label : "Homo / Lesbisch / Biseksueel",
+                label : "Homo / Bi",
                 value : function(d) {
                     return ['gay', 'bi'].indexOf(d) !== -1;
                 }

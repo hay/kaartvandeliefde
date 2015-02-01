@@ -81,13 +81,13 @@
 }
 
 .chartcontainer {
-    position: relative;
-    width: 90%;
-    height: 70%;
-    margin-top: 1%;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
+    position: relative;
+}
+
+.chartcontainer, .quote {
+    margin-left: 30px;
+    margin-right: 140px;
 }
 
 .chart_table {
@@ -298,35 +298,7 @@ body.contracted .container_left {
     cursor: default;
 }
 
-.container_filters {
-    position: absolute;
-    color: white;
-    top: 80px;
-    right: 20px;
-    line-height: 1.45em;
-    z-index: 100;
-    transition: right 0.3s ease 0s;
-    background: -webkit-linear-gradient(rgba(225,0,0,0) 0%, rgba(0,0,0,0.04) 100%) repeat scroll 0 0 rgba(255,255,255,1);
-    background: linear-gradient(rgba(225,0,0,0) 0%, rgba(0,0,0,0.04) 100%) repeat scroll 0 0 rgba(255,255,255,1);
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-}
 
-
-body.contracted .container_filters {
-    right: -550px;
-}
-
-.container_filters.liefde {
-    background-color: #e53228;
-}
-
-.container_filters.angst {
-    background-color: #19C0D1;
-}
-
-.container_filters.lust {
-    background-color: #FFAA00;
-}
 
 .caret {
     display: inline-block;

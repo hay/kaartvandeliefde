@@ -105,6 +105,11 @@ window.Charts = Stapes.subclass({
         var $el = $(el);
         var themeId = $el.data('theme');
         var index = $el.data('index');
+
+        if (!themeId) {
+            return;
+        }
+
         var chartOpts = this.themes[themeId].charts[index];
 
         var quote = this.getQuote(chartOpts.text);

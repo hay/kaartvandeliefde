@@ -10,7 +10,7 @@ window.Filters = Stapes.subclass({
     bindEventHandlers : function() {
         var self = this;
 
-        this.$el.on('click', '.dropdown_menuButton', function() {
+        this.$el.on('click', '.filterlist-item', function() {
             var $el = $(this);
             var filter = $el.data('filter');
             var label = $el.data('label');
@@ -41,7 +41,7 @@ window.Filters = Stapes.subclass({
 
         value.selected = !value.selected;
 
-        var $value = $('.dropdown_menuButton[data-filter="' + filter + '"][data-label="' + label + '"]');
+        var $value = $('.filterlist-item[data-filter="' + filter + '"][data-label="' + label + '"]');
         $value.toggleClass('active', value.selected);
 
         this.emit('change');

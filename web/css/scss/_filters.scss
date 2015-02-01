@@ -1,0 +1,58 @@
+.container_filters {
+    position: absolute;
+    color: white;
+    top: 140px;
+    right: 20px;
+    z-index: 100;
+    @include transition(right 0.3s ease 0s);
+    @include background(linear-gradient(rgba(225,0,0,0) 0%, rgba(0,0,0,0.04) 100%) repeat scroll 0 0 rgba(255,255,255,1));
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+
+    body.contracted & {
+        right: -550px;
+    }
+
+    &.liefde {
+        background-color: #e53228;
+    }
+
+    &.angst {
+        background-color: #19C0D1;
+    }
+
+    &.lust {
+        background-color: #FFAA00;
+    }
+}
+
+.filterlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        padding: 5px 10px;
+    }
+}
+
+.filterlist .filterlist-header {
+
+}
+
+.filterlist-item {
+    background: white;
+    color: #333;
+    cursor: pointer;
+
+    &.active:before {
+        color: #333;
+    }
+
+    &:before {
+        font-weight: 100;
+        font-size: 14px;
+        content: "√ ";
+        margin: 0 5px 0 0;
+        color: white; // Smarty pants!
+    }
+}
