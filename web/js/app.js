@@ -19,10 +19,20 @@ var App = Stapes.subclass({
 window.app = new App();
 
 app.on({
+    'change:currBlock' : function(block) {
+        if (block === 0) {
+            $(".container_left").addClass("open");
+        } else {
+            $(".container_left").removeClass("open");
+        }
+    },
+
     'change:currPage' : function() {
         var name = app.getCurrPageName();
 
         if (name === 'home') return;
+
+        $(".container_left").addClass("open");
 
         drawBlockLegend();
         gemeentes.render();
@@ -191,16 +201,18 @@ function initApp() {
         document.activeElement.blur()
     });
 
-    $(".container_left").on('mouseenter', function(){
+    $(".container_left").on('mouseenter', function() {
         $(".container_left").addClass("open");
         document.activeElement.blur();
     });
 
-    $(".container_left").on('mouseleave', function(){
-        $(".container_left").removeClass("open");
+    $(".container_left").on('mouseleave', function() {
+        if (app.get('currBlock') !== 0) {
+            $(".container_left").removeClass("open");
+        }
+
         document.activeElement.blur();
     });
-
 
     $(".container_frontpageIcon").each(function(){
         $(this).on("mouseover", function(){

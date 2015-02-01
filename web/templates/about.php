@@ -4,22 +4,16 @@
             <a class="close">&times;</a>
 
             <h1>Over</h1>
-            <p class="lead">Hebben we nog lief? Of trekt een beetje rondscharrelen ons meer aan? Kaart van de liefde laat de stand van zaken over de hedendaagse liefde, angsten en lusten in Nederland zien.</p>
+            <p class="lead">Dit onderzoek is opgezet op verzoek van Lucas De Man; regisseur van de voorstelling <a href="http://www.hzt.nl/romeoenjulia">Romeo en Julia bij Het Zuidelijk Toneel</a>. Lucas (32 jaar) wilde een Romeo en Julia maken die gaat over de huidige generatie 20ers en 30ers. Hoe zien en ervaren wij de liefde nu? Dat vroeg hij zich af.</p>
 
-            <h5>Onderzoek</h5>
-            <p>Lucas de Man, de regisseur van het nieuwe Romeo en Julia, is in samenwerking met het Zuidelijk Toneel een wetenschappelijk onderzoek in de vorm van een online enqu&ecirc;te betreffende liefde en seks in Nederland. De Grote Liefde en Seks Vandaag De Dag-enqu&ecirc;te is uitgezet onder jongeren tussen de 18 en 35 jaar en geeft antwoord op de bovenstaande vragen en meer!</p>
+            <p>De resultaten van het onderzoek verwerkte Lucas in de verschillende personages van de voorstelling. Romeo en Julia zijn geen 14 en 15 jaar zoals in het origineel maar 30ers, omgeven door hun vrienden en carrières.  Daarnaast  gooide Lucas de ouders uit het stuk, selecteerde een steengoede cast generatiegenoten en vroeg Nik van den Berg om vette live muziek te komen maken.</p>
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/XfoDl9wrfAQ?rel=0" frameborder="0" allowfullscreen></iframe>
 
             <h5>Samenwerkingen</h5>
-            <p>Het onderzoek is in samenwerking met Dynamic Concepts opgezet. Om zoveel mogelijk resultaat te behalen, is bij het uitzetten van de enqu&ecirc;te hulp verkregen van BNN, Parship en Avans Hogeschool. De studenten van de minor Data Beleving aan Avans Hogeschool in 's-Hertogenbosch hebben tot slot de resultaten vormgegeven en Kaart van de liefde ontwikkeld. Er is een digitale landkaart over de liefde gebouwd. Deze zal worden gepresenteerd op 14 februari.</p>
+            Het onderzoek is opgezet in samenwerking met onderzoeksbureau Dynamic Concepts en BNN. Om zoveel mogelijk resultaat te behalen, is bij het uitzetten van de enquête hulp verkregen van alle deelnemende theaters, BNN, Parship en Avans Hogeschool. De studenten van de minor Data Beleving aan Avans Hogeschool in 's-Hertogenbosch hebben tot slot de resultaten vormgegeven en de digitale Kaart van de liefde ontwikkeld.
 
-            <h5>Romeo en Julia</h5>
-            <p>Het stuk Romeo en Julia laat de worsteling zien van de jonge generatie, wat betreft verwachtingen en angsten op het gebied van liefde en identiteit.</p>
-
-            <p class="lead">"Het mooiste theater krijg je als je ontroering en humor, mooie taal en actie, bij elkaar in &eacute;&eacute;n voorstelling krijgt. Zowel verdieping als beleving." &mdash; Lucas de Man</p>
-
-            <p>Nieuwsgierig geworden? Romeo en Julia gaat op 12 maart in premi&egrave;re. Kijk voor kaarten en meer informatie op <a href="http://www.hzt.nl/RomeoEnJulia">Het Zuidelijk Toneel</a>.</p>
-
-            <p><strong>Experimenteer en ontdek!</strong></p>
+            Op 12 maart gaat de voorstelling in première in Tilburg en staat daarna overal in Nederland en België. <a href="http://www.hzt.nl">Klik hier voor kaarten en meer informatie</a>.
         </div>
     </div>
 </div>

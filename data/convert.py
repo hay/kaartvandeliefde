@@ -39,6 +39,7 @@ questions = (
     "V053_2",
     "V027_5",
     "V027_4",
+    "V013_4",
     # Only combination
     "V023_3"
 )
@@ -57,7 +58,8 @@ to_normalize = (
     "V053_2",
     "V027_5",
     "V013_2-V048_2",
-    "V027_4"
+    "V027_4",
+    "V013_4"
 )
 
 def filter_sex(data):

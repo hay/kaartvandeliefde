@@ -274,6 +274,12 @@ window.THEMES = {
                 "text" : "Is deze generatie in %s liever ontevreden in een relatie dan vrijgezel?"
             },
             {
+                "type" : "pie",
+                "question" : "V013_4",
+                "category" : "Kwetsbaarheid",
+                "text" : "Durft deze generatie in %s zijn zwaktes te laten zien?"
+            },
+            {
                 "type": "pie",
                 "question": "V027_5",
                 "category" : "Verliefd op een ander",

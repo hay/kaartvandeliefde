@@ -22,6 +22,8 @@
             <p> "57% van de Nederlanders vinden het lastig om hun fouten en zwakte toe te geven" </p>
         </div>
 
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/kTf92FwQUxA?rel=0" frameborder="0" allowfullscreen></iframe>
+
         <h3>Seks, Liefde en angst.</h3>
         <p>Drie onderwerpen die met elkaar in verband staan. Maar zo zien jongeren het al lang niet meer.
         Liefde nee, seks ja, Is een opvatting die je steeds vaker terugziet.
