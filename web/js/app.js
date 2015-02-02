@@ -106,6 +106,28 @@ function initApp() {
         }, 50, true));
     });
 
+    // Probably should have a single element instead of three
+    $(".themepage").each(function() {
+        var touchEvents = new Hammer.Manager(
+            this,
+            {
+                recognizers : [
+                    [Hammer.Swipe, { direction : Hammer.DIRECTION_VERTICAL }]
+                ]
+            }
+        );
+
+        touchEvents.on('swipe', function(opts) {
+            var currBlock = app.get('currBlock');
+
+            if (opts.direction === Hammer.DIRECTION_UP) {
+                changeBlock(currBlock + 1);
+            } else {
+                changeBlock(currBlock - 1);
+            }
+        });
+    });
+
     $("[data-toPage]").on('click', function(e) {
         e.preventDefault();
         var page = parseInt( $(this).attr('data-toPage') );
