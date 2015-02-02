@@ -96,11 +96,24 @@ def read_csv(file):
     for row in reader:
         yield row
 
+def get_zip_province():
+    zips = {}
+
+    for row in read_csv("./postcodes-provincie.csv"):
+        z = int(row["zip"])
+        zips[z] = row["state"]
+
+    return zips
+
 def get_zip():
     postcodes = []
 
+    states = get_zip_province()
+
     for row in read_csv("./postcodes.csv"):
-        row["postcode"] = int(row["postcode"])
+        postcode = int(row["postcode"])
+        row["postcode"] = postcode
+        row["province"] = states[postcode]
         postcodes.append( row )
 
     return postcodes

@@ -1,4 +1,25 @@
 window.Gemeentes = Stapes.subclass({
+    BLESSED : [
+        "Utrecht",
+        "Groningen",
+        "Amsterdam",
+        "Tilburg",
+        "Breda",
+        "Rotterdam",
+        "Nijmegen",
+        "'s-Hertogenbosch",
+        "Leeuwarden",
+        "Eindhoven",
+        "'s-Gravenhage",
+        "Enschede",
+        "Zwolle",
+        "Maastricht",
+        "Amersfoort",
+        "Almere",
+        "Deventer",
+        "Leiden"
+    ],
+
     constructor : function(el) {
         this.$el = $(el);
         this.gemeentes = ['Nederland'];
@@ -15,6 +36,12 @@ window.Gemeentes = Stapes.subclass({
         // Maximum number of gemeentes
         if (this.gemeentes.length === 3) {
             return;
+        }
+
+        // If this gemeente is not blessed, get the province
+        if (this.BLESSED.indexOf(gemeente) === -1) {
+            var province = window.datastore.getProvinceByGemeente(gemeente);
+            gemeente = province;
         }
 
         this.gemeentes.push( gemeente );

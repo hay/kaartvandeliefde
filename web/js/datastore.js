@@ -9,6 +9,7 @@ window.DataStore = Stapes.subclass({
 
         this.data.zip.forEach(function(item) {
             var gemeente = item.gemeente;
+            var province = item.province;
             var zip = item.postcode;
 
             if (this.gemeentes[gemeente]) {
@@ -20,7 +21,10 @@ window.DataStore = Stapes.subclass({
                 this.gemeentes[gemeente] = gemeenteData;
             }
 
-            this.zips[zip] = gemeente;
+            this.zips[zip] = {
+                gemeente : gemeente,
+                province : province
+            };
         }, this);
     },
 
@@ -40,6 +44,18 @@ window.DataStore = Stapes.subclass({
                 delete this.gemeentes[gemeente];
             }
         }
+    },
+
+    getProvinceByGemeente : function(gemeente) {
+        return this.gemeentes[gemeente].province;
+    },
+
+    isZip : function(zip, gemeenteOrProvince) {
+        if (!this.zips[zip]) return false;
+
+        return gemeenteOrProvince === 'Nederland' ||
+               this.zips[zip].gemeente === gemeenteOrProvince ||
+               this.zips[zip].province === gemeenteOrProvince;
     },
 
     load : function(cb) {

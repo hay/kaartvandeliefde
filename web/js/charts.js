@@ -30,7 +30,7 @@ window.Charts = Stapes.subclass({
 
         this.answers.forEach(function(record) {
             var zip = record.filters.zip;
-            var inGemeente = this.data.zips[zip] === gemeente || gemeente === 'Nederland';
+            var inGemeente = this.data.isZip(zip, gemeente) || gemeente === 'Nederland';
 
             if (record.answers[question] !== null && inGemeente) {
                 var answer = record.answers[question];
