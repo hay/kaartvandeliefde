@@ -104,22 +104,6 @@ function initApp() {
                 changeBlock(app.get('currBlock') + 1);
             }
         }, 50, true));
-
-        $el.on("touchstart", function(e){
-            lastTouchY = e.originalEvent.touches[0].clientY;
-        });
-
-        $el.on("touchmove", function(e){
-            if (app.get('currPage') != 0){
-                e.preventDefault();
-                var currTouchY = e.originalEvent.touches[0].clientY;
-                if (currTouchY > lastTouchY){
-                    changeBlock(app.get('currBlock') - 1);
-                } else {
-                    changeBlock(app.get('currBlock') + 1);
-                }
-            }
-        });
     });
 
     $("[data-toPage]").on('click', function(e) {
