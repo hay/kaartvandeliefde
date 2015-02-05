@@ -1,12 +1,12 @@
-/*.piechart-container {
+.piechart-container {
     @include display-flex;
     @include flex-direction(row);
     @include justify-content(space-between);
-}*/
+}
 
-/*.piechart {
+.piechart {
     @include flex(1);
-}*/
+}
 
 .mask_header {
     width: 100%;
