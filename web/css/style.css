@@ -1190,9 +1190,18 @@ body.contracted .container_left {
   bottom: 10px;
   right: 180px;
   z-index: 100;
+  -webkit-transition: right 0.3s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: right 0.3s ease 0s;
+  -o-transition: right 0.3s ease 0s;
+  transition: right 0.3s ease 0s;
+}
+/* line 446, scss/_other.scss */
+body.contracted .container_gemeenteDropDown {
+  right: -390px;
 }
 
-/* line 446, scss/_other.scss */
+/* line 451, scss/_other.scss */
 .container_gemeenteDropDown .dummySelect {
   color: #999;
 }

@@ -332,7 +332,6 @@ function constructGemeenteDropDown(){
     $dummySelect.appendTo($dropdown);
     
     gemeenteList.forEach(function(i){
-        console.log(i);
         var $item = $("<option></option>").text(i);
         $item.appendTo($dropdown);
     });

@@ -441,6 +441,11 @@ body.contracted .container_left {
     bottom: 10px;
     right: 180px;
     z-index: 100;
+    @include transition(right 0.3s ease 0s);
+    
+    body.contracted & {
+        right: -390px;
+    }
 }
 
 .container_gemeenteDropDown .dummySelect {
