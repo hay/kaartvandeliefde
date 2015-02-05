@@ -87,7 +87,8 @@ function initApp() {
     filters.render();
 
     maxPages = $(".container_page").length;
-    changeSize()
+    changeSize();
+    resizeYoutubePlayer();
 
     $(".container_page").each(function(e, i) {
         var $el = $(this);
@@ -136,6 +137,7 @@ function initApp() {
 
     $(window).resize(function(){
         changeSize();
+        resizeYoutubePlayer();
     });
 
     $(window).on("keydown", function(e){
@@ -247,6 +249,19 @@ function initApp() {
     var allQuotes = $('#quotes').children();
     var next = 0;
     var previous = 0;
+    
+    next = Math.round(Math.random() * (allQuotes.length-1));
+
+    while (next == previous) {
+        next = Math.round(Math.random(0, allQuotes.lenght));
+    }
+
+    // zorg ervoor dat de oude quote verdwijnt
+    $(allQuotes[previous]).css({'display': 'none', 'opacity' : '0'});
+    $(allQuotes[next]).css('display', 'block');
+    $(allQuotes[next]).css('marginTop', $(allQuotes[next]).parent().innerHeight()/2 - $(allQuotes[next]).outerHeight()/2);
+    $(allQuotes[next]).animate({opacity : 1});
+    previous = next;
 
     var timer = setInterval(function(){
         next = Math.round(Math.random() * (allQuotes.length-1));
@@ -545,6 +560,15 @@ function setClasses(){
             $all.removeClass(classes[i]);
         }
     }
+}
+    
+function resizeYoutubePlayer(){
+    var $player = $(".youtubePlayer");
+    var width_player = (width*0.6 > 460)? 460 : width*0.6;
+    var ratio = (width_player)/1080;
+    
+    $player.css("width", Math.round(1080*ratio));
+    $player.css("height", Math.round(740*ratio));
 }
 
 window.initApp = initApp;

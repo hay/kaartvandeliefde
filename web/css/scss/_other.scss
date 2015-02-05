@@ -139,6 +139,7 @@
     height: 40px;
     border-right: 1px solid #ddd;
     padding: 6px 6px;
+    cursor: pointer;
 }
 
 .container_themaButtons {
@@ -221,7 +222,7 @@ body.contracted .container_left {
     font-size: 21px;
     font-weight: 700;
     line-height: 1;
-    position: fixed; /* STEF */
+    position: fixed;
     margin-left: 570px;
     color: #000;
     text-shadow: 0 1px 0 #fff;
@@ -310,47 +311,10 @@ body.contracted .container_left {
     vertical-align: middle;
 }
 
-.container_frontpageIcon {
-    position: relative;
-    max-width: 100px;
-    width: 20%;
-    min-height: 120px;
-    display: inline-block;
-    cursor: pointer;
-    margin: 40px 5% 0 5%;
-}
-
-.frontpageIcon_shadow {
-    width: 100%;
-}
-
-.frontpageIcon_icon {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 21;
-}
-
 .quote {
     font-weight: 800;
     font-size: 18px;
     text-transform: uppercase;
-}
-
-#quotes{
-    height: 66px;
-    overflow: hidden;
-}
-
-#quotes p {
-    font-family: 'Exo', sans-serif;
-    display:none;
-    opacity: 0;
-    font-weight: 200;
-    font-size: 20px;
-    margin: 0px auto;
-    padding: 0px;
 }
 
 .chart rect{

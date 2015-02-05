@@ -1,5 +1,5 @@
 .frontpage {
-    background: url("../img/background-home-love.jpg") no-repeat center center fixed;
+    background: url("../img/background.png") no-repeat center center;
     background-size: cover;
     text-align: center;
     color: white;
@@ -12,6 +12,8 @@
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
+        font-size: 18px;
+        text-shadow: 0px 0px 8px black;
     }
 
     h2 {
@@ -24,8 +26,56 @@
     h3 {
         font-size: 16px;
     }
+    
+    .frontpage_logo {
+        width: 174px;
+    }
+    
+    #quotes{
+    min-height: 66px;
+    overflow: hidden;
+    margin: 10px 0px 0px 10px;
+    }
 
-    p {
-        font-size: 14px;
+    #quotes p {
+        font-family: 'exo2', sans-serif;
+        display:none;
+        opacity: 0;
+        font-size: 26px;
+        margin: 0px auto;
+        padding: 0px;
+        text-shadow: 0px 0px 0px;
+    }
+
+    #quotes span {
+        background-color: rgba(230, 26, 56, 0.6);
+        padding: 5px;
+    }
+    
+    .container_frontpageIcon {
+        position: relative;
+        max-width: 80px;
+        width: 20%;
+        min-height: 120px;
+        display: inline-block;
+        cursor: pointer;
+        margin: 40px 3% 0 3%;
+    }
+
+    .frontpageIcon_shadow {
+        width: 100%;
+    }
+
+    .frontpageIcon_icon {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        z-index: 21;
+    }
+    
+    .youtubePlayer {
+        border: 4px solid white;
+        margin: 40px 0px;
     }
 }
