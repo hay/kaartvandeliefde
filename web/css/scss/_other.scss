@@ -1,4 +1,4 @@
-.piechart-container {
+/*.piechart-container {
     @include display-flex;
     @include flex-direction(row);
     @include justify-content(space-between);
@@ -6,7 +6,7 @@
 
 .piechart {
     @include flex(1);
-}
+}*/
 
 .mask_header {
     width: 100%;
@@ -434,4 +434,20 @@ body.contracted .container_left {
     width: 0px;
     height: 0px;
     margin: 0px auto;
+}
+
+.container_gemeenteDropDown {
+    position: absolute;
+    bottom: 10px;
+    right: 180px;
+    z-index: 100;
+    @include transition(right 0.3s ease 0s);
+    
+    body.contracted & {
+        right: -390px;
+    }
+}
+
+.container_gemeenteDropDown .dummySelect {
+    color: #999;
 }

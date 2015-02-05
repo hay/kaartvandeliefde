@@ -295,6 +295,8 @@ function initApp() {
         return false;
         e.preventDefault();
     });
+    
+    constructGemeenteDropDown();
 
     $(document).keyup(function(e) {
 	  if (e.keyCode == 27) { $('#about.open').fadeOut(200); }   // esc
@@ -316,6 +318,35 @@ function initApp() {
         }, 1000);
     }, 0);
 };
+    
+function constructGemeenteDropDown(){
+    var gemeenteList = [];
+    for (var g in datastore.gemeentes){
+        gemeenteList.push(datastore.gemeentes[g].gemeente);
+    }
+    gemeenteList.sort();
+    
+    var $dropdown = $("<select></select>");
+    
+    var $dummySelect = $("<option class='dummySelect' selected></option>").text("Kies een gemeente..");
+    $dummySelect.appendTo($dropdown);
+    
+    gemeenteList.forEach(function(i){
+        var $item = $("<option></option>").text(i);
+        $item.appendTo($dropdown);
+    });
+    
+    $dropdown.change(function(){
+        var $selectedItem = $(this).find(":selected");
+        if (!$selectedItem.hasClass("dummySelect")){
+            gemeentes.add($selectedItem.text());
+            $selectedItem.removeAttr("selected");
+            $dummySelect.attr("selected", true);
+        }
+    });
+    
+    $dropdown.appendTo($("#container_gemeenteDropDown"));
+}
 
 function parseHash() {
     var parts = window.location.hash.replace('#', '').split('-');

@@ -466,7 +466,7 @@ li.btn_nav:last-child {
   color: white;
   line-height: 1.6;
   font-size: 0.8em;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0);
   overflow: auto;
 }
 /* line 11, scss/_frontpage.scss */
@@ -510,7 +510,7 @@ li.btn_nav:last-child {
 }
 /* line 50, scss/_frontpage.scss */
 .frontpage #quotes span {
-  background-color: rgba(230, 26, 56, 0.6);
+  background-color: rgba(230, 26, 56, 0);
   padding: 5px;
 }
 /* line 55, scss/_frontpage.scss */
@@ -697,9 +697,11 @@ li.btn_nav:last-child {
     @include flex-direction(row);
     @include justify-content(space-between);
 }
+
 .piechart {
     @include flex(1);
 }
+
 /* line 11, scss/_other.scss */
 .mask_header {
   width: 100%;
@@ -827,7 +829,7 @@ li.btn_nav:last-child {
   text-align: center;
   background: -webkit-linear-gradient(white 0%, #f0f0f0 100%) repeat scroll 0 0 white;
   background: linear-gradient(#ffffff 0%, #f0f0f0 100%) repeat scroll 0 0 white;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #DDD;
 }
 
@@ -874,7 +876,7 @@ li.btn_nav:last-child {
   z-index: 100;
   width: 250px;
   background-color: white;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
   transition: left 0.3s ease 0s;
 }
 
@@ -1107,7 +1109,7 @@ body.contracted .container_left {
 
 /* line 367, scss/_other.scss */
 .leaflet-bar {
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
 }
 
 /* line 371, scss/_other.scss */
@@ -1181,6 +1183,28 @@ body.contracted .container_left {
   width: 0px;
   height: 0px;
   margin: 0px auto;
+}
+
+/* line 439, scss/_other.scss */
+.container_gemeenteDropDown {
+  position: absolute;
+  bottom: 10px;
+  right: 180px;
+  z-index: 100;
+  -webkit-transition: right 0.3s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: right 0.3s ease 0s;
+  -o-transition: right 0.3s ease 0s;
+  transition: right 0.3s ease 0s;
+}
+/* line 446, scss/_other.scss */
+body.contracted .container_gemeenteDropDown {
+  right: -390px;
+}
+
+/* line 451, scss/_other.scss */
+.container_gemeenteDropDown .dummySelect {
+  color: #999;
 }
 
 /* line 1, scss/_loading.scss */
