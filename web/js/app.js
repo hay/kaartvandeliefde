@@ -34,6 +34,8 @@ app.on({
 
         $(".container_left").addClass("open");
 
+        $("body").attr('data-theme', name);
+
         drawBlockLegend();
         gemeentes.render();
         charts.renderMap('.themepage .contentHeader.' + name);
@@ -58,7 +60,7 @@ function initApp() {
     gemeentes = new Gemeentes(".container_filterGemeente");
     filters = new Filters("#filters", window.FILTERS);
     gemeenteSelector = new GemeenteSelector(
-        "#container_gemeenteDropDown",
+        "#container_gemeenteDropDown select",
         {
             gemeentes : BLESSED_GEMEENTES,
             provinces : PROVINCES

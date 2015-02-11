@@ -18,13 +18,19 @@ window.GemeenteSelector = Stapes.subclass({
     },
 
     render : function() {
-        var places = this.gemeentes.concat(this.provinces);
+        var html = [];
 
-        var html = places.map(function(place) {
-            return '<option class="item" value="' + place + '">' + place + '</option>';
+        this.gemeentes.forEach(function(place) {
+            html.push('<option class="item" value="' + place + '">' + place + '</option>');
         });
 
-        html = '<select><option value="ignore">Selecteer een gemeente of provincie</option>' + html.join('') + '</select>';
+        // TODO: REMOVE ASAP
+        for (var city in PROVINCE_CITIES) {
+            var province = PROVINCE_CITIES[city];
+            html.push('<option class="item" value="' + city + '">' + province + '</option>');
+        }
+
+        html = '<select><option value="ignore">Klik hier</option>' + html.join('') + '</select>';
 
         this.$el.html(html);
     },

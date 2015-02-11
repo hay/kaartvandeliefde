@@ -1,0 +1,13 @@
+@mixin theme-colors-background {
+    body[data-theme=liefde] & {
+        background-color: #e53228;
+    }
+
+    body[data-theme=angst] & {
+        background-color: #19C0D1;
+    }
+
+    body[data-theme=lust] & {
+        background-color: #FFAA00;
+    }
+}

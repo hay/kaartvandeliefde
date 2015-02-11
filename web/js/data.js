@@ -34,6 +34,22 @@ window.PROVINCES = [
     "Noord-Brabant"
 ];
 
+// This is an absolute ugly hack
+window.PROVINCE_CITIES = {
+    "Schagen" : "Noord-Holland",
+    "Vlaardingen" : "Zuid-Holland",
+    "Pekela" : "Groningen",
+    "Heerenveen" : "Friesland",
+    "Assen" : "Drenthe",
+    "Almelo" : "Overijssel",
+    "Renkum" : "Gelderland",
+    "Veghel" : "Noord-Brabant",
+    "Hulst" : "Zeeland",
+    "Urk" : "Flevoland",
+    "Bunschoten" : "Utrecht",
+    "Tegelen" : "Limburg"
+};
+
 window.FILTERS = [
     {
         "name" : "Geslacht",
