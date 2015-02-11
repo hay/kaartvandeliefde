@@ -1,0 +1,43 @@
+.display-xs {
+    display: none;
+}
+
+// This is pretty stupid, but best we can do for now
+@include respond-until($screen-sm) {
+    .display-xs {
+        display: block;
+    }
+
+    .container_left,
+    #filters,
+    .homebutton,
+    .container_gemeenteDropDown,
+    .container_filterGemeente,
+    .container_otherButtons {
+        display: none;
+    }
+
+    .container_top {
+        height: 51px;
+    }
+
+    .container_themaButtons {
+        left: 0;
+        margin: 0;
+    }
+
+    .themepage {
+        .container_content {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .quote, .chartcontainer {
+            margin: inherit;
+
+            h2 {
+                display: none;
+            }
+        }
+    }
+}
