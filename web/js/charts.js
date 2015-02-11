@@ -6,7 +6,7 @@ window.Charts = Stapes.subclass({
         this.filters = {};
         this.themes = themes;
         this.maps = {};
-        this.gemeentes = ['Nederland'];
+        this.gemeentes = INIT_GEMEENTES;
 
         var tmplTheme = $("#tmpl-theme").html();
         this.tmplTheme = Handlebars.compile(tmplTheme);

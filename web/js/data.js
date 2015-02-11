@@ -1,3 +1,5 @@
+window.INIT_GEMEENTES = ["Amsterdam"];
+
 window.BLESSED_GEMEENTES = [
     "Utrecht",
     "Groningen",
@@ -283,12 +285,12 @@ window.THEMES = {
                 "category" : "Afspraken",
                 "text" : "Wat voor soort afspraken maakt deze generatie in %s rond seks buiten de relatie?",
                 "labels" : [
-                    "Nee, we hebben geen afspraken gemaakt",
-                    "Ja, we hebben afgesproken niet vreemd te gaan",
-                    "Ja, we mogen vreemdgaan maar dan wel sámen",
-                    "Ja, we mogen vreemdgaan, maar dan wil de ander er nooit iets van weten",
-                    "Ja, zoenen mag, maar seks niet",
-                    "Ja, het mag wel met vrouwen, maar niet met mannen (of andersom)",
+                    "Geen afspraken",
+                    "Afgesproken niet vreemd te gaan",
+                    "Vreemdgaan mag, maar wel samen",
+                    "Vreemdgaan mag, maar nooit vertellen",
+                    "Vreemdgaan mag, maar alleen zoenen",
+                    "Vreemdgaan mag, maar alleen met het eigen geslacht",
                     "Anders"
                 ]
             }

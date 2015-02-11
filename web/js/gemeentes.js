@@ -1,7 +1,7 @@
 window.Gemeentes = Stapes.subclass({
     constructor : function(el) {
         this.$el = $(el);
-        this.gemeentes = ['Nederland'];
+        this.gemeentes = INIT_GEMEENTES;
         this.tmpl = Handlebars.compile( $("#tmpl-gemeentes").html() );
         this.bindEventHandlers();
     },
@@ -60,6 +60,11 @@ window.Gemeentes = Stapes.subclass({
         }
 
         this.gemeentes = _.without(this.gemeentes, gemeente);
+
+        // Check if this is not empty
+        if (!this.gemeentes.length) {
+            this.gemeentes = INIT_GEMEENTES;
+        }
 
         this.emit('change');
     }

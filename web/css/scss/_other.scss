@@ -482,3 +482,7 @@ body.contracted .container_left {
     height: 0px;
     margin: 0px auto;
 }
+
+[data-show-if] {
+    display: none;
+}
