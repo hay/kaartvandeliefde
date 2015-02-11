@@ -274,8 +274,8 @@ window.THEMES = {
             {
                 "type": "pie",
                 "question": "V024_1-V051_1",
-                "category" : "Vreemd gaan",
-                "text" : "Is deze generatie in %s wel eens vreemd gegaan?"
+                "category" : "Vreemdgaan",
+                "text" : "Is deze generatie in %s wel eens vreemdgegaan?"
             },
             {
                 "type" : "bar",

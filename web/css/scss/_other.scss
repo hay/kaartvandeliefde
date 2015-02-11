@@ -1,3 +1,35 @@
+h3.partners {
+    margin-top: 20px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.thumblist {
+    &.thumblist-center {
+        @include display-flex;
+        @include align-items(center);
+        width: 100%;
+        margin-bottom: 50px;
+        margin-top: 0;
+
+        li {
+            @include flex(1);
+        }
+    }
+
+    float: left;
+    clear: left;
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+
+    li {
+        float: left;
+        margin-right: 20px;
+    }
+}
+
 .credit-list {
     dt {
         padding-top: 10px;
@@ -449,4 +481,43 @@ body.contracted .container_left {
     width: 0px;
     height: 0px;
     margin: 0px auto;
+}
+
+.display-xs {
+    display: none;
+}
+
+// This is pretty stupid, but best we can do for now
+@include respond-until($screen-sm) {
+    .display-xs {
+        display: block;
+    }
+
+    .container_left,
+    #filters,
+    .homebutton,
+    .container_gemeenteDropDown,
+    .container_filterGemeente,
+    .container_otherButtons {
+        display: none;
+    }
+
+    .container_top {
+        height: 51px;
+    }
+
+    .container_themaButtons {
+        left: 0;
+        margin: 0;
+    }
+
+    .themepage {
+        .container_content {
+            padding-top: 60px;
+        }
+
+        .quote, .chartcontainer {
+            margin: inherit;
+        }
+    }
 }
