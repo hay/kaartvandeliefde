@@ -1,3 +1,39 @@
+window.BLESSED_GEMEENTES = [
+    "Utrecht",
+    "Groningen",
+    "Amsterdam",
+    "Tilburg",
+    "Breda",
+    "Rotterdam",
+    "Nijmegen",
+    "'s-Hertogenbosch",
+    "Leeuwarden",
+    "Eindhoven",
+    "'s-Gravenhage",
+    "Enschede",
+    "Zwolle",
+    "Maastricht",
+    "Amersfoort",
+    "Almere",
+    "Deventer",
+    "Leiden"
+];
+
+window.PROVINCES = [
+    "Noord-Holland",
+    "Zuid-Holland",
+    "Groningen",
+    "Friesland",
+    "Drenthe",
+    "Overijssel",
+    "Gelderland",
+    "Limburg",
+    "Zeeland",
+    "Flevoland",
+    "Utrecht",
+    "Noord-Brabant"
+];
+
 window.FILTERS = [
     {
         "name" : "Geslacht",

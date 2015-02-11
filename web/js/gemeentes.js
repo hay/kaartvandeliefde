@@ -1,25 +1,4 @@
 window.Gemeentes = Stapes.subclass({
-    BLESSED : [
-        "Utrecht",
-        "Groningen",
-        "Amsterdam",
-        "Tilburg",
-        "Breda",
-        "Rotterdam",
-        "Nijmegen",
-        "'s-Hertogenbosch",
-        "Leeuwarden",
-        "Eindhoven",
-        "'s-Gravenhage",
-        "Enschede",
-        "Zwolle",
-        "Maastricht",
-        "Amersfoort",
-        "Almere",
-        "Deventer",
-        "Leiden"
-    ],
-
     constructor : function(el) {
         this.$el = $(el);
         this.gemeentes = ['Nederland'];
@@ -27,6 +6,7 @@ window.Gemeentes = Stapes.subclass({
         this.bindEventHandlers();
     },
 
+    // TODO: gemeente can be the same as province (Utrecht / Groningen)
     add : function(gemeente) {
         // Make sure we don't add stuff that's already there
         if (this.gemeentes.indexOf(gemeente) !== -1) {
@@ -39,7 +19,7 @@ window.Gemeentes = Stapes.subclass({
         }
 
         // If this gemeente is not blessed, get the province
-        if (this.BLESSED.indexOf(gemeente) === -1) {
+        if (BLESSED_GEMEENTES.indexOf(gemeente) === -1) {
             var province = window.datastore.getProvinceByGemeente(gemeente);
             gemeente = province;
         }

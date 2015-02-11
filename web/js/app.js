@@ -48,7 +48,7 @@ var scrollingVer = false;
 
 var lastTouchY = 0;
 
-var charts, gemeentes, filters;
+var charts, gemeentes, filters, gemeenteSelector;
 
 // TODO: this stuff should obviously be refactored
 function initApp() {
@@ -57,6 +57,14 @@ function initApp() {
     charts = new Charts(".container_header", datastore, window.THEMES);
     gemeentes = new Gemeentes(".container_filterGemeente");
     filters = new Filters("#filters", window.FILTERS);
+    gemeenteSelector = new GemeenteSelector(
+        "#container_gemeenteDropDown",
+        {
+            gemeentes : BLESSED_GEMEENTES,
+            provinces : PROVINCES
+        }
+    );
+
     charts.setFilters( filters.getFilters() );
 
     gemeentes.on({
@@ -65,6 +73,11 @@ function initApp() {
             charts.setGemeentes( gemeentes.getGemeentes() );
             charts.renderChart( charts.getCurrentChart() );
         }
+    });
+
+    // TODO: gemeente can be both province or city (eg Groningen)
+    gemeenteSelector.on('select', function(place) {
+        gemeentes.add(place);
     });
 
     charts.on('gemeenteselect', function(gemeente) {
@@ -85,6 +98,7 @@ function initApp() {
 
     charts.setup();
     filters.render();
+    gemeenteSelector.render();
 
     maxPages = $(".container_page").length;
     changeSize();
@@ -249,7 +263,7 @@ function initApp() {
     var allQuotes = $('#quotes').children();
     var next = 0;
     var previous = 0;
-    
+
     next = Math.round(Math.random() * (allQuotes.length-1));
 
     while (next == previous) {
@@ -295,8 +309,6 @@ function initApp() {
         return false;
         e.preventDefault();
     });
-    
-    constructGemeenteDropDown();
 
     $(document).keyup(function(e) {
 	  if (e.keyCode == 27) { $('#about.open').fadeOut(200); }   // esc
@@ -318,35 +330,7 @@ function initApp() {
         }, 1000);
     }, 0);
 };
-    
-function constructGemeenteDropDown(){
-    var gemeenteList = [];
-    for (var g in datastore.gemeentes){
-        gemeenteList.push(datastore.gemeentes[g].gemeente);
-    }
-    gemeenteList.sort();
-    
-    var $dropdown = $("<select></select>");
-    
-    var $dummySelect = $("<option class='dummySelect' selected></option>").text("Kies een gemeente..");
-    $dummySelect.appendTo($dropdown);
-    
-    gemeenteList.forEach(function(i){
-        var $item = $("<option></option>").text(i);
-        $item.appendTo($dropdown);
-    });
-    
-    $dropdown.change(function(){
-        var $selectedItem = $(this).find(":selected");
-        if (!$selectedItem.hasClass("dummySelect")){
-            gemeentes.add($selectedItem.text());
-            $selectedItem.removeAttr("selected");
-            $dummySelect.attr("selected", true);
-        }
-    });
-    
-    $dropdown.appendTo($("#container_gemeenteDropDown"));
-}
+
 
 function parseHash() {
     var parts = window.location.hash.replace('#', '').split('-');
@@ -592,12 +576,12 @@ function setClasses(){
         }
     }
 }
-    
+
 function resizeYoutubePlayer(){
     var $player = $(".youtubePlayer");
     var width_player = (width*0.6 > 460)? 460 : width*0.6;
     var ratio = (width_player)/1080;
-    
+
     $player.css("width", Math.round(1080*ratio));
     $player.css("height", Math.round(740*ratio));
 }
