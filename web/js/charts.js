@@ -46,6 +46,15 @@ window.Charts = Stapes.subclass({
             }
         }, this);
 
+        // Check if we actually have values
+        var total = answers.reduce(function(a, b) {
+            return a + b;
+        });
+
+        if (total === 0) {
+            throw new Error("[Charts.js] no values at all");
+        }
+
         return {
             data : this.convertToPercentage(answers),
             population : population
@@ -119,6 +128,7 @@ window.Charts = Stapes.subclass({
 
         var columns = this.gemeentes.map(function(gemeente) {
             var answer = this.calculateAnswer(question, gemeente, chartOpts);
+
             var column = answer.data;
             column.unshift(gemeente + ' (' + answer.population + ')');
             return column;
@@ -151,10 +161,14 @@ window.Charts = Stapes.subclass({
                 });
             }
         } catch (e) {
-            // TODO: data not ok
-            $el.html('<img src="img/icon-404.png">');
+            this.showError(el);
             return;
         }
+    },
+
+    showError : function( el ) {
+        el = el || this.currentChart;
+        $(el).html('<img src="img/icon-404.png">');
     },
 
     renderMap : function(el) {

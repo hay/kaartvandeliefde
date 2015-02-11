@@ -3,3 +3,4 @@ web/index.html
 dist
 node_modules
 .sass-cache
+.~*

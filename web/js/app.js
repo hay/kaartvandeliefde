@@ -90,7 +90,12 @@ function initApp() {
         'change' : function() {
             charts.setFilters( filters.getFilters() );
             charts.setAnswers();
-            charts.renderChart( charts.getCurrentChart() );
+
+            try {
+                charts.renderChart( charts.getCurrentChart() );
+            } catch (e) {
+                charts.showError( charts.getCurrentChart() );
+            }
         },
 
         'click' : function(d) {

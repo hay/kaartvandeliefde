@@ -7,7 +7,14 @@ window.PieChart = Chart.subclass({
 
         for (var i = 0; i < data.columns.length; i++) {
             var column = data.labels.map(function(label, index) {
-                return [label, data.columns[i][index + 1]];
+                var value = data.columns[i][index + 1];
+
+                // Check for NaNs
+                if (isNaN(value)) {
+                    throw new Exception("[PieChart] Invalid data values");
+                }
+
+                return [label, value];
             });
 
             columns.push({

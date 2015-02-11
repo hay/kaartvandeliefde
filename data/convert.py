@@ -136,14 +136,26 @@ def get_filters(row):
     return fdict
 
 def normalize_answer(answer):
-    if answer == 1 or answer == 2: return 1
-    if answer == 3: return 2
+    if not answer:
+        return None
+
+    if answer == 1 or answer == 2:
+        return 1
+
+    if answer == 3:
+        return 2
+
     return 3
 
 def add_combinations(answers):
     combo = [answers[q] for q in ["V023_3", "V086_4", "V087_2"]]
     combo = map(normalize_answer, combo)
-    answers["C1"] = int(round(sum(combo) / len(combo)))
+
+    if not all(combo):
+        answers["C1"] = None
+    else:
+        answers["C1"] = int(round(sum(combo) / len(combo)))
+
     return answers
 
 def normalize_answers(answers):
