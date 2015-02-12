@@ -8,31 +8,21 @@ window.GemeenteSelector = Stapes.subclass({
     },
 
     bindEventHandlers : function() {
-        this.$el.on('change', function(e) {
-            var val = $(e.target).val();
-
-            if (val !== 'ignore') {
-                this.emit('select', val);
-            }
+        this.$el.on('click', 'li', function(e) {
+            this.emit('select', $(e.target).data('place') );
         }.bind(this));
     },
 
     render : function() {
-        var html = [];
+        this.gemeentes.forEach(function(label) {
+            var place = { label : label, type : 'gemeente' };
+            this.$el.append( $("<li>" + label + "</li>").data('place', place) );
+        }, this);
 
-        this.gemeentes.forEach(function(place) {
-            html.push('<option class="item" value="' + place + '">' + place + '</option>');
-        });
-
-        // TODO: REMOVE ASAP
-        for (var city in PROVINCE_CITIES) {
-            var province = PROVINCE_CITIES[city];
-            html.push('<option class="item" value="' + city + '">' + province + '</option>');
-        }
-
-        html = '<select><option value="ignore">Klik hier</option>' + html.join('') + '</select>';
-
-        this.$el.html(html);
+        this.provinces.forEach(function(label) {
+            var place = { label : label, type : 'province' };
+            this.$el.append( $("<li>" + label + "</li>").data('place', place) );
+        }, this)
     },
 
     select : function(place) {

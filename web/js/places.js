@@ -1,13 +1,13 @@
-window.Gemeentes = Stapes.subclass({
+window.Places = Stapes.subclass({
     constructor : function(el) {
         this.$el = $(el);
-        this.gemeentes = INIT_GEMEENTES;
+        this.places = INIT_PLACES;
         this.tmpl = Handlebars.compile( $("#tmpl-gemeentes").html() );
         this.bindEventHandlers();
     },
 
     // TODO: gemeente can be the same as province (Utrecht / Groningen)
-    add : function(gemeente) {
+    addGemeente : function(gemeente) {
         // Make sure we don't add stuff that's already there
         if (this.gemeentes.indexOf(gemeente) !== -1) {
             return;
@@ -28,6 +28,10 @@ window.Gemeentes = Stapes.subclass({
         this.emit('change');
     },
 
+    addProvince : function(province) {
+
+    },
+
     bindEventHandlers : function() {
         var self = this;
 
@@ -37,19 +41,19 @@ window.Gemeentes = Stapes.subclass({
         });
     },
 
-    getGemeentes : function() {
-        return _.clone(this.gemeentes);
+    getPlaces : function() {
+        return _.clone(this.places);
     },
 
     render : function() {
-        var gemeentes = this.gemeentes.map(function(gemeente) {
+        var places = this.places.map(function(place) {
             return {
                 theme : app.getCurrPageName(),
-                name : gemeente
+                name : place
             }
         });
 
-        var html = this.tmpl({ gemeentes : gemeentes });
+        var html = this.tmpl({ gemeentes : places });
         this.$el.html(html);
     },
 

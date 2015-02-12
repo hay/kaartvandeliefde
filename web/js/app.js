@@ -37,7 +37,7 @@ app.on({
         $("body").attr('data-theme', name);
 
         drawBlockLegend();
-        gemeentes.render();
+        places.render();
         charts.renderMap('.themepage .contentHeader.' + name);
     }
 });
@@ -50,17 +50,17 @@ var scrollingVer = false;
 
 var lastTouchY = 0;
 
-var charts, gemeentes, filters, gemeenteSelector;
+var charts, places, filters, gemeenteSelector;
 
 // TODO: this stuff should obviously be refactored
 function initApp() {
     FastClick.attach(document.body);
 
     charts = new Charts(".container_header", datastore, window.THEMES);
-    gemeentes = new Gemeentes(".container_filterGemeente");
+    places = new Places(".container_filterGemeente");
     filters = new Filters("#filters", window.FILTERS);
     gemeenteSelector = new GemeenteSelector(
-        "#container_gemeenteDropDown select",
+        "#container_gemeenteDropDown ul",
         {
             gemeentes : BLESSED_GEMEENTES,
             provinces : PROVINCES
@@ -69,21 +69,25 @@ function initApp() {
 
     charts.setFilters( filters.getFilters() );
 
-    gemeentes.on({
+    places.on({
         'change' : function() {
-            gemeentes.render();
-            charts.setGemeentes( gemeentes.getGemeentes() );
+            places.render();
+            charts.setGemeentes( places.getPlaces() );
             charts.renderChart( charts.getCurrentChart() );
         }
     });
 
     // TODO: gemeente can be both province or city (eg Groningen)
     gemeenteSelector.on('select', function(place) {
-        gemeentes.add(place);
+        if (place.type === 'gemeente') {
+            places.addGemeente(place.label);
+        } else {
+            places.addProvince(place.label);
+        }
     });
 
     charts.on('gemeenteselect', function(gemeente) {
-        gemeentes.add(gemeente);
+        places.addGemeente(gemeente);
     });
 
     filters.on({

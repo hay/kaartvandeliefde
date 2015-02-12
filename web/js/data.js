@@ -1,4 +1,4 @@
-window.INIT_GEMEENTES = ["Amsterdam"];
+window.INIT_PLACES = [{ label : "Amsterdam", type : "gemeente" }];
 
 window.BLESSED_GEMEENTES = [
     "Utrecht",

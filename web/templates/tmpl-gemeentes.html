@@ -1,6 +1,6 @@
-{{#each gemeentes}}
-<div class="filter_gemeente {{theme}}" data-gemeente="{{name}}">
+{{#each places}}
+<div class="filter_gemeente {{theme}}" data-place="{{label}}" data-type="{{type}}">
     <a class="gemeente_del">X</a>
-    <span class="gemeente_name">{{name}}</span>
+    <span class="gemeente_name">{{label}}</span>
 </div>
 {{/each}}

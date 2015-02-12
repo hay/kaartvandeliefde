@@ -6,7 +6,7 @@ window.Charts = Stapes.subclass({
         this.filters = {};
         this.themes = themes;
         this.maps = {};
-        this.gemeentes = INIT_GEMEENTES;
+        this.gemeentes = INIT_PLACES;
 
         var tmplTheme = $("#tmpl-theme").html();
         this.tmplTheme = Handlebars.compile(tmplTheme);
