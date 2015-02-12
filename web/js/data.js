@@ -1,4 +1,4 @@
-window.INIT_GEMEENTES = ["Amsterdam"];
+window.INIT_GEMEENTES = ["Nederland"];
 
 window.BLESSED_GEMEENTES = [
     "Utrecht",
