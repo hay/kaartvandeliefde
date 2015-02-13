@@ -1,0 +1,37 @@
+.placeselector {
+    position: absolute;
+    top: 80px;
+    right: 165px;
+    z-index: 2;
+    background: white;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    @include transition(300ms);
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        @include column-count(2);
+    }
+
+    body.contracted &, &.contracted {
+        right: -100%;
+    }
+
+    li, .placeselector-header {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    li:not(.placeselector-header) {
+        cursor: pointer;
+    }
+
+    .placeselector-header {
+        font-weight: bold;
+    }
+}
+
+.placeselector-list-container {
+    float: left;
+}
