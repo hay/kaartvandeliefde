@@ -8,12 +8,15 @@
 
         li {
             @include flex(1);
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
         }
 
-        @include respond-until($screen-sm) {
+        @include respond-until($screen-md) {
             @include flex-direction(column);
+
+            li {
+                background: rgba(255, 255, 255, 0.2);
+                padding: 20px;
+            }
         }
     }
 
@@ -103,6 +106,7 @@
 .chartcontainer {
     text-align: center;
     position: relative;
+    height: calc(100% - 200px);
 }
 
 .chartcontainer h2 {

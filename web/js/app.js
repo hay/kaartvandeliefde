@@ -254,19 +254,6 @@ function initApp() {
         }, 2100);
     });
 
-    $('.container_scrollUp').each(function(){
-        var $this = $(this);
-        setInterval(function(){
-            $this.animate({bottom: "50px"},
-                {duration: 300, easing: 'easeInOutQuart', complete: function(){
-                    $this.animate({bottom: "60px"}, {duration: 300, easing: 'easeInOutQuart'});
-                }
-            });
-        }, 3000);
-    }).on("click", function(){
-        changeBlock(0);
-    });
-
     $(".legend_open").on("click", function(){
         $(".container_left").addClass("open");
         document.activeElement.blur()
