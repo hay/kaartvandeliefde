@@ -40,6 +40,16 @@ window.Filters = Stapes.subclass({
         this.data = data;
     },
 
+    shakeIt : function() {
+        var $el = this.$el;
+
+        // Why doesn't transitionend work?
+        $el.addClass('filter-shake');
+        setTimeout(function() {
+            $el.removeClass('filter-shake');
+        }, 1000);
+    },
+
     toggle : function(filter, label) {
         var item = this.getFilter(filter);
         var value = item.values.filter(function(v) {

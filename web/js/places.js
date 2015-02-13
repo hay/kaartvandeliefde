@@ -5,12 +5,8 @@ window.Places = Stapes.subclass({
 
     addPlace : function(place) {
         // Make sure we don't add stuff that's already there
-        if (this.hasPlace(place)) {
-            return;
-        }
-
-        // Maximum number of places
-        if (this.places.length === 3) {
+        if (this.hasPlace(place) || this.isFull()) {
+            this.emit('adderror');
             return;
         }
 
@@ -25,10 +21,14 @@ window.Places = Stapes.subclass({
 
     hasPlace : function(place) {
         var check = this.places.filter(function(p) {
-            return p.type === place.type && p.label === p.place;
+            return p.type === place.type && p.label === place.label;
         });
 
         return !!check.length;
+    },
+
+    isFull : function() {
+        return this.places.length >= 3;
     },
 
     remove : function(place) {

@@ -84,6 +84,10 @@ function initApp() {
             filters.render();
             charts.renderChart( charts.getCurrentChart() );
             placeSelector.hide();
+        },
+
+        'adderror' : function() {
+            filters.shakeIt();
         }
     });
 
@@ -120,13 +124,18 @@ function initApp() {
 
         'click' : function(d) {
             if (d.filter === 'place') {
-                if (['place', 'gemeente'].indexOf(d.type) !== -1) {
+                if (['province', 'gemeente'].indexOf(d.type) !== -1) {
                     places.remove(d);
                 }
 
                 if (d.type === 'addplace') {
-                    $(".container_left").removeClass('open');
-                    placeSelector.show();
+                    // Check if we don't have too many places
+                    if (places.isFull()) {
+                        filters.shakeIt();
+                    } else {
+                        $(".container_left").removeClass('open');
+                        placeSelector.show();
+                    }
                 }
             } else {
                 filters.toggle(d.filter, d.label);
