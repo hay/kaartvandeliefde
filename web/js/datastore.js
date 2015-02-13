@@ -46,16 +46,29 @@ window.DataStore = Stapes.subclass({
         }
     },
 
+    // Returns the 'correct' name
+    getPlaceLabel : function(place) {
+        if (['Utrecht', 'Groningen'].indexOf(place.label) !== -1) {
+            var type = place.type === 'province' ? 'provincie' : 'gemeente';
+            return place.label + ' (' + place.type + ')';
+        } else {
+            return place.label;
+        }
+    },
+
     getProvinceByGemeente : function(gemeente) {
         return this.gemeentes[gemeente].province;
     },
 
-    isZip : function(zip, gemeenteOrProvince) {
-        if (!this.zips[zip]) return false;
+    isZip : function(zip, place) {
+        var zipRecord = this.zips[zip];
 
-        return gemeenteOrProvince === 'Nederland' ||
-               this.zips[zip].gemeente === gemeenteOrProvince ||
-               this.zips[zip].province === gemeenteOrProvince;
+        if (place.type === 'country') return true;
+
+        if (!zipRecord) return false;
+
+        return (zipRecord.gemeente === place.label && place.type === 'gemeente') ||
+               (zipRecord.province === place.label && place.type === 'province');
     },
 
     load : function(cb) {

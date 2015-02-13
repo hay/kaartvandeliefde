@@ -72,7 +72,7 @@ function initApp() {
     places.on({
         'change' : function() {
             places.render();
-            charts.setGemeentes( places.getPlaces() );
+            charts.setPlaces( places.getPlaces() );
             charts.renderChart( charts.getCurrentChart() );
         }
     });
@@ -83,7 +83,17 @@ function initApp() {
     });
 
     charts.on('gemeenteselect', function(gemeente) {
-        places.addGemeente(gemeente);
+        var place = {
+            label : gemeente,
+            type : 'gemeente'
+        };
+
+        if (BLESSED_GEMEENTES.indexOf(gemeente) === -1) {
+            place.label = window.datastore.getProvinceByGemeente(place.label);
+            place.type = 'province';
+        }
+
+        places.addPlace(place);
     });
 
     filters.on({

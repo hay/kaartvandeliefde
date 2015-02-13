@@ -17,17 +17,7 @@ window.Places = Stapes.subclass({
             return;
         }
 
-        if (['country', 'province'].indexOf(place.type) !== -1) {
-            this.places.push(place);
-        } else if (
-            (place.type === 'gemeente') &&
-            (BLESSED_GEMEENTES.indexOf(place.label) === -1)
-        ) {
-            var province = window.datastore.getProvinceByGemeente(place.label);
-            this.places.push(province);
-        } else {
-            this.places.push(place);
-        }
+        this.places.push(place);
 
         this.emit('change');
     },

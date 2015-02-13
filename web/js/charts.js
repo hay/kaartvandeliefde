@@ -6,14 +6,14 @@ window.Charts = Stapes.subclass({
         this.filters = {};
         this.themes = themes;
         this.maps = {};
-        this.gemeentes = INIT_PLACES;
+        this.places = INIT_PLACES;
 
         var tmplTheme = $("#tmpl-theme").html();
         this.tmplTheme = Handlebars.compile(tmplTheme);
     },
 
     // This is all really basic right now
-    calculateAnswer : function(question, gemeente, opts) {
+    calculateAnswer : function(question, place, opts) {
         // Always populate answers array with zeroes
         var answersLength;
 
@@ -30,9 +30,9 @@ window.Charts = Stapes.subclass({
 
         this.answers.forEach(function(record) {
             var zip = record.filters.zip;
-            var inGemeente = this.data.isZip(zip, gemeente) || gemeente === 'Nederland';
+            var inPlace = this.data.isZip(zip, place);
 
-            if (record.answers[question] !== null && inGemeente) {
+            if (record.answers[question] !== null && inPlace) {
                 var answer = record.answers[question];
                 population++;
 
@@ -85,18 +85,18 @@ window.Charts = Stapes.subclass({
     },
 
     getQuote : function(quote) {
-        var l = this.gemeentes.length;
-        var gemeentes = _.clone(this.gemeentes);
+        var l = this.places.length;
+        var places = _.pluck(this.places, 'label');
 
         if (l === 1) {
-            gemeentes = gemeentes[0];
+            places = places[0];
         } else if (l === 2) {
-            gemeentes = gemeentes.join(' en ');
+            places = places.join(' en ');
         } else {
-            gemeentes = gemeentes.slice(0, -1).join(', ') + ' en ' + gemeentes.pop();
+            places = places.slice(0, -1).join(', ') + ' en ' + places.pop();
         }
 
-        return quote.replace('%s', gemeentes);
+        return quote.replace('%s', places);
     },
 
     setup : function() {
@@ -126,11 +126,12 @@ window.Charts = Stapes.subclass({
 
         var question = chartOpts.question;
 
-        var columns = this.gemeentes.map(function(gemeente) {
-            var answer = this.calculateAnswer(question, gemeente, chartOpts);
+        var columns = this.places.map(function(place) {
+            var answer = this.calculateAnswer(question, place, chartOpts);
+            var placeLabel = this.data.getPlaceLabel(place);
 
             var column = answer.data;
-            column.unshift(gemeente + ' (' + answer.population + ')');
+            column.unshift(placeLabel + ' (' + answer.population + ')');
             return column;
         }, this);
 
@@ -192,7 +193,7 @@ window.Charts = Stapes.subclass({
         this.filters = filters;
     },
 
-    setGemeentes : function(gemeentes) {
-        this.gemeentes = gemeentes;
+    setPlaces : function(places) {
+        this.places = places;
     }
 })
