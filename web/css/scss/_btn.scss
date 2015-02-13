@@ -35,7 +35,7 @@ li.btn_nav:last-child{
     &, &:hover  { color: white; }
 }
 
-.btn-big {
+.btn-big, .btn-lg {
     display: inline-block;
     font-weight: bold;
     font-size: 36px;
@@ -56,6 +56,12 @@ li.btn_nav:last-child{
     &:hover {
         @include transform(scale3d(1.2, 1.2, 1));
     }
+}
+
+.btn-lg {
+    font-size: 20px;
+    background: $themeyellow;
+    margin-top: 0;
 }
 
 .btn_about {
@@ -105,5 +111,9 @@ li.btn_nav:last-child{
 
     &:hover {
         color: black;
+    }
+
+    img {
+        width: 20px;
     }
 }

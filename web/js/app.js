@@ -9,6 +9,7 @@ var App = Stapes.subclass({
         this.set('currPage', 0);
         this.set('currBlock', 0);
         this.pages = ['home', 'liefde', 'lust', 'angst'];
+        this.first = true;
     },
 
     getCurrPageName : function() {
@@ -31,6 +32,14 @@ app.on({
         var name = app.getCurrPageName();
 
         if (name === 'home') return;
+
+        if (this.first) {
+            this.first = false;
+            $("#filters").addClass('filters-useme');
+            setTimeout(function() {
+                $("#filters").removeClass('filters-useme');
+            }, 3000);
+        }
 
         $(".container_left").addClass("open");
 
@@ -248,9 +257,9 @@ function initApp() {
     $('.container_scrollUp').each(function(){
         var $this = $(this);
         setInterval(function(){
-            $this.animate({top: "50px"},
+            $this.animate({bottom: "50px"},
                 {duration: 300, easing: 'easeInOutQuart', complete: function(){
-                    $this.animate({top: "60px"}, {duration: 300, easing: 'easeInOutQuart'});
+                    $this.animate({bottom: "60px"}, {duration: 300, easing: 'easeInOutQuart'});
                 }
             });
         }, 3000);

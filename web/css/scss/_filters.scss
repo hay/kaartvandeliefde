@@ -4,7 +4,6 @@
     top: 80px;
     right: 20px;
     z-index: 100;
-    height: 100%;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     @include transition(right 0.3s ease 0s);
@@ -15,6 +14,30 @@
     }
 
     background-color: $grey;
+}
+
+.filters-useme {
+    @include animation(shakeit 500ms infinite);
+
+    .filterlist-place {
+        @include animation(glow 1s infinite);
+    }
+}
+
+@include keyframes(glow) {
+    0% {
+        background: white;
+    }
+
+    50% {
+        // background: #7F1D16;
+        background: $themered;
+        color: white;
+    }
+
+    100% {
+        background: white;
+    }
 }
 
 @include keyframes(shakeit) {

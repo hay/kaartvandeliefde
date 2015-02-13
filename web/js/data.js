@@ -2,7 +2,7 @@ window.CHART_COLORS = ['%theme', '#3F3F3F', '#929292', '#bbb'];
 
 window.THEME_COLORS = {
     "liefde" : ["#E53423", "#7F1D16", "#E5A6A0"],
-    "lust"   : ["#E5C522", "#7F6E1C", "E5DAA0"],
+    "lust"   : ["#E5C522", "#7F6E1C", "#E5DAA0"],
     "angst"  : ["#52BFD5", "#166E80", "#9FD6E2"]
 };
 
@@ -221,15 +221,15 @@ window.THEMES = {
                 "category" : "Break-up",
                 "text" : "Wat is voor deze generatie in %s de belangrijkste reden om een relatie te beëindigen?",
                 "labels" : [
-                    "De relatie gaf me meer verdriet dan vreugde",
-                    "Vanwege seksuele verschillen",
-                    "Vanwege ontrouw van mijn partner",
-                    "Vanwege ontrouw van mij",
-                    "Vanwege verlangen naar een ex-partner",
-                    "Door een verkeerde of onrealistische partnerkeuze en idealen",
-                    "Mijn omgeving was tegen mijn relatie",
-                    "Vanwege verschillende toekomstbeelden",
-                    "N.v.t. (ik ben nog steeds in mijn eerste relatie)",
+                    "Relatie gaf meer verdriet dan vreugde",
+                    "Seksuele verschillen",
+                    "Ontrouw van mijn partner",
+                    "Ontrouw van mij",
+                    "Verlangen naar ex-partner",
+                    "Verkeerde partnerkeuze en/of idealen",
+                    "Omgeving was tegen",
+                    "Verschillende toekomstbeelden",
+                    "N.v.t. (in eerste relatie)",
                     "Anders",
                 ]
             }
