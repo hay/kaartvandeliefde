@@ -54,6 +54,12 @@ window.PROVINCE_CITIES = {
 
 window.FILTERS = [
     {
+        "name" : "Locatie",
+        "key" : "place",
+        "place" : true,
+        "values" : INIT_PLACES
+    },
+    {
         "name" : "Geslacht",
         "key" : "sex",
         "values" : [

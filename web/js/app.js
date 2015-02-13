@@ -37,7 +37,6 @@ app.on({
         $("body").attr('data-theme', name);
 
         drawBlockLegend();
-        places.render();
         charts.renderMap('.themepage .contentHeader.' + name);
     }
 });
@@ -57,7 +56,7 @@ function initApp() {
     FastClick.attach(document.body);
 
     charts = new Charts(".container_header", datastore, window.THEMES);
-    places = new Places(".container_filterGemeente");
+    places = new Places();
     filters = new Filters("#filters", window.FILTERS);
     gemeenteSelector = new GemeenteSelector(
         "#container_gemeenteDropDown ul",
@@ -71,9 +70,20 @@ function initApp() {
 
     places.on({
         'change' : function() {
-            places.render();
+            filters.setFilters(
+                filters.getFilters().map(function(f) {
+                    if (f.key === 'place') {
+                        f.values = places.getPlaces();
+                    }
+
+                    return f;
+                })
+            );
+
             charts.setPlaces( places.getPlaces() );
+            filters.render();
             charts.renderChart( charts.getCurrentChart() );
+            gemeenteSelector.hide();
         }
     });
 
@@ -99,6 +109,7 @@ function initApp() {
     filters.on({
         'change' : function() {
             charts.setFilters( filters.getFilters() );
+            charts.setPlaces( places.getPlaces() );
             charts.setAnswers();
 
             try {
@@ -109,7 +120,17 @@ function initApp() {
         },
 
         'click' : function(d) {
-            filters.toggle(d.filter, d.label);
+            if (d.filter === 'place') {
+                if (['place', 'gemeente'].indexOf(d.type) !== -1) {
+                    places.remove(d);
+                }
+
+                if (d.type === 'addplace') {
+                    gemeenteSelector.show();
+                }
+            } else {
+                filters.toggle(d.filter, d.label);
+            }
         }
     });
 

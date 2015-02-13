@@ -1,9 +1,6 @@
 window.Places = Stapes.subclass({
-    constructor : function(el) {
-        this.$el = $(el);
+    constructor : function() {
         this.places = INIT_PLACES;
-        this.tmpl = Handlebars.compile( $("#tmpl-places").html() );
-        this.bindEventHandlers();
     },
 
     addPlace : function(place) {
@@ -22,19 +19,6 @@ window.Places = Stapes.subclass({
         this.emit('change');
     },
 
-    bindEventHandlers : function() {
-        var self = this;
-
-        this.$el.on('click', '.filter_gemeente', function() {
-            var $el = $(this);
-
-            self.remove({
-                label : $el.data('label'),
-                type : $el.data('type')
-            });
-        });
-    },
-
     getPlaces : function() {
         return _.clone(this.places);
     },
@@ -45,16 +29,6 @@ window.Places = Stapes.subclass({
         });
 
         return !!check.length;
-    },
-
-    render : function() {
-        var places = this.places.map(function(place) {
-            place.theme = app.getCurrPageName();
-            return place;
-        });
-
-        var html = this.tmpl({ places : places });
-        this.$el.html(html);
     },
 
     remove : function(place) {

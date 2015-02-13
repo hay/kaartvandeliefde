@@ -6,9 +6,16 @@
             <li class="filterlist-item {{#if selected}}active{{/if}}"
                 data-filter="{{../key}}"
                 data-label="{{label}}"
+                {{#if type}}
+                data-type="{{type}}"
+                {{/if}}
             >
                 {{{label}}}
             </li>
         {{/each}}
+
+        {{#if place}}
+            <li class="filterlist-item filterlist-place" data-filter="place" data-type="addplace">Voeg locatie toe</li>
+        {{/if}}
     {{/each}}
 </ul>

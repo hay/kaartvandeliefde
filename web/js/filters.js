@@ -12,9 +12,12 @@ window.Filters = Stapes.subclass({
 
         this.$el.on('click', '.filterlist-item', function() {
             var $el = $(this);
-            var filter = $el.data('filter');
-            var label = $el.data('label');
-            self.emit('click', { filter : filter, label : label });
+
+            self.emit('click', {
+                filter :$el.data('filter'),
+                label : $el.data('label'),
+                type : $el.data('type')
+            });
         });
     },
 
@@ -24,13 +27,17 @@ window.Filters = Stapes.subclass({
         })[0];
     },
 
-    getFilters : function() {
-        return this.data;
+    getFilters : function(withPlaces) {
+        return _.clone(this.data);
     },
 
     render : function() {
         var html = this.template({ filters : this.data });
         this.$el.html(html);
+    },
+
+    setFilters : function(data) {
+        this.data = data;
     },
 
     toggle : function(filter, label) {

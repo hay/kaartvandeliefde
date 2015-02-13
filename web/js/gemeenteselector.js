@@ -13,6 +13,10 @@ window.GemeenteSelector = Stapes.subclass({
         }.bind(this));
     },
 
+    hide : function() {
+        this.$el.parent().addClass('contracted');
+    },
+
     render : function() {
         this.gemeentes.forEach(function(label) {
             var place = { label : label, type : 'gemeente' };
@@ -28,5 +32,9 @@ window.GemeenteSelector = Stapes.subclass({
     select : function(place) {
         this.$el.find("option").removeAttr('selected');
         this.$el.find("option[value=" + place + "]").attr('selected', 'selected');
+    },
+
+    show : function() {
+        this.$el.parent().removeClass('contracted');
     }
 });

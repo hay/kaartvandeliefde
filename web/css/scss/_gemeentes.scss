@@ -1,28 +1,24 @@
 .container_gemeenteDropDown {
     position: absolute;
-    top: 130px;
-    right: 120px;
+    top: 80px;
+    right: 156px;
     z-index: 2;
     background: white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
     @include transition(right 0.3s ease 0s);
     @include theme-colors-background;
 
-    body.contracted & {
+    body.contracted &, &.contracted {
         right: -390px;
     }
 
-    label, select {
-        float: left;
-        clear: left;
-        padding: 5px 10px;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
-    label {
-        color: white;
-    }
-
-    select {
+    li {
         cursor: pointer;
         @include appearance(none);
         border: 0;
