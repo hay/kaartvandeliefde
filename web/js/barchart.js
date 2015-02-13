@@ -2,6 +2,10 @@ window.BarChart = Chart.subclass({
     constructor : function(el, data) {
         Chart.prototype.constructor.apply(this, arguments);
 
+        var colors = CHART_COLORS.map(function(val) {
+            return val === '%theme' ? THEME_COLORS[data.themeId][0] : val;
+        });
+
         this.chart = c3.generate({
             bindto : el,
             axis : {
@@ -31,6 +35,9 @@ window.BarChart = Chart.subclass({
             },
             tooltip : {
                 show : false
+            },
+            color : {
+                pattern : colors
             }
         });
     }

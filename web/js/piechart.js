@@ -19,7 +19,7 @@ window.PieChart = Chart.subclass({
 
             columns.push({
                 gemeente : data.columns[i][0],
-                data : column
+                data : column.reverse()
             });
         }
 
@@ -33,6 +33,10 @@ window.PieChart = Chart.subclass({
         columns.forEach(function(column, index) {
             var $el = this.$el.find(".piechart-chart").eq(index);
 
+            var colors = CHART_COLORS.map(function(val) {
+                return val === '%theme' ? THEME_COLORS[data.themeId][index] : val;
+            });
+
             c3.generate({
                 bindto : $el.get(0),
                 data : {
@@ -44,6 +48,16 @@ window.PieChart = Chart.subclass({
                 },
                 tooltip : {
                     show : false
+                },
+                color : {
+                    pattern : colors
+                },
+                pie : {
+                    label : {
+                        format : function(value, ratio, id) {
+                            return Math.round(value.toFixed(2) * 100) + '%';
+                        }
+                    }
                 }
             });
         }, this);

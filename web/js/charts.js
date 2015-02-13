@@ -141,7 +141,8 @@ window.Charts = Stapes.subclass({
 
                 var chart = new BarChart(el, {
                     columns : columns,
-                    labels : labels
+                    labels : labels,
+                    themeId : themeId
                 });
 
                 chart.show();
@@ -158,10 +159,12 @@ window.Charts = Stapes.subclass({
 
                 var chart = new PieChart(el, {
                     columns : columns,
-                    labels : labels
+                    labels : labels,
+                    themeId : themeId
                 });
             }
         } catch (e) {
+            throw e;
             this.showError(el);
             return;
         }

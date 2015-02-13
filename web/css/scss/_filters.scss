@@ -8,24 +8,13 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     @include transition(right 0.3s ease 0s);
-    @include background(linear-gradient(rgba(225,0,0,0) 0%, rgba(0,0,0,0.04) 100%) repeat scroll 0 0 rgba(255,255,255,1));
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
 
     body.contracted & {
         right: -550px;
     }
 
-    &.liefde {
-        background-color: #e53228;
-    }
-
-    &.angst {
-        background-color: #19C0D1;
-    }
-
-    &.lust {
-        background-color: #FFAA00;
-    }
+    background-color: $grey;
 }
 
 @include keyframes(shakeit) {
@@ -65,7 +54,7 @@
 }
 
 .filterlist-item {
-    background: white;
+    background: $lightgrey;
     color: #333;
     cursor: pointer;
 

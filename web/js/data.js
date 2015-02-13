@@ -1,3 +1,11 @@
+window.CHART_COLORS = ['%theme', '#3F3F3F', '#929292', '#bbb'];
+
+window.THEME_COLORS = {
+    "liefde" : ["#E53423", "#7F1D16", "#E5A6A0"],
+    "lust"   : ["#E5C522", "#7F6E1C", "E5DAA0"],
+    "angst"  : ["#52BFD5", "#166E80", "#9FD6E2"]
+};
+
 window.INIT_PLACES = [{ label : "Nederland", type : "country" }];
 
 window.BLESSED_GEMEENTES = [

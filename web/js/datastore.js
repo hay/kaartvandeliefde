@@ -50,7 +50,7 @@ window.DataStore = Stapes.subclass({
     getPlaceLabel : function(place) {
         if (['Utrecht', 'Groningen'].indexOf(place.label) !== -1) {
             var type = place.type === 'province' ? 'provincie' : 'gemeente';
-            return place.label + ' (' + place.type + ')';
+            return place.label + ' (' + type + ')';
         } else {
             return place.label;
         }
