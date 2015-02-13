@@ -79,11 +79,7 @@ function initApp() {
 
     // TODO: gemeente can be both province or city (eg Groningen)
     gemeenteSelector.on('select', function(place) {
-        if (place.type === 'gemeente') {
-            places.addGemeente(place.label);
-        } else {
-            places.addProvince(place.label);
-        }
+        places.addPlace(place);
     });
 
     charts.on('gemeenteselect', function(gemeente) {

@@ -2,42 +2,46 @@ window.Places = Stapes.subclass({
     constructor : function(el) {
         this.$el = $(el);
         this.places = INIT_PLACES;
-        this.tmpl = Handlebars.compile( $("#tmpl-gemeentes").html() );
+        this.tmpl = Handlebars.compile( $("#tmpl-places").html() );
         this.bindEventHandlers();
     },
 
-    // TODO: gemeente can be the same as province (Utrecht / Groningen)
-    addGemeente : function(gemeente) {
+    addPlace : function(place) {
         // Make sure we don't add stuff that's already there
-        if (this.gemeentes.indexOf(gemeente) !== -1) {
+        if (this.hasPlace(place)) {
             return;
         }
 
-        // Maximum number of gemeentes
-        if (this.gemeentes.length === 3) {
+        // Maximum number of places
+        if (this.places.length === 3) {
             return;
         }
 
-        // If this gemeente is not blessed, get the province
-        if (BLESSED_GEMEENTES.indexOf(gemeente) === -1) {
-            var province = window.datastore.getProvinceByGemeente(gemeente);
-            gemeente = province;
+        if (['country', 'province'].indexOf(place.type) !== -1) {
+            this.places.push(place);
+        } else if (
+            (place.type === 'gemeente') &&
+            (BLESSED_GEMEENTES.indexOf(place.label) === -1)
+        ) {
+            var province = window.datastore.getProvinceByGemeente(place.label);
+            this.places.push(province);
+        } else {
+            this.places.push(place);
         }
 
-        this.gemeentes.push( gemeente );
         this.emit('change');
-    },
-
-    addProvince : function(province) {
-
     },
 
     bindEventHandlers : function() {
         var self = this;
 
         this.$el.on('click', '.filter_gemeente', function() {
-            var gemeente = $(this).data('gemeente');
-            self.remove(gemeente);
+            var $el = $(this);
+
+            self.remove({
+                label : $el.data('label'),
+                type : $el.data('type')
+            });
         });
     },
 
@@ -45,29 +49,37 @@ window.Places = Stapes.subclass({
         return _.clone(this.places);
     },
 
-    render : function() {
-        var places = this.places.map(function(place) {
-            return {
-                theme : app.getCurrPageName(),
-                name : place
-            }
+    hasPlace : function(place) {
+        var check = this.places.filter(function(p) {
+            return p.type === place.type && p.label === p.place;
         });
 
-        var html = this.tmpl({ gemeentes : places });
+        return !!check.length;
+    },
+
+    render : function() {
+        var places = this.places.map(function(place) {
+            place.theme = app.getCurrPageName();
+            return place;
+        });
+
+        var html = this.tmpl({ places : places });
         this.$el.html(html);
     },
 
-    remove : function(gemeente) {
-        // We don't delete Nederland
-        if (gemeente === 'Nederland') {
+    remove : function(place) {
+        // We don't delete countries
+        if (place.type === 'country') {
             return;
         }
 
-        this.gemeentes = _.without(this.gemeentes, gemeente);
+        this.places = this.places.filter(function(p) {
+            return p.type !== place.type && p.label !== place.label;
+        });
 
         // Check if this is not empty
-        if (!this.gemeentes.length) {
-            this.gemeentes = INIT_GEMEENTES;
+        if (!this.places.length) {
+            this.places = INIT_PLACES;
         }
 
         this.emit('change');
