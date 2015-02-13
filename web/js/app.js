@@ -452,8 +452,8 @@ function changeBlock(block){
         scrollingVer = true;
         var maxBlocks = $(".container_page").get(app.get('currPage')).children.length;
 
-        if (block > maxBlocks-1) {
-            block = maxBlocks-1;
+        if (block > maxBlocks - 1) {
+            block = maxBlocks - 1;
         } else if (block < 0){
             block = 0;
         }

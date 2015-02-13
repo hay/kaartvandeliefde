@@ -38,7 +38,7 @@ window.Places = Stapes.subclass({
         }
 
         this.places = this.places.filter(function(p) {
-            return p.type !== place.type && p.label !== place.label;
+            return p.type !== place.type || p.label !== place.label;
         });
 
         // Check if this is not empty
