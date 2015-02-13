@@ -1,12 +1,13 @@
 .frontpage {
-    background: url("../img/background.png") no-repeat center center;
+    background: url("../img/splash.jpg") no-repeat center center;
     background-size: cover;
     text-align: center;
     color: white;
     line-height: 1.6;
-    font-size:0.8em;
+    font-size: 0.8em;
     text-shadow: 1px 1px rgba(0,0,0, 0.3);
     overflow: auto;
+    padding-top: 30px;
 
     a {
         color: white;
@@ -31,14 +32,14 @@
         font-size: 16px;
     }
 
-    .frontpage_logo {
-        width: 174px;
+    #quotes{
+        min-height: 66px;
+        overflow: hidden;
+        margin: 20px 0px 10px 0px;
     }
 
-    #quotes{
-    min-height: 66px;
-    overflow: hidden;
-    margin: 10px 0px 0px 10px;
+    .frontpage-text {
+        max-width: 600px;
     }
 
     #quotes p {
@@ -78,8 +79,29 @@
         z-index: 21;
     }
 
-    .youtubePlayer {
+    .youtube-player-container {
+        margin: 60px 0;
+        float: left;
+        clear: left;
+        width: 100%;
+    }
+
+    .youtube-player {
+        cursor: pointer;
         border: 4px solid white;
-        margin: 40px 0px;
+        display: inline-block;
+        min-width: 300px;
+        max-width: 500px;
+
+        &, img, iframe {
+            @include transition(0.5s);
+        }
+    }
+
+    .youtube-player-bigger {
+        .youtube-player, .youtube-player img, .youtube-player iframe {
+            width: 100%;
+            max-width: 800px;
+        }
     }
 }

@@ -1,17 +1,10 @@
-h3.partners {
-    margin-top: 20px;
-    color: white;
-    font-size: 24px;
-    text-align: center;
-}
-
 .thumblist {
     &.thumblist-center {
         @include display-flex;
         @include align-items(center);
         width: 100%;
         margin-bottom: 50px;
-        margin-top: 0;
+        margin-top: 100px;
 
         li {
             @include flex(1);
@@ -327,7 +320,7 @@ body.contracted .container_left {
 .quote {
     font-family: $font-hzt;
     font-size: 24px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 60px;
 }
@@ -457,6 +450,10 @@ body.contracted .container_left {
 
 [data-show-if] {
     display: none;
+}
+
+.c3 svg {
+    font-size: 13px;
 }
 
 .c3-chart-arc {

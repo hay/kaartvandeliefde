@@ -15,7 +15,7 @@ window.BarChart = Chart.subclass({
                 },
                 y : {
                     tick : {
-                        count : 11,
+                        count : 6,
                         format : function(d) {
                             var p = Math.ceil( d * 100) + '%';
 
@@ -25,6 +25,11 @@ window.BarChart = Chart.subclass({
                     }
                 },
                 rotated : true
+            },
+            grid : {
+                y : {
+                    show : true
+                }
             },
             data : {
                 columns : this.emptyColumns,
@@ -38,6 +43,11 @@ window.BarChart = Chart.subclass({
             },
             color : {
                 pattern : colors
+            },
+            bar : {
+                width : {
+                    ratio: 0.35 + (data.columns.length * 0.15)
+                }
             }
         });
     }

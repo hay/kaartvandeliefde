@@ -9,39 +9,39 @@ window.THEME_COLORS = {
 window.INIT_PLACES = [{ label : "Nederland", type : "country" }];
 
 window.BLESSED_GEMEENTES = [
-    "Utrecht",
-    "Groningen",
-    "Amsterdam",
-    "Tilburg",
-    "Breda",
-    "Rotterdam",
-    "Nijmegen",
-    "'s-Hertogenbosch",
-    "Leeuwarden",
-    "Eindhoven",
     "'s-Gravenhage",
-    "Enschede",
-    "Zwolle",
-    "Maastricht",
-    "Amersfoort",
+    "'s-Hertogenbosch",
     "Almere",
+    "Amersfoort",
+    "Amsterdam",
+    "Breda",
     "Deventer",
-    "Leiden"
+    "Eindhoven",
+    "Enschede",
+    "Groningen",
+    "Leeuwarden",
+    "Leiden",
+    "Maastricht",
+    "Nijmegen",
+    "Rotterdam",
+    "Tilburg",
+    "Utrecht",
+    "Zwolle"
 ];
 
 window.PROVINCES = [
-    "Noord-Holland",
-    "Zuid-Holland",
-    "Groningen",
-    "Friesland",
     "Drenthe",
-    "Overijssel",
-    "Gelderland",
-    "Limburg",
-    "Zeeland",
     "Flevoland",
+    "Friesland",
+    "Gelderland",
+    "Groningen",
+    "Limburg",
+    "Noord-Brabant",
+    "Noord-Holland",
+    "Overijssel",
     "Utrecht",
-    "Noord-Brabant"
+    "Zeeland",
+    "Zuid-Holland"
 ];
 
 window.FILTERS = [
